@@ -400,6 +400,110 @@ object ScalaEssentials {
   calledByValue(1257387745764245L)
   calledByName(System.nanoTime())
 
+  /**
+   * Laziness
+   *   - lazy val
+   *   - views: the same laziness, on collections you already have
+   *   - filter vs withFilter, and what a for-comprehension really compiles to
+   *   - LazyList: lists that do not end
+   *
+   * Call-by-name above was "do not evaluate this until it is used". Everything
+   * here is that same idea, applied to values and to collections.
+   *
+   * (Day 2 has a whole block of practice on this. Here we just want the shapes
+   * to be familiar.)
+   */
+
+  // A lazy val is evaluated on FIRST USE, and then remembered.
+  lazy val expensiveConfig: Map[String, String] = {
+    println("...reading the config file, once")
+    Map("host" -> "localhost")
+  }
+
+  /*
+    The three ways to control WHEN work happens - worth memorising, because
+    picking the wrong row is one of the most common bugs in Scala code:
+
+      val        evaluated once, right now
+      lazy val   evaluated once, on first use, then remembered
+      def / =>   evaluated every single time it is used
+   */
+
+  def now: Long = System.nanoTime()       // different every time you ask
+  lazy val once: Long = System.nanoTime() // the same forever, computed on first ask
+
+  // ---- views: laziness on an ordinary collection ----------------------------
+
+  val manyNumbers = (1 to 1000).toList
+
+  // eager: builds a 1000-element list, then a filtered list, and keeps 3 of them
+  val eagerPipeline = manyNumbers.map(_ * 2).filter(_ > 10).take(3)
+
+  // lazy: nothing runs until `toList` asks, and then only far enough to get 3
+  val lazyPipeline = manyNumbers.view.map(_ * 2).filter(_ > 10).take(3).toList
+
+  /*
+    The mental model: WITHOUT a view, every stage builds a whole intermediate
+    collection and hands it to the next one. WITH a view, nothing is built and
+    nothing runs; `toList` pulls one element all the way through the pipeline,
+    then the next, and stops pulling as soon as `take` has enough.
+
+    Two things to remember:
+      - the `.toList` is NOT optional. A view is a description, not an answer.
+      - views do NOT remember. Force the same view twice and everything runs
+        twice. (LazyList, below, is the one that remembers.)
+   */
+
+  // ---- filter vs withFilter -------------------------------------------------
+
+  val evenThenIncremented = manyNumbers.filter(_ % 2 == 0).map(_ + 1)     // builds the filtered list first
+  val evenThenFused = manyNumbers.withFilter(_ % 2 == 0).map(_ + 1)       // no intermediate list
+
+  /*
+    `withFilter` is `filter` that does not build anything - it just remembers
+    the condition and applies it during the next map/flatMap/foreach.
+
+    This is not trivia: an `if` inside a for-comprehension compiles to
+    `withFilter`, not to `filter`. That is exactly why MyList needed a
+    `withFilter` method for our own for-comprehension to work.
+   */
+
+  val evensSquared = for {
+    n <- manyNumbers
+    if n % 2 == 0     // <- this becomes withFilter
+  } yield n * n
+
+  // ---- LazyList: lists that do not end --------------------------------------
+
+  /*
+    A LazyList computes its tail only when asked, and then remembers it. So an
+    infinite one is not a trick - you describe the whole thing, and only the
+    part you actually look at ever exists.
+
+    (In Scala 2.12 and earlier this was called `Stream`. Same idea, LazyList
+    fixed some genuinely nasty details about when the head gets evaluated.)
+   */
+
+  val naturalNumbers: LazyList[Int] = LazyList.from(0) // infinite, and that is fine
+  val firstFiveNaturals = naturalNumbers.take(5).toList // List(0, 1, 2, 3, 4)
+  val theThousandth = naturalNumbers.drop(1000).head    // 1000 - and nothing past it was ever computed
+
+  // `#::` builds a LazyList the way `::` builds a List, except the tail is by-name
+  def countFrom(n: Int): LazyList[Int] = n #:: countFrom(n + 1)
+  val alsoNaturals = countFrom(0).take(5).toList
+
+  // the classic: fibonacci, defined in terms of itself
+  lazy val fibs: LazyList[BigInt] = BigInt(0) #:: BigInt(1) #:: fibs.zip(fibs.tail).map((a, b) => a + b)
+  val firstTenFibs = fibs.take(10).toList // 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
+
+  /*
+    TODO Exercise (time permitting):
+    1) infiniteOnes: a LazyList of 1s that never ends
+    2) multiples(n): every multiple of n, forever
+    3) using naturalNumbers, produce the first 10 perfect squares
+   */
+
+
   /*
     This MyList implementation contains ALL the exercises
    */
