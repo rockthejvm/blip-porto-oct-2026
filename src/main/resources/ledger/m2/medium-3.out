@@ -1,0 +1,41 @@
+OK 1 m OPENED USD
+OK 2 n OPENED USD
+OK 3 m +10.00 10.00
+OK 4 n +10.00 10.00
+OK 5 m FROZEN
+REJECTED account-frozen account=m
+REJECTED account-frozen account=m
+REJECTED account-frozen account=m
+BALANCE m 10.00 USD
+REJECTED non-zero-balance account=m balance=10.00
+OK 6 m UNFROZEN
+REJECTED insufficient-funds account=m balance=10.00 requested=100.00
+REJECTED non-zero-balance account=m balance=10.00
+OK 7 m -10.00 0.00
+OK 8 m CLOSED
+REJECTED account-closed account=m
+REJECTED account-closed account=m
+REJECTED account-closed account=m
+REJECTED account-exists account=m
+REJECTED account-exists account=m
+ERROR unknown-command deposit
+OK 9 n +1.00 11.00
+ERROR bad-arguments DEPOSIT
+OK 10 n +1.00 12.00
+ERROR bad-account-id N
+OK 11 n +1.00 13.00
+ERROR bad-amount 1.001
+OK 12 n +1.00 14.00
+ERROR bad-currency eur
+OK 13 o OPENED EUR
+OK 14 o +1.00 1.00
+BALANCE n 14.00 USD
+OK 15 n FROZEN
+OK 16 n FROZEN
+OK 17 n UNFROZEN
+OK 18 n UNFROZEN
+OK 19 n -14.00 0.00
+OK 20 n CLOSED
+REJECTED account-closed account=n
+REJECTED account-closed account=n
+BALANCE o 1.00 EUR

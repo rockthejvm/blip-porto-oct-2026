@@ -1,0 +1,38 @@
+# purpose: transfer precedence in the combinations the other m4 scenarios leave out.
+# exercises: both accounts frozen AND different currencies (frozen source wins); closed source vs
+#            unknown destination (unknown wins); frozen destination with insufficient source (frozen
+#            wins); transfer tags across many rejections; transfer to a just-closed account.
+OPEN a1 USD
+OPEN a2 EUR
+OPEN a3 USD
+OPEN a4 USD
+DEPOSIT a1 10
+DEPOSIT a2 10
+DEPOSIT a3 10
+FREEZE a1
+FREEZE a2
+TRANSFER a1 a2 5
+TRANSFER a2 a1 5
+TRANSFER a1 a2 -5
+UNFREEZE a1
+TRANSFER a1 a2 5
+TRANSFER a1 a2 500
+TRANSFER a1 a3 500
+TRANSFER a3 a2 5
+TRANSFER a1 a4 10
+TRANSFER a1 a4 0.01
+TRANSFER a4 a1 10
+CLOSE a4
+TRANSFER a4 nobody 1
+TRANSFER a1 a4 1
+TRANSFER a4 a1 1
+TRANSFER a3 a1 10
+TRANSFER a3 a1 0.01
+TRANSFER a1 a3 20
+UNFREEZE a2
+TRANSFER a2 a1 1
+TRANSFER a2 a2 1
+BALANCE a1
+BALANCE a2
+BALANCE a3
+BALANCE a4

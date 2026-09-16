@@ -1,0 +1,62 @@
+OK 1 a OPENED USD
+OK 2 b OPENED USD
+OK 3 c OPENED EUR
+OK 4 a +100.00 100.00
+OK 5 b +50.00 50.00
+OK 6 a -20.00 80.00
+OK 7 a -30.00 50.00 xfer=t1
+OK 8 b +30.00 80.00 xfer=t1
+OK 9 c +10.00 10.00
+OK 10 a FROZEN
+REJECTED account-frozen account=a
+OK 11 a UNFROZEN
+OK 12 b -5.00 75.00 xfer=t2
+OK 13 a +5.00 55.00 xfer=t2
+OK 14 c -10.00 0.00
+OK 15 c CLOSED
+HISTORY a 7
+  1 OPENED USD
+  4 +100.00 100.00
+  6 -20.00 80.00
+  7 -30.00 50.00 xfer=t1
+  10 FROZEN
+  11 UNFROZEN
+  13 +5.00 55.00 xfer=t2
+HISTORY b 4
+  2 OPENED USD
+  5 +50.00 50.00
+  8 +30.00 80.00 xfer=t1
+  12 -5.00 75.00 xfer=t2
+REJECTED account-closed account=c
+REJECTED unknown-account account=nobody
+SUMMARY a 1 15 opening=0.00 credits=105.00 debits=50.00 closing=55.00 count=7
+SUMMARY a 1 6 opening=0.00 credits=100.00 debits=20.00 closing=80.00 count=3
+SUMMARY a 7 15 opening=80.00 credits=5.00 debits=30.00 closing=55.00 count=4
+SUMMARY a 5 9 opening=100.00 credits=0.00 debits=50.00 closing=50.00 count=2
+SUMMARY a 7 7 opening=80.00 credits=0.00 debits=30.00 closing=50.00 count=1
+SUMMARY a 8 9 opening=50.00 credits=0.00 debits=0.00 closing=50.00 count=0
+SUMMARY a 14 15 opening=55.00 credits=0.00 debits=0.00 closing=55.00 count=0
+SUMMARY a 100 200 opening=55.00 credits=0.00 debits=0.00 closing=55.00 count=0
+SUMMARY b 7 8 opening=50.00 credits=30.00 debits=0.00 closing=80.00 count=1
+SUMMARY b 8 12 opening=50.00 credits=30.00 debits=5.00 closing=75.00 count=2
+REJECTED account-closed account=c
+REJECTED unknown-account account=nobody
+ERROR bad-sequence x
+ERROR bad-sequence x
+ERROR bad-range 9-5
+ERROR bad-sequence -1
+ERROR bad-sequence 1.5
+SUMMARY a 0 0 opening=0.00 credits=0.00 debits=0.00 closing=0.00 count=0
+ERROR bad-arguments SUMMARY
+ERROR bad-arguments SUMMARY
+OK 16 a FROZEN
+SUMMARY a 1 16 opening=0.00 credits=105.00 debits=50.00 closing=55.00 count=8
+HISTORY a 8
+  1 OPENED USD
+  4 +100.00 100.00
+  6 -20.00 80.00
+  7 -30.00 50.00 xfer=t1
+  10 FROZEN
+  11 UNFROZEN
+  13 +5.00 55.00 xfer=t2
+  16 FROZEN

@@ -1,0 +1,23 @@
+# purpose: replay part A - three accounts end in three different states (open with money,
+#          frozen, closed), and 20 facts are recorded.
+OPEN r1 USD
+OPEN r2 EUR
+OPEN r3 GBP
+DEPOSIT r1 1
+DEPOSIT r1 2
+DEPOSIT r1 3
+DEPOSIT r2 100
+DEPOSIT r3 0.01
+WITHDRAW r2 99.99
+FREEZE r2
+FREEZE r2
+WITHDRAW r3 0.01
+CLOSE r3
+DEPOSIT r1 4
+DEPOSIT r1 5
+WITHDRAW r1 15
+DEPOSIT r1 0.5
+FREEZE r1
+UNFREEZE r1
+OPEN r4 USD
+BALANCE r1

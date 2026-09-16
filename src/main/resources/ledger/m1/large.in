@@ -1,0 +1,109 @@
+# purpose: six accounts in round-robin, ~120 lines, so that a wrong balance or a skipped
+#          sequence number surfaces far from where it was caused.
+# exercises: interleaved OPEN/DEPOSIT/BALANCE across accounts; rejections scattered through
+#            the file; balances that accumulate across many small deposits.
+
+# open the six, with a couple of stray commands to accounts that do not exist yet
+OPEN acct-01 USD
+OPEN acct-02 EUR
+DEPOSIT acct-05 10
+OPEN acct-03 GBP
+OPEN acct-04 USD
+BALANCE acct-06
+OPEN acct-05 EUR
+OPEN acct-06 GBP
+
+# round 1
+DEPOSIT acct-01 7
+DEPOSIT acct-02 12.5
+DEPOSIT acct-03 0.99
+DEPOSIT acct-04 250
+DEPOSIT acct-04 1
+DEPOSIT acct-05 1.1
+OPEN acct-05 EUR
+DEPOSIT acct-06 5
+
+# round 2
+DEPOSIT acct-01 64.8
+DEPOSIT acct-02 0.2
+DEPOSIT acct-03 10
+DEPOSIT acct-04 2.5
+OPEN acct-04 USD
+DEPOSIT acct-05 0.75
+DEPOSIT acct-06 100
+DEPOSIT acct-07 1
+BALANCE acct-03
+BALANCE acct-08
+
+# round 3
+DEPOSIT acct-01 33.33
+DEPOSIT acct-02 0.01
+DEPOSIT acct-04 1
+DEPOSIT acct-03 7
+OPEN acct-03 GBP
+DEPOSIT acct-04 12.5
+DEPOSIT acct-05 0.99
+DEPOSIT acct-06 250
+
+# round 4
+DEPOSIT acct-01 1.1
+DEPOSIT acct-02 5
+OPEN acct-02 EUR
+DEPOSIT acct-03 64.8
+DEPOSIT acct-04 0.2
+DEPOSIT acct-05 10
+DEPOSIT acct-06 2.5
+BALANCE acct-05
+BALANCE acct-10
+
+# round 5
+DEPOSIT acct-01 0.75
+OPEN acct-01 USD
+DEPOSIT acct-02 100
+DEPOSIT acct-03 33.33
+DEPOSIT acct-07 1
+DEPOSIT acct-04 0.01
+DEPOSIT acct-05 7
+DEPOSIT acct-06 12.5
+OPEN acct-06 GBP
+
+# round 6
+DEPOSIT acct-01 0.99
+DEPOSIT acct-02 250
+DEPOSIT acct-03 1.1
+DEPOSIT acct-04 5
+DEPOSIT acct-05 64.8
+OPEN acct-05 EUR
+DEPOSIT acct-010 1
+DEPOSIT acct-06 0.2
+BALANCE acct-01
+BALANCE acct-12
+
+# round 7
+DEPOSIT acct-01 10
+DEPOSIT acct-02 2.5
+DEPOSIT acct-03 0.75
+DEPOSIT acct-04 100
+OPEN acct-04 USD
+DEPOSIT acct-05 33.33
+DEPOSIT acct-06 0.01
+
+# round 8
+DEPOSIT acct-01 7
+DEPOSIT acct-02 12.5
+DEPOSIT acct-03 0.99
+OPEN acct-03 GBP
+DEPOSIT acct-04 250
+DEPOSIT acct-011 1
+DEPOSIT acct-05 1.1
+DEPOSIT acct-06 5
+BALANCE acct-03
+BALANCE acct-14
+
+# final balances
+BALANCE acct-01
+BALANCE acct-02
+BALANCE acct-03
+BALANCE acct-04
+BALANCE acct-05
+BALANCE acct-06

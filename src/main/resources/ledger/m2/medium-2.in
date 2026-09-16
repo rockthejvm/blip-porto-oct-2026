@@ -1,0 +1,49 @@
+# purpose: malformed lines - every ERROR variant, and the order in which a line's problems are reported.
+# exercises: unknown-command (verb echoed as written), bad-arguments, bad-account-id, bad-amount,
+#            bad-currency; precedence unknown verb > arity > arguments left to right; malformed lines
+#            between accepted ones never advance <seq>; whitespace and comments are tolerated.
+
+OPEN alice USD
+deposit alice 5
+Deposit alice 5
+DEPOSITT alice 5
+DEPOSIT alice 5
+OPEN
+OPEN alice
+OPEN alice USD extra
+DEPOSIT alice 5 5
+DEPOSIT alice
+BALANCE
+BALANCE alice alice
+DEPOSIT alice 5
+
+# arguments, left to right
+DEPOSIT Alice 5
+DEPOSIT alice_1 5
+DEPOSIT a2345678901234567890123456789012x 5
+DEPOSIT alice 1.005
+DEPOSIT alice 5,00
+DEPOSIT alice five
+DEPOSIT alice .5
+DEPOSIT alice 5.
+DEPOSIT Alice 1.005
+DEPOSIT alice 5
+
+# currency tokens: shape is checked here, support is checked later
+OPEN bob usd
+OPEN bob US
+OPEN bob USDD
+OPEN Bob USD
+OPEN bob XXX
+OPEN bob EUR
+
+# odd spacing is fine
+   WITHDRAW    alice     2.50   
+	DEPOSIT	bob	1
+# an unknown verb is an unknown verb, whatever follows it
+TRANSFERR alice bob 1
+withdraw alice 1
+WITHDRAW alice
+WITHDRAW alice -1
+BALANCE alice
+BALANCE bob

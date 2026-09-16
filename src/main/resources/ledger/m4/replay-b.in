@@ -1,0 +1,13 @@
+# purpose: part B of the M4 replay pair. Balances, the frozen flag, the sequence number (next is 13)
+#          and the transfer tag (next is t3) must all have come back from the journal.
+BALANCE alice
+BALANCE bob
+TRANSFER alice bob 25
+TRANSFER alice carol 1
+TRANSFER carol alice 1
+UNFREEZE carol
+TRANSFER bob alice 100
+TRANSFER bob alice 99.5
+BALANCE alice
+BALANCE bob
+BALANCE carol

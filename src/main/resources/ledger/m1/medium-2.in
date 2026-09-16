@@ -1,0 +1,29 @@
+# purpose: M1 with accounts interleaved more aggressively than medium-1, and
+#          rejections positioned right before and after accepted commands.
+# exercises: OPEN/DEPOSIT/BALANCE only; unknown-account and account-exists; seq continuity.
+DEPOSIT k1 1
+OPEN k1 USD
+DEPOSIT k1 1
+OPEN k2 USD
+OPEN k1 EUR
+DEPOSIT k2 2
+DEPOSIT k3 3
+OPEN k3 GBP
+DEPOSIT k3 3
+DEPOSIT k1 0.99
+DEPOSIT k2 0.01
+BALANCE k1
+BALANCE k2
+BALANCE k3
+BALANCE k4
+OPEN k4 EUR
+BALANCE k4
+DEPOSIT k4 1000000
+DEPOSIT k4 0.01
+DEPOSIT k1 98.01
+BALANCE k1
+BALANCE k4
+OPEN k4 EUR
+OPEN k2 EUR
+DEPOSIT k2 7.98
+BALANCE k2

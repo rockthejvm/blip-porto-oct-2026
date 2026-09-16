@@ -1,0 +1,1000 @@
+OK 1 acc-01 OPENED GBP
+OK 2 acc-02 OPENED GBP
+OK 3 acc-01 FROZEN
+OK 4 acc-03 OPENED USD
+REJECTED unknown-account account=ghost-1
+OK 5 acc-04 OPENED USD
+OK 6 acc-05 OPENED USD
+OK 7 acc-06 OPENED USD
+OK 8 acc-02 +0.51 0.51
+OK 9 acc-02 -0.43 0.08
+REJECTED non-positive-amount account=acc-03 amount=-250.50
+OK 10 acc-04 +3.53 3.53
+REJECTED account-exists account=acc-02
+OK 11 acc-06 FROZEN
+OK 12 acc-05 +1.15 1.15
+OK 13 acc-04 FROZEN
+REJECTED insufficient-funds account=acc-02 balance=0.08 requested=27.66
+ERROR unknown-command deposit
+OK 14 acc-02 -0.03 0.05
+OK 15 acc-01 UNFROZEN
+OK 16 acc-02 -0.02 0.03
+ERROR bad-account-id Acc-9
+REJECTED non-zero-balance account=acc-05 balance=1.15
+OK 17 acc-01 FROZEN
+OK 18 acc-01 UNFROZEN
+BALANCE acc-04 3.53 USD
+BALANCE acc-05 1.15 USD
+OK 19 acc-02 -0.03 0.00
+REJECTED account-frozen account=acc-06
+ERROR bad-currency $
+REJECTED unsupported-currency currency=JPY
+OK 20 acc-06 UNFROZEN
+OK 21 acc-02 +80.51 80.51
+OK 22 acc-05 +2.82 3.97
+OK 23 acc-05 -3.52 0.45
+OK 24 acc-03 +3.12 3.12
+OK 25 acc-05 -0.16 0.29
+BALANCE acc-04 3.53 USD
+OK 26 acc-01 CLOSED
+OK 27 acc-08 OPENED USD
+ERROR bad-arguments FREEZE
+BALANCE acc-02 80.51 GBP
+ERROR bad-amount .5
+REJECTED account-closed account=acc-01
+REJECTED account-exists account=acc-02
+OK 28 acc-03 +10.83 13.95
+OK 29 acc-05 +1.72 2.01
+REJECTED non-zero-balance account=acc-02 balance=80.51
+REJECTED unsupported-currency currency=CHF
+REJECTED account-frozen account=acc-04
+OK 30 acc-08 FROZEN
+OK 31 acc-03 -10.19 3.76
+OK 32 acc-02 -75.89 4.62
+REJECTED non-positive-amount account=acc-03 amount=-1.00
+OK 33 acc-08 UNFROZEN
+REJECTED unknown-account account=ghost-2
+OK 34 acc-02 FROZEN
+REJECTED insufficient-funds account=acc-08 balance=0.00 requested=4.97
+OK 35 acc-03 -0.67 3.09
+OK 36 acc-03 -2.30 0.79
+REJECTED account-closed account=acc-01
+REJECTED non-zero-balance account=acc-05 balance=2.01
+REJECTED account-exists account=acc-01
+OK 37 acc-04 UNFROZEN
+REJECTED unsupported-currency currency=CHF
+OK 38 acc-04 FROZEN
+OK 39 acc-05 -1.95 0.06
+OK 40 acc-02 UNFROZEN
+OK 41 acc-05 FROZEN
+REJECTED account-frozen account=acc-04
+REJECTED unknown-account account=ghost-3
+OK 42 acc-08 +10.49 10.49
+OK 43 acc-04 UNFROZEN
+OK 44 acc-11 OPENED USD
+OK 45 acc-12 OPENED EUR
+OK 46 acc-06 CLOSED
+OK 47 acc-04 FROZEN
+OK 48 acc-13 OPENED EUR
+OK 49 acc-11 CLOSED
+OK 50 acc-04 UNFROZEN
+OK 51 acc-02 +27.48 32.10
+OK 52 acc-14 OPENED GBP
+OK 53 acc-13 CLOSED
+REJECTED non-positive-amount account=acc-03 amount=-0.01
+ERROR unknown-command XFER
+REJECTED insufficient-funds account=acc-04 balance=3.53 requested=38.83
+OK 54 acc-05 UNFROZEN
+REJECTED account-closed account=acc-01
+REJECTED unsupported-currency currency=XXX
+OK 55 acc-12 +11.07 11.07
+OK 56 acc-03 +79.59 80.38
+OK 57 acc-16 OPENED USD
+OK 58 acc-04 -3.00 0.53
+OK 59 acc-08 -1.06 9.43
+OK 60 acc-05 -0.04 0.02
+REJECTED non-positive-amount account=acc-04 amount=-1.00
+ERROR bad-account-id ACC-04
+OK 61 acc-03 -47.48 32.90
+REJECTED account-exists account=acc-16
+REJECTED unknown-account account=ghost-4
+OK 62 acc-12 -3.47 7.60
+OK 63 acc-17 OPENED USD
+OK 64 acc-05 -0.02 0.00
+OK 65 acc-03 +123.71 156.61
+BALANCE acc-12 7.60 EUR
+OK 66 acc-08 FROZEN
+REJECTED account-frozen account=acc-08
+REJECTED non-zero-balance account=acc-03 balance=156.61
+BALANCE acc-17 0.00 USD
+REJECTED account-closed account=acc-01
+REJECTED insufficient-funds account=acc-17 balance=0.00 requested=14.04
+OK 67 acc-04 +12.29 12.82
+REJECTED insufficient-funds account=acc-02 balance=32.10 requested=33.61
+OK 68 acc-02 FROZEN
+OK 69 acc-16 FROZEN
+OK 70 acc-03 +78.72 235.33
+REJECTED unknown-account account=ghost-5
+OK 71 acc-04 +79.59 92.41
+OK 72 acc-04 -60.55 31.86
+OK 73 acc-05 +12.22 12.22
+OK 74 acc-04 -21.06 10.80
+BALANCE acc-05 12.22 USD
+REJECTED unsupported-currency currency=JPY
+REJECTED account-closed account=acc-13
+OK 75 acc-19 OPENED GBP
+OK 76 acc-08 UNFROZEN
+OK 77 acc-03 FROZEN
+ERROR bad-arguments CLOSE
+REJECTED account-exists account=acc-08
+OK 78 acc-05 +500.00 512.22
+OK 79 acc-08 +25.35 34.78
+OK 80 acc-20 OPENED EUR
+OK 81 acc-05 -388.11 124.11
+REJECTED non-zero-balance account=acc-03 balance=235.33
+OK 82 acc-08 -24.93 9.85
+REJECTED account-frozen account=acc-16
+OK 83 acc-03 UNFROZEN
+OK 84 acc-17 FROZEN
+OK 85 acc-05 +12.22 136.33
+OK 86 acc-03 -71.01 164.32
+OK 87 acc-14 +500.46 500.46
+ERROR bad-currency usd
+REJECTED non-positive-amount account=acc-20 amount=0.00
+OK 88 acc-21 OPENED GBP
+REJECTED unsupported-currency currency=XXX
+OK 89 acc-08 -3.07 6.78
+BALANCE acc-21 0.00 GBP
+OK 90 acc-12 -1.02 6.58
+REJECTED account-closed account=acc-01
+OK 91 acc-03 -154.42 9.90
+OK 92 acc-14 -178.22 322.24
+OK 93 acc-14 -169.01 153.23
+OK 94 acc-14 -73.90 79.33
+REJECTED account-exists account=acc-11
+OK 95 acc-14 -5.95 73.38
+OK 96 acc-21 +78.45 78.45
+REJECTED non-zero-balance account=acc-03 balance=9.90
+BALANCE acc-21 78.45 GBP
+OK 97 acc-08 -4.32 2.46
+ERROR bad-amount 5,50
+OK 98 acc-12 +11.56 18.14
+OK 99 acc-21 -46.06 32.39
+OK 100 acc-04 -8.95 1.85
+OK 101 acc-20 +1.24 1.24
+OK 102 acc-02 UNFROZEN
+OK 103 acc-08 -0.39 2.07
+OK 104 acc-14 -63.41 9.97
+REJECTED insufficient-funds account=acc-20 balance=1.24 requested=41.94
+REJECTED account-frozen account=acc-17
+ERROR bad-account-id ACC-04
+REJECTED non-positive-amount account=acc-04 amount=0.00
+REJECTED unknown-account account=ghost-6
+ERROR bad-arguments WITHDRAW
+BALANCE acc-08 2.07 USD
+OK 105 acc-02 -17.36 14.74
+REJECTED non-zero-balance account=acc-03 balance=9.90
+OK 106 acc-08 +1.14 3.21
+BALANCE acc-19 0.00 GBP
+BALANCE acc-08 3.21 USD
+OK 107 acc-20 +11.73 12.97
+OK 108 acc-14 -2.37 7.60
+OK 109 acc-02 -12.70 2.04
+OK 110 acc-05 -20.18 116.15
+OK 111 acc-21 FROZEN
+OK 112 acc-08 +78.41 81.62
+REJECTED unsupported-currency currency=JPY
+REJECTED unknown-account account=ghost-7
+BALANCE acc-19 0.00 GBP
+REJECTED account-exists account=acc-08
+BALANCE acc-14 7.60 GBP
+OK 113 acc-14 -1.67 5.93
+OK 114 acc-16 UNFROZEN
+OK 115 acc-12 FROZEN
+OK 116 acc-02 +0.75 2.79
+OK 117 acc-04 -0.96 0.89
+REJECTED account-closed account=acc-13
+OK 118 acc-17 UNFROZEN
+REJECTED account-frozen account=acc-12
+OK 119 acc-12 UNFROZEN
+OK 120 acc-02 -2.35 0.44
+ERROR bad-currency usd
+REJECTED insufficient-funds account=acc-16 balance=0.00 requested=1.56
+OK 121 acc-04 -0.72 0.17
+REJECTED non-positive-amount account=acc-02 amount=0.00
+OK 122 acc-19 +1.89 1.89
+OK 123 acc-08 +0.96 82.58
+REJECTED non-zero-balance account=acc-03 balance=9.90
+OK 124 acc-02 -0.05 0.39
+OK 125 acc-12 -15.14 3.00
+REJECTED non-positive-amount account=acc-02 amount=-0.01
+OK 126 acc-12 -0.78 2.22
+OK 127 acc-21 UNFROZEN
+OK 128 acc-12 -1.34 0.88
+OK 129 acc-04 FROZEN
+ERROR bad-amount 5,50
+BALANCE acc-12 0.88 EUR
+REJECTED account-exists account=acc-03
+OK 130 acc-12 +125.99 126.87
+REJECTED unknown-account account=ghost-8
+BALANCE acc-08 82.58 USD
+OK 131 acc-08 FROZEN
+OK 132 acc-04 UNFROZEN
+OK 133 acc-08 UNFROZEN
+ERROR unknown-command XFER
+OK 134 acc-21 -7.11 25.28
+BALANCE acc-04 0.17 USD
+REJECTED insufficient-funds account=acc-08 balance=82.58 requested=124.97
+ERROR bad-account-id ACC-02
+OK 135 acc-19 +26.61 28.50
+OK 136 acc-21 +4.23 29.51
+REJECTED account-closed account=acc-13
+REJECTED unsupported-currency currency=JPY
+OK 137 acc-14 -0.18 5.75
+OK 138 acc-19 FROZEN
+REJECTED account-frozen account=acc-19
+OK 139 acc-20 +27.53 40.50
+REJECTED account-closed account=acc-13
+OK 140 acc-19 UNFROZEN
+REJECTED unknown-account account=ghost-9
+BALANCE acc-12 126.87 EUR
+BALANCE acc-12 126.87 EUR
+REJECTED non-positive-amount account=acc-04 amount=0.00
+OK 141 acc-04 -0.01 0.16
+REJECTED account-exists account=acc-02
+BALANCE acc-03 9.90 USD
+ERROR bad-currency usd
+ERROR unknown-command HELP
+OK 142 acc-19 +102.33 130.83
+OK 143 acc-03 -8.34 1.56
+OK 144 acc-05 +0.22 116.37
+BALANCE acc-21 29.51 GBP
+REJECTED unsupported-currency currency=JPY
+ERROR bad-amount 1.005
+OK 145 acc-21 FROZEN
+OK 146 acc-03 FROZEN
+BALANCE acc-14 5.75 GBP
+OK 147 acc-20 +2.51 43.01
+BALANCE acc-17 0.00 USD
+OK 148 acc-05 FROZEN
+REJECTED non-zero-balance account=acc-21 balance=29.51
+OK 149 acc-05 UNFROZEN
+OK 150 acc-04 +500.24 500.40
+REJECTED insufficient-funds account=acc-12 balance=126.87 requested=155.68
+REJECTED account-frozen account=acc-21
+OK 151 acc-17 +125.88 125.88
+BALANCE acc-16 0.00 USD
+OK 152 acc-20 +2.67 45.68
+REJECTED non-zero-balance account=acc-20 balance=45.68
+OK 153 acc-19 +1.49 132.32
+OK 154 acc-19 -68.79 63.53
+REJECTED account-exists account=acc-17
+REJECTED unsupported-currency currency=JPY
+OK 155 acc-20 +0.17 45.85
+OK 156 acc-21 UNFROZEN
+REJECTED non-positive-amount account=acc-08 amount=-0.01
+OK 157 acc-17 -48.28 77.60
+REJECTED insufficient-funds account=acc-19 balance=63.53 requested=87.63
+BALANCE acc-19 63.53 GBP
+OK 158 acc-12 FROZEN
+OK 159 acc-21 -10.32 19.19
+OK 160 acc-04 -76.30 424.10
+OK 161 acc-21 +100.13 119.32
+REJECTED unknown-account account=ghost-10
+REJECTED account-frozen account=acc-12
+OK 162 acc-19 FROZEN
+REJECTED account-closed account=acc-13
+REJECTED account-exists account=acc-21
+OK 163 acc-20 -12.86 32.99
+OK 164 acc-12 UNFROZEN
+OK 165 acc-12 -116.16 10.71
+OK 166 acc-21 FROZEN
+OK 167 acc-04 -49.55 374.55
+REJECTED non-zero-balance account=acc-03 balance=1.56
+BALANCE acc-14 5.75 GBP
+ERROR bad-arguments WITHDRAW
+REJECTED account-frozen account=acc-03
+OK 168 acc-19 UNFROZEN
+REJECTED insufficient-funds account=acc-05 balance=116.37 requested=124.93
+OK 169 acc-02 -0.03 0.36
+REJECTED unknown-account account=ghost-11
+OK 170 acc-05 +3.02 119.39
+BALANCE acc-17 77.60 USD
+OK 171 acc-19 +0.77 64.30
+OK 172 acc-19 +11.84 76.14
+OK 173 acc-17 +80.15 157.75
+OK 174 acc-17 FROZEN
+OK 175 acc-19 +101.56 177.70
+REJECTED account-closed account=acc-11
+REJECTED non-positive-amount account=acc-12 amount=-250.50
+REJECTED unsupported-currency currency=XXX
+REJECTED insufficient-funds account=acc-02 balance=0.36 requested=10.12
+OK 176 acc-12 +0.78 11.49
+OK 177 acc-20 -11.16 21.83
+REJECTED account-exists account=acc-19
+REJECTED account-closed account=acc-11
+BALANCE acc-20 21.83 EUR
+OK 178 acc-03 UNFROZEN
+OK 179 acc-04 -160.94 213.61
+REJECTED non-zero-balance account=acc-20 balance=21.83
+REJECTED unsupported-currency currency=XXX
+BALANCE acc-16 0.00 USD
+OK 180 acc-08 FROZEN
+OK 181 acc-03 +2.16 3.72
+BALANCE acc-08 82.58 USD
+ERROR unknown-command HELP
+OK 182 acc-12 +11.89 23.38
+ERROR bad-account-id ACC-19
+OK 183 acc-03 +4.89 8.61
+OK 184 acc-20 -17.77 4.06
+OK 185 acc-19 -151.81 25.89
+REJECTED non-positive-amount account=acc-14 amount=-0.01
+REJECTED account-frozen account=acc-17
+OK 186 acc-12 +0.99 24.37
+REJECTED unknown-account account=ghost-12
+REJECTED account-closed account=acc-01
+OK 187 acc-17 UNFROZEN
+REJECTED account-exists account=acc-19
+REJECTED insufficient-funds account=acc-20 balance=4.06 requested=9.40
+OK 188 acc-19 -5.67 20.22
+OK 189 acc-14 FROZEN
+REJECTED account-frozen account=acc-14
+OK 190 acc-21 UNFROZEN
+OK 191 acc-03 +2.89 11.50
+BALANCE acc-16 0.00 USD
+OK 192 acc-14 UNFROZEN
+OK 193 acc-04 -39.93 173.68
+ERROR bad-amount .5
+OK 194 acc-14 FROZEN
+BALANCE acc-08 82.58 USD
+OK 195 acc-12 +10.45 34.82
+OK 196 acc-05 -97.75 21.64
+REJECTED unsupported-currency currency=JPY
+REJECTED non-positive-amount account=acc-16 amount=-1.00
+BALANCE acc-12 34.82 EUR
+REJECTED unknown-account account=ghost-13
+OK 197 acc-19 -3.67 16.55
+REJECTED non-zero-balance account=acc-14 balance=5.75
+ERROR bad-currency $
+OK 198 acc-19 +79.14 95.69
+OK 199 acc-02 -0.24 0.12
+OK 200 acc-20 FROZEN
+OK 201 acc-17 -94.55 63.20
+ERROR bad-arguments TRANSFER
+OK 202 acc-04 -107.36 66.32
+BALANCE acc-02 0.12 GBP
+BALANCE acc-16 0.00 USD
+OK 203 acc-14 UNFROZEN
+ERROR unknown-command OPENED
+OK 204 acc-21 -116.99 2.33
+REJECTED account-frozen account=acc-08
+REJECTED unknown-account account=ghost-14
+REJECTED non-positive-amount account=acc-04 amount=-250.50
+OK 205 acc-04 FROZEN
+OK 206 acc-16 +3.52 3.52
+OK 207 acc-05 -3.73 17.91
+BALANCE acc-14 5.75 GBP
+REJECTED insufficient-funds account=acc-17 balance=63.20 requested=110.44
+BALANCE acc-12 34.82 EUR
+OK 208 acc-05 -10.37 7.54
+ERROR bad-currency US
+REJECTED account-exists account=acc-20
+ERROR bad-arguments BALANCE
+OK 209 acc-02 +501.02 501.14
+BALANCE acc-02 501.14 GBP
+OK 210 acc-03 -9.95 1.55
+OK 211 acc-04 UNFROZEN
+REJECTED non-zero-balance account=acc-19 balance=95.69
+REJECTED account-closed account=acc-11
+REJECTED unsupported-currency currency=CHF
+OK 212 acc-14 +3.00 8.75
+OK 213 acc-14 -8.57 0.18
+REJECTED account-exists account=acc-02
+REJECTED account-frozen account=acc-08
+OK 214 acc-16 -2.97 0.55
+BALANCE acc-21 2.33 GBP
+OK 215 acc-19 -4.62 91.07
+OK 216 acc-16 FROZEN
+OK 217 acc-20 UNFROZEN
+REJECTED account-closed account=acc-13
+OK 218 acc-16 UNFROZEN
+OK 219 acc-02 -311.35 189.79
+OK 220 acc-08 UNFROZEN
+REJECTED insufficient-funds account=acc-20 balance=4.06 requested=23.41
+OK 221 acc-20 FROZEN
+OK 222 acc-21 +0.03 2.36
+OK 223 acc-03 -0.70 0.85
+OK 224 acc-19 -1.10 89.97
+OK 225 acc-17 -25.87 37.33
+REJECTED non-positive-amount account=acc-02 amount=-0.01
+OK 226 acc-08 FROZEN
+BALANCE acc-20 4.06 EUR
+OK 227 acc-16 +12.22 12.77
+REJECTED unknown-account account=ghost-15
+OK 228 acc-14 -0.09 0.09
+OK 229 acc-02 FROZEN
+OK 230 acc-19 +3.19 93.16
+REJECTED non-zero-balance account=acc-12 balance=34.82
+REJECTED unsupported-currency currency=JPY
+REJECTED unknown-account account=ghost-16
+OK 231 acc-04 -14.62 51.70
+OK 232 acc-17 +2.01 39.34
+OK 233 acc-14 +1.14 1.23
+OK 234 acc-16 -4.94 7.83
+OK 235 acc-20 UNFROZEN
+OK 236 acc-12 -34.76 0.06
+OK 237 acc-03 -0.05 0.80
+OK 238 acc-17 +100.64 139.98
+REJECTED non-zero-balance account=acc-04 balance=51.70
+OK 239 acc-17 FROZEN
+ERROR bad-account-id acc-19!
+OK 240 acc-12 +1.60 1.66
+BALANCE acc-19 93.16 GBP
+OK 241 acc-02 UNFROZEN
+OK 242 acc-08 UNFROZEN
+OK 243 acc-19 -67.42 25.74
+OK 244 acc-17 UNFROZEN
+OK 245 acc-04 +2.62 54.32
+REJECTED account-exists account=acc-05
+OK 246 acc-03 +502.47 503.27
+BALANCE acc-03 503.27 USD
+REJECTED unsupported-currency currency=CHF
+OK 247 acc-12 FROZEN
+REJECTED non-positive-amount account=acc-21 amount=-250.50
+ERROR bad-amount 5,50
+ERROR bad-currency US
+OK 248 acc-16 -1.52 6.31
+REJECTED account-frozen account=acc-12
+BALANCE acc-04 54.32 USD
+REJECTED insufficient-funds account=acc-04 balance=54.32 requested=73.79
+REJECTED account-closed account=acc-13
+OK 249 acc-21 +2.57 4.93
+REJECTED insufficient-funds account=acc-21 balance=4.93 requested=46.32
+OK 250 acc-08 +0.94 83.52
+OK 251 acc-04 +2.46 56.78
+OK 252 acc-03 FROZEN
+REJECTED unknown-account account=ghost-17
+OK 253 acc-21 FROZEN
+REJECTED non-zero-balance account=acc-17 balance=139.98
+OK 254 acc-05 -7.07 0.47
+OK 255 acc-05 -0.32 0.15
+OK 256 acc-16 +101.80 108.11
+OK 257 acc-19 -11.77 13.97
+OK 258 acc-19 +79.84 93.81
+OK 259 acc-08 +126.42 209.94
+REJECTED account-closed account=acc-06
+OK 260 acc-20 +11.57 15.63
+OK 261 acc-04 +102.85 159.63
+REJECTED account-frozen account=acc-12
+OK 262 acc-03 UNFROZEN
+ERROR unknown-command balance
+REJECTED unsupported-currency currency=JPY
+OK 263 acc-14 -0.21 1.02
+OK 264 acc-17 +12.85 152.83
+OK 265 acc-02 +125.77 315.56
+ERROR bad-account-id a2345678901234567890123456789012x
+REJECTED account-exists account=acc-16
+OK 266 acc-08 -13.48 196.46
+REJECTED non-positive-amount account=acc-03 amount=-1.00
+OK 267 acc-21 UNFROZEN
+BALANCE acc-05 0.15 USD
+BALANCE acc-16 108.11 USD
+ERROR bad-arguments CLOSE
+REJECTED unsupported-currency currency=XXX
+OK 268 acc-02 FROZEN
+OK 269 acc-08 +3.30 199.76
+OK 270 acc-03 +502.02 1005.29
+REJECTED non-zero-balance account=acc-08 balance=199.76
+OK 271 acc-20 +1.76 17.39
+OK 272 acc-03 -540.37 464.92
+OK 273 acc-12 UNFROZEN
+REJECTED insufficient-funds account=acc-08 balance=199.76 requested=212.42
+OK 274 acc-03 +26.20 491.12
+OK 275 acc-16 +126.15 234.26
+REJECTED account-frozen account=acc-02
+OK 276 acc-20 FROZEN
+REJECTED account-exists account=acc-16
+OK 277 acc-16 -176.51 57.75
+REJECTED unknown-account account=ghost-18
+OK 278 acc-02 UNFROZEN
+OK 279 acc-16 +10.00 67.75
+ERROR bad-amount 5.
+BALANCE acc-16 67.75 USD
+OK 280 acc-12 FROZEN
+ERROR bad-arguments WITHDRAW
+OK 281 acc-20 UNFROZEN
+OK 282 acc-12 UNFROZEN
+REJECTED account-closed account=acc-11
+OK 283 acc-04 -80.82 78.81
+OK 284 acc-04 -61.65 17.16
+OK 285 acc-17 -34.93 117.90
+REJECTED non-positive-amount account=acc-16 amount=0.00
+REJECTED account-exists account=acc-17
+REJECTED account-closed account=acc-01
+REJECTED insufficient-funds account=acc-14 balance=1.02 requested=38.08
+OK 286 acc-20 -8.44 8.95
+REJECTED unsupported-currency currency=XXX
+REJECTED unknown-account account=ghost-19
+REJECTED non-positive-amount account=acc-12 amount=0.00
+REJECTED non-zero-balance account=acc-20 balance=8.95
+OK 287 acc-02 +0.88 316.44
+OK 288 acc-04 FROZEN
+OK 289 acc-08 -115.28 84.48
+ERROR bad-account-id ACC-20
+OK 290 acc-02 +11.01 327.45
+OK 291 acc-02 -312.21 15.24
+OK 292 acc-16 FROZEN
+OK 293 acc-02 +101.63 116.87
+BALANCE acc-14 1.02 GBP
+OK 294 acc-14 FROZEN
+BALANCE acc-21 4.93 GBP
+OK 295 acc-16 UNFROZEN
+ERROR unknown-command balance
+OK 296 acc-20 -8.59 0.36
+REJECTED account-frozen account=acc-04
+OK 297 acc-04 UNFROZEN
+OK 298 acc-04 -11.40 5.76
+REJECTED account-closed account=acc-06
+OK 299 acc-21 +11.28 16.21
+REJECTED unsupported-currency currency=CHF
+OK 300 acc-14 UNFROZEN
+REJECTED unknown-account account=ghost-20
+REJECTED non-zero-balance account=acc-12 balance=1.66
+OK 301 acc-02 FROZEN
+OK 302 acc-03 +1.91 493.03
+OK 303 acc-02 UNFROZEN
+OK 304 acc-16 +101.69 169.44
+OK 305 acc-21 -14.37 1.84
+REJECTED account-exists account=acc-08
+OK 306 acc-20 +124.98 125.34
+OK 307 acc-17 FROZEN
+BALANCE acc-03 493.03 USD
+OK 308 acc-16 FROZEN
+BALANCE acc-21 1.84 GBP
+OK 309 acc-05 -0.11 0.04
+OK 310 acc-03 +124.27 617.30
+OK 311 acc-04 -5.60 0.16
+OK 312 acc-17 UNFROZEN
+OK 313 acc-14 FROZEN
+OK 314 acc-12 -0.95 0.71
+OK 315 acc-04 -0.01 0.15
+REJECTED insufficient-funds account=acc-04 balance=0.15 requested=17.57
+REJECTED non-positive-amount account=acc-03 amount=0.00
+BALANCE acc-08 84.48 USD
+OK 316 acc-20 -23.26 102.08
+BALANCE acc-05 0.04 USD
+REJECTED account-frozen account=acc-14
+BALANCE acc-03 617.30 USD
+OK 317 acc-08 +101.40 185.88
+OK 318 acc-14 UNFROZEN
+REJECTED account-frozen account=acc-16
+OK 319 acc-21 +3.66 5.50
+OK 320 acc-17 FROZEN
+OK 321 acc-04 -0.09 0.06
+REJECTED insufficient-funds account=acc-20 balance=102.08 requested=111.21
+REJECTED unknown-account account=ghost-21
+OK 322 acc-20 -63.27 38.81
+OK 323 acc-21 +4.92 10.42
+REJECTED account-exists account=acc-05
+REJECTED unsupported-currency currency=JPY
+REJECTED non-positive-amount account=acc-20 amount=0.00
+OK 324 acc-20 -0.03 38.78
+OK 325 acc-04 +12.31 12.37
+OK 326 acc-17 UNFROZEN
+REJECTED non-zero-balance account=acc-05 balance=0.04
+BALANCE acc-16 169.44 USD
+OK 327 acc-19 FROZEN
+OK 328 acc-21 -1.03 9.39
+OK 329 acc-20 +1.81 40.59
+REJECTED account-closed account=acc-11
+OK 330 acc-05 -0.03 0.01
+REJECTED account-frozen account=acc-19
+REJECTED non-zero-balance account=acc-17 balance=117.90
+ERROR bad-currency US
+REJECTED non-positive-amount account=acc-02 amount=0.00
+BALANCE acc-19 93.81 GBP
+OK 331 acc-12 FROZEN
+BALANCE acc-20 40.59 EUR
+OK 332 acc-21 -4.80 4.59
+REJECTED unknown-account account=ghost-22
+OK 333 acc-16 UNFROZEN
+OK 334 acc-12 UNFROZEN
+OK 335 acc-05 +26.09 26.10
+REJECTED unsupported-currency currency=XXX
+OK 336 acc-05 FROZEN
+REJECTED insufficient-funds account=acc-08 balance=185.88 requested=208.59
+OK 337 acc-12 +102.25 102.96
+OK 338 acc-17 +1.24 119.14
+OK 339 acc-08 -27.52 158.36
+OK 340 acc-16 +101.71 271.15
+REJECTED account-closed account=acc-01
+OK 341 acc-12 -19.67 83.29
+REJECTED account-exists account=acc-12
+OK 342 acc-14 +12.91 13.93
+REJECTED account-exists account=acc-16
+OK 343 acc-16 FROZEN
+OK 344 acc-17 -98.40 20.74
+REJECTED account-frozen account=acc-16
+OK 345 acc-02 -5.77 111.10
+OK 346 acc-03 +100.97 718.27
+REJECTED non-zero-balance account=acc-21 balance=4.59
+OK 347 acc-21 +2.18 6.77
+OK 348 acc-20 +101.66 142.25
+OK 349 acc-12 -36.65 46.64
+OK 350 acc-17 +11.45 32.19
+BALANCE acc-17 32.19 USD
+OK 351 acc-19 UNFROZEN
+REJECTED non-positive-amount account=acc-17 amount=-1.00
+OK 352 acc-08 -46.61 111.75
+BALANCE acc-17 32.19 USD
+BALANCE acc-04 12.37 USD
+OK 353 acc-04 +12.91 25.28
+OK 354 acc-03 -486.69 231.58
+OK 355 acc-16 UNFROZEN
+OK 356 acc-20 +78.35 220.60
+OK 357 acc-04 -15.16 10.12
+REJECTED unsupported-currency currency=JPY
+REJECTED unknown-account account=ghost-23
+REJECTED insufficient-funds account=acc-16 balance=271.15 requested=285.47
+OK 358 acc-14 -0.63 13.30
+OK 359 acc-05 UNFROZEN
+OK 360 acc-05 -6.91 19.19
+REJECTED account-closed account=acc-13
+REJECTED non-zero-balance account=acc-14 balance=13.30
+OK 361 acc-05 -13.39 5.80
+REJECTED account-closed account=acc-13
+OK 362 acc-14 FROZEN
+OK 363 acc-04 FROZEN
+OK 364 acc-16 +125.30 396.45
+OK 365 acc-17 +10.11 42.30
+ERROR bad-amount 1.005
+OK 366 acc-05 +3.09 8.89
+OK 367 acc-19 FROZEN
+OK 368 acc-16 -183.05 213.40
+OK 369 acc-08 -68.59 43.16
+REJECTED account-exists account=acc-08
+REJECTED account-frozen account=acc-14
+REJECTED unsupported-currency currency=XXX
+REJECTED insufficient-funds account=acc-02 balance=111.10 requested=152.02
+OK 370 acc-12 -32.58 14.06
+OK 371 acc-21 +4.00 10.77
+REJECTED unknown-account account=ghost-24
+OK 372 acc-20 -131.28 89.32
+OK 373 acc-17 -10.32 31.98
+BALANCE acc-21 10.77 GBP
+OK 374 acc-02 -32.86 78.24
+OK 375 acc-21 +26.12 36.89
+OK 376 acc-03 -144.59 86.99
+OK 377 acc-17 +10.26 42.24
+REJECTED non-positive-amount account=acc-12 amount=-0.01
+OK 378 acc-17 -22.50 19.74
+REJECTED account-closed account=acc-13
+OK 379 acc-20 +126.04 215.36
+OK 380 acc-19 UNFROZEN
+OK 381 acc-21 -0.97 35.92
+OK 382 acc-12 -8.20 5.86
+OK 383 acc-14 UNFROZEN
+OK 384 acc-12 -2.72 3.14
+ERROR bad-currency US
+OK 385 acc-03 -70.28 16.71
+REJECTED non-positive-amount account=acc-08 amount=0.00
+OK 386 acc-03 FROZEN
+OK 387 acc-21 FROZEN
+REJECTED insufficient-funds account=acc-08 balance=43.16 requested=92.04
+REJECTED unknown-account account=ghost-25
+OK 388 acc-03 UNFROZEN
+REJECTED account-frozen account=acc-21
+OK 389 acc-17 -10.67 9.07
+REJECTED non-zero-balance account=acc-02 balance=78.24
+REJECTED account-exists account=acc-16
+REJECTED unsupported-currency currency=BTC
+REJECTED account-frozen account=acc-04
+OK 390 acc-16 +124.32 337.72
+BALANCE acc-04 10.12 USD
+BALANCE acc-19 93.81 GBP
+ERROR unknown-command Withdraw
+REJECTED account-closed account=acc-01
+OK 391 acc-16 +5.34 343.06
+REJECTED insufficient-funds account=acc-02 balance=78.24 requested=125.47
+OK 392 acc-19 -72.04 21.77
+OK 393 acc-12 FROZEN
+OK 394 acc-20 +2.75 218.11
+REJECTED unsupported-currency currency=XXX
+REJECTED unknown-account account=ghost-26
+OK 395 acc-17 -7.10 1.97
+OK 396 acc-20 -63.87 154.24
+BALANCE acc-08 43.16 USD
+OK 397 acc-20 +12.71 166.95
+BALANCE acc-20 166.95 EUR
+BALANCE acc-02 78.24 GBP
+OK 398 acc-05 -6.42 2.47
+OK 399 acc-14 -0.87 12.43
+OK 400 acc-08 +80.61 123.77
+REJECTED non-positive-amount account=acc-16 amount=-250.50
+OK 401 acc-16 +3.44 346.50
+OK 402 acc-03 -16.53 0.18
+OK 403 acc-17 -0.42 1.55
+REJECTED non-zero-balance account=acc-04 balance=10.12
+OK 404 acc-21 UNFROZEN
+OK 405 acc-08 -37.42 86.35
+ERROR bad-account-id acc-21!
+OK 406 acc-19 -12.61 9.16
+OK 407 acc-14 +500.63 513.06
+OK 408 acc-08 FROZEN
+OK 409 acc-20 +12.46 179.41
+REJECTED account-exists account=acc-13
+OK 410 acc-05 -2.29 0.18
+REJECTED account-closed account=acc-11
+OK 411 acc-20 +502.48 681.89
+OK 412 acc-08 UNFROZEN
+REJECTED unsupported-currency currency=JPY
+OK 413 acc-20 +4.81 686.70
+OK 414 acc-08 +1.72 88.07
+OK 415 acc-03 -0.14 0.04
+REJECTED insufficient-funds account=acc-20 balance=686.70 requested=687.47
+OK 416 acc-05 +2.53 2.71
+OK 417 acc-05 -0.06 2.65
+OK 418 acc-02 +1.93 80.17
+OK 419 acc-16 -3.29 343.21
+OK 420 acc-19 -5.24 3.92
+OK 421 acc-16 FROZEN
+REJECTED non-positive-amount account=acc-08 amount=-1.00
+OK 422 acc-21 -14.01 21.91
+OK 423 acc-05 +3.23 5.88
+REJECTED account-frozen account=acc-04
+BALANCE acc-16 343.21 USD
+REJECTED unknown-account account=ghost-27
+BALANCE acc-19 3.92 GBP
+OK 424 acc-03 -0.02 0.02
+OK 425 acc-14 -61.70 451.36
+OK 426 acc-19 -0.93 2.99
+OK 427 acc-20 -172.09 514.61
+OK 428 acc-16 UNFROZEN
+REJECTED non-zero-balance account=acc-05 balance=5.88
+BALANCE acc-17 1.55 USD
+OK 429 acc-12 UNFROZEN
+REJECTED account-exists account=acc-04
+REJECTED unknown-account account=ghost-28
+OK 430 acc-16 -236.51 106.70
+OK 431 acc-19 FROZEN
+OK 432 acc-21 -14.21 7.70
+OK 433 acc-21 -6.25 1.45
+OK 434 acc-21 +10.68 12.13
+OK 435 acc-12 -2.72 0.42
+REJECTED non-positive-amount account=acc-20 amount=0.00
+OK 436 acc-19 UNFROZEN
+OK 437 acc-05 -3.47 2.41
+REJECTED account-frozen account=acc-04
+BALANCE acc-20 514.61 EUR
+OK 438 acc-04 UNFROZEN
+OK 439 acc-05 -1.06 1.35
+ERROR bad-arguments FREEZE
+REJECTED insufficient-funds account=acc-19 balance=2.99 requested=25.93
+OK 440 acc-02 -36.91 43.26
+OK 441 acc-17 FROZEN
+OK 442 acc-17 UNFROZEN
+OK 443 acc-16 FROZEN
+OK 444 acc-02 FROZEN
+REJECTED unsupported-currency currency=BTC
+OK 445 acc-05 -0.25 1.10
+OK 446 acc-04 -5.63 4.49
+BALANCE acc-02 43.26 GBP
+OK 447 acc-21 +2.05 14.18
+OK 448 acc-02 UNFROZEN
+OK 449 acc-08 FROZEN
+OK 450 acc-21 -0.70 13.48
+OK 451 acc-03 -0.02 0.00
+OK 452 acc-19 +78.18 81.17
+OK 453 acc-21 FROZEN
+BALANCE acc-08 88.07 USD
+OK 454 acc-04 -1.19 3.30
+OK 455 acc-12 +2.54 2.96
+REJECTED non-zero-balance account=acc-16 balance=106.70
+OK 456 acc-16 UNFROZEN
+OK 457 acc-03 FROZEN
+OK 458 acc-05 +12.16 13.26
+OK 459 acc-03 UNFROZEN
+REJECTED account-closed account=acc-01
+REJECTED account-exists account=acc-21
+OK 460 acc-14 -158.26 293.10
+REJECTED unknown-account account=ghost-29
+REJECTED unsupported-currency currency=BTC
+ERROR bad-amount 1.005
+OK 461 acc-21 UNFROZEN
+REJECTED non-zero-balance account=acc-16 balance=106.70
+OK 462 acc-19 +25.79 106.96
+REJECTED non-positive-amount account=acc-05 amount=-1.00
+ERROR bad-amount 5.
+OK 463 acc-16 FROZEN
+REJECTED account-frozen account=acc-16
+OK 464 acc-08 UNFROZEN
+OK 465 acc-02 +4.25 47.51
+REJECTED insufficient-funds account=acc-14 balance=293.10 requested=328.55
+REJECTED account-exists account=acc-05
+OK 466 acc-04 -2.45 0.85
+OK 467 acc-16 UNFROZEN
+OK 468 acc-04 +0.76 1.61
+REJECTED account-closed account=acc-11
+OK 469 acc-12 +3.64 6.60
+ERROR bad-currency US
+REJECTED account-exists account=acc-20
+REJECTED unsupported-currency currency=XXX
+OK 470 acc-02 -8.13 39.38
+OK 471 acc-04 +79.99 81.60
+OK 472 acc-19 FROZEN
+OK 473 acc-14 -242.61 50.49
+OK 474 acc-21 +501.52 515.00
+OK 475 acc-16 -76.42 30.28
+OK 476 acc-08 +12.80 100.87
+OK 477 acc-02 FROZEN
+REJECTED non-zero-balance account=acc-20 balance=514.61
+REJECTED account-frozen account=acc-02
+ERROR unknown-command XFER
+ERROR bad-arguments CLOSE
+REJECTED account-closed account=acc-01
+OK 478 acc-21 FROZEN
+REJECTED unknown-account account=ghost-30
+OK 479 acc-14 -48.54 1.95
+OK 480 acc-04 -28.35 53.25
+REJECTED non-positive-amount account=acc-08 amount=0.00
+OK 481 acc-02 UNFROZEN
+BALANCE acc-03 0.00 USD
+OK 482 acc-16 -20.63 9.65
+OK 483 acc-03 +125.09 125.09
+OK 484 acc-02 FROZEN
+OK 485 acc-05 +502.97 516.23
+OK 486 acc-16 -8.01 1.64
+OK 487 acc-05 +2.67 518.90
+OK 488 acc-21 UNFROZEN
+OK 489 acc-17 +11.32 12.87
+OK 490 acc-12 +10.23 16.83
+OK 491 acc-16 +101.58 103.22
+BALANCE acc-20 514.61 EUR
+OK 492 acc-08 -50.47 50.40
+OK 493 acc-04 -30.50 22.75
+REJECTED insufficient-funds account=acc-08 balance=50.40 requested=88.47
+OK 494 acc-20 -15.95 498.66
+OK 495 acc-05 -163.27 355.63
+OK 496 acc-03 FROZEN
+REJECTED account-closed account=acc-13
+OK 497 acc-08 +102.31 152.71
+REJECTED unknown-account account=ghost-31
+OK 498 acc-20 -463.66 35.00
+REJECTED account-frozen account=acc-03
+OK 499 acc-12 -11.58 5.25
+OK 500 acc-19 UNFROZEN
+REJECTED unsupported-currency currency=XXX
+BALANCE acc-08 152.71 USD
+BALANCE acc-08 152.71 USD
+OK 501 acc-08 FROZEN
+OK 502 acc-14 +2.82 4.77
+BALANCE acc-05 355.63 USD
+REJECTED non-positive-amount account=acc-04 amount=-0.01
+ERROR bad-account-id a2345678901234567890123456789012x
+REJECTED non-zero-balance account=acc-16 balance=103.22
+OK 503 acc-16 +3.08 106.30
+OK 504 acc-05 -69.72 285.91
+OK 505 acc-14 -1.02 3.75
+ERROR bad-account-id acc-17!
+REJECTED insufficient-funds account=acc-16 balance=106.30 requested=121.35
+REJECTED account-exists account=acc-13
+OK 506 acc-17 +27.77 40.64
+OK 507 acc-21 +79.02 594.02
+BALANCE acc-05 285.91 USD
+BALANCE acc-08 152.71 USD
+REJECTED account-exists account=acc-12
+OK 508 acc-05 +10.30 296.21
+REJECTED non-positive-amount account=acc-14 amount=-250.50
+REJECTED insufficient-funds account=acc-19 balance=106.96 requested=155.29
+REJECTED unknown-account account=ghost-32
+BALANCE acc-12 5.25 EUR
+REJECTED account-closed account=acc-11
+REJECTED unsupported-currency currency=XXX
+OK 509 acc-03 UNFROZEN
+REJECTED non-zero-balance account=acc-20 balance=35.00
+OK 510 acc-20 +124.22 159.22
+REJECTED account-frozen account=acc-02
+OK 511 acc-21 FROZEN
+OK 512 acc-19 +0.12 107.08
+REJECTED unknown-account account=ghost-33
+OK 513 acc-17 +10.55 51.19
+BALANCE acc-19 107.08 GBP
+OK 514 acc-03 +27.25 152.34
+REJECTED non-positive-amount account=acc-16 amount=-250.50
+OK 515 acc-16 +3.15 109.45
+OK 516 acc-19 -35.81 71.27
+OK 517 acc-05 -214.69 81.52
+ERROR bad-currency $
+ERROR bad-arguments WITHDRAW
+OK 518 acc-16 -34.60 74.85
+REJECTED account-frozen account=acc-08
+BALANCE acc-21 594.02 GBP
+OK 519 acc-17 +123.46 174.65
+OK 520 acc-19 -4.07 67.20
+REJECTED account-exists account=acc-21
+OK 521 acc-05 +2.86 84.38
+ERROR unknown-command Withdraw
+OK 522 acc-19 -54.35 12.85
+OK 523 acc-12 +102.17 107.42
+ERROR bad-amount 1.005
+REJECTED unsupported-currency currency=BTC
+OK 524 acc-12 +26.83 134.25
+REJECTED non-zero-balance account=acc-03 balance=152.34
+REJECTED insufficient-funds account=acc-16 balance=74.85 requested=99.24
+ERROR unknown-command balance
+REJECTED account-closed account=acc-13
+OK 525 acc-02 UNFROZEN
+REJECTED unsupported-currency currency=XXX
+OK 526 acc-16 -39.07 35.78
+OK 527 acc-04 +1.40 24.15
+BALANCE acc-19 12.85 GBP
+BALANCE acc-17 174.65 USD
+REJECTED non-positive-amount account=acc-12 amount=-250.50
+BALANCE acc-20 159.22 EUR
+OK 528 acc-05 +2.78 87.16
+BALANCE acc-12 134.25 EUR
+OK 529 acc-14 FROZEN
+BALANCE acc-02 39.38 GBP
+OK 530 acc-20 +1.11 160.33
+OK 531 acc-02 +1.90 41.28
+OK 532 acc-05 +126.04 213.20
+OK 533 acc-14 UNFROZEN
+OK 534 acc-03 +100.99 253.33
+REJECTED unknown-account account=ghost-34
+BALANCE acc-03 253.33 USD
+OK 535 acc-17 -30.63 144.02
+OK 536 acc-14 FROZEN
+BALANCE acc-03 253.33 USD
+REJECTED account-closed account=acc-06
+REJECTED non-zero-balance account=acc-14 balance=3.75
+OK 537 acc-17 +102.86 246.88
+REJECTED insufficient-funds account=acc-02 balance=41.28 requested=74.68
+OK 538 acc-20 +101.27 261.60
+OK 539 acc-05 +502.85 716.05
+BALANCE acc-17 246.88 USD
+BALANCE acc-21 594.02 GBP
+OK 540 acc-20 +0.69 262.29
+OK 541 acc-20 +100.93 363.22
+REJECTED account-frozen account=acc-08
+REJECTED account-exists account=acc-11
+OK 542 acc-05 -541.60 174.45
+BALANCE acc-12 134.25 EUR
+REJECTED unknown-account account=ghost-35
+OK 543 acc-14 UNFROZEN
+OK 544 acc-20 -244.92 118.30
+OK 545 acc-12 FROZEN
+OK 546 acc-12 UNFROZEN
+BALANCE acc-20 118.30 EUR
+OK 547 acc-04 -11.64 12.51
+OK 548 acc-02 +2.22 43.50
+BALANCE acc-04 12.51 USD
+OK 549 acc-16 FROZEN
+OK 550 acc-04 -6.13 6.38
+OK 551 acc-14 -1.30 2.45
+OK 552 acc-04 -0.68 5.70
+OK 553 acc-17 -182.13 64.75
+OK 554 acc-14 -1.97 0.48
+REJECTED account-closed account=acc-11
+BALANCE acc-16 35.78 USD
+OK 555 acc-12 -66.04 68.21
+OK 556 acc-17 +102.07 166.82
+OK 557 acc-05 +101.72 276.17
+REJECTED account-exists account=acc-14
+BALANCE acc-16 35.78 USD
+BALANCE acc-12 68.21 EUR
+REJECTED non-zero-balance account=acc-03 balance=253.33
+REJECTED insufficient-funds account=acc-19 balance=12.85 requested=16.44
+REJECTED account-frozen account=acc-16
+REJECTED unsupported-currency currency=BTC
+OK 558 acc-16 UNFROZEN
+OK 559 acc-05 +2.41 278.58
+REJECTED non-positive-amount account=acc-02 amount=-250.50
+OK 560 acc-14 +502.71 503.19
+OK 561 acc-02 -3.21 40.29
+OK 562 acc-04 +501.26 506.96
+OK 563 acc-08 UNFROZEN
+OK 564 acc-03 -194.91 58.42
+OK 565 acc-16 +123.71 159.49
+ERROR bad-account-id ACC-05
+OK 566 acc-16 -47.86 111.63
+OK 567 acc-16 +101.14 212.77

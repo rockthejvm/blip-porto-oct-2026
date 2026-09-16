@@ -1,0 +1,15 @@
+# a first account
+OPEN acc-1 USD
+DEPOSIT acc-1 100.00
+DEPOSIT acc-1 25
+WITHDRAW acc-1 30.00
+FREEZE acc-1
+DEPOSIT acc-1 1
+BALANCE acc-1
+UNFREEZE acc-1
+WITHDRAW acc-1 100
+deposit acc-1 5
+CLOSE acc-1
+WITHDRAW acc-1 95
+CLOSE acc-1
+BALANCE acc-1

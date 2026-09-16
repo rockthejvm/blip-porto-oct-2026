@@ -8,30 +8,55 @@ Status key: `[ ]` open · `[~]` in progress · `[x]` done · `[?]` needs a decis
 
 ## Now — day 2 design
 
-- [~] **Settle day 2 block by block.** One block per conversation, in order. Decide topics, then exercises, then write the stubs.
+- [x] **Day 2 is settled.** All eight blocks have briefs, stubs, reference solutions and tests.
   - [x] Block 0 — collections drill *(conditional; overflow buffer for day 1)* — code, solutions, stretch set and tests written
   - [x] Block A — thinking in expressions — code, solutions, stretch set and tests written
-  - [ ] Block B — collections and folds
-  - [ ] Block C — ADTs and pattern matching
-  - [ ] Block D — Option
-  - [ ] Block E — Try, Either, error modeling
-  - [ ] Block F — laziness
-  - [ ] Block G — Futures and concurrency
+  - [x] Block B — collections and folds — code, solutions, stretch section and tests written
+  - [x] Block C — ADTs and pattern matching — code, solutions, stretch section and tests written
+  - [x] Block D — Option — code, solutions, stretch section and tests written
+  - [x] Block E — Try, Either, error modeling — code, solutions, stretch section and tests written
+  - [x] Block F — laziness — code, solutions, stretch section and tests written
+  - [x] Block G — Futures and concurrency — code, solutions, stretch section and tests written
 - [ ] Write the collections cheat sheet handout (ships with Block 0 / day-1 collections section).
-- [?] **Actors**: 30–45 min conceptual demo at the end of day 2, or trade a block for a real one? Depends on how much Akka they actually run.
-- [?] **Akka or Pekko?** Ask Blip. Example imports and licensing talk depend on the answer.
+- [x] **Actors — decided: not covered.** They cannot be practised without an introduction first, and that costs more time than the day has. Tell Blip so the omission is explicit.
+- [ ] Mention to Blip that actors are out of scope, since Big Guy's handover mentioned them.
 
 **Standing constraint:** don't force the betting domain into exercises. Use it where it fits; otherwise neutral realistic scenarios. Daniel is not a domain expert and won't present as one.
 
-## Next — day 3
+## Now — day 3
 
-- [ ] **Research the betting domain** before designing the project. Markets, selections, odds formats, bet types, settlement rules, voids/pushes, each-way, accumulators, cash-out. Daniel does not know this domain — needs enough to write a credible brief and answer questions in the room.
-- [ ] Design the bet settlement engine project: model skeleton, file formats, sample data.
-- [ ] Generate the sample data files (markets, bets, results).
-- [ ] Write the starter repo: skeleton + a few passing tests + a failing target test.
-- [ ] Write the ranked stretch-goal list.
-- [ ] Write the per-team "definition of done" checklist.
-- [ ] Write the briefing doc handed out at the start of day 3.
+Day 2 is done. Design is settled (plan §5); this is the build.
+
+- [x] **Project shape settled**: guided milestone ladder M0–M5, golden-file acceptance, git per team, Cask server as bonus.
+- [x] **Cask verified** — 0.11.3 on Scala 3.8.4, routing + `@cask.postJson` + `AtomicReference` across requests.
+- [x] **Rules card written** — `betsettlement/RULES.md`. Vocabulary, leg/bet settlement tables, rejection rules, the rounding stipulation, all four file formats, the exact output formats, and an explicit "where this is simplified" section.
+- [ ] **Light domain research** — only enough to make terms, odds and sample data plausible. The rules are stipulated, so this is an afternoon, not a project.
+- [x] Reference model designed — `betsettlement/m1` through `m5`, each a standalone package.
+- [x] Sample data generated — `betsettlement/data/`, 6 markets and 16 bets covering every rule in the card.
+- [x] Expected output per milestone — `betsettlement/expected/m1..m4.csv`, generated from the rules, not typed.
+- [x] `betsettlement/check` written — `./betsettlement/check m1` prints `m1: OK` or a diff.
+- [x] Attendee skeleton built — `betsettlement/engine/` with a finished `Csv` (rows + leg splitting) and a `Main` that compiles and prints an empty report, so `./betsettlement/check m1` shows a useful diff on minute one. `.scalafmt.conf` added.
+- [x] Reference solutions written, one standalone package per milestone. All four batch milestones verified against the expected files; M5 verified by curl.
+- [x] Briefing doc written — `notes/betsettlement-briefing.md`. Per-team checklist lives in `betsettlement/README.md`.
+- [ ] Decide how the template repo reaches Blip's internal git host.
+
+**Notes for the skeleton build:**
+- `run / fork := true` is required in `build.sbt` — without it sbt's classloader tears the M5 server down on shutdown.
+- The M5 server listens on **8899**, not 8080; 8080 was already taken on this machine and will be on some of theirs.
+- `POST /results` takes **query parameters**, not a JSON body: nothing then has to *parse* JSON, only produce it. (`@cask.postJson` also JSON-encodes your response, so an already-rendered string comes back as a JSON string containing JSON.)
+
+## Now — day 3, candidate B: the event-sourced ledger
+
+Built 2026-09-01 from the spec in `notes/day3-ledger-spec.md`, plan in `notes/day3-ledger-plan.md`.
+Lives alongside the betting engine (renamed `betsettlement`); the choice between the two is open.
+
+- [x] Attendee code `com.rockthecode.ledger` (trait, harness, `Main`, stub), guide + protocol docs in `ledger/`, ALL scenarios in `src/main/resources/ledger/m1..m5` — no hidden set; "no hidden tests" is part of the pitch, as in the betting project.
+- [x] Reference solution `com.rockthecode.ledger.solution`, generators, teaching notes, model-review checklist. Tooling is Scala only: `sbt ledgerGen` regenerates every generated file, `sbt ledgerVerify` checks every committed one (OK / NOT OK + first differing line).
+- [x] `ledger/README.md` is the complete attendee guide (goal, how it works, per-milestone goal/rules/checks/passing criteria) — written so a team that knows nothing can start from it. Daniel to dry-run the project from scratch against it.
+- [x] Every hand-written `.out` reviewed line by line — `notes/ledger/REVIEW_LOG.md`.
+- [ ] **Decide: betting engine or ledger for day 3** (or offer both). Then rewrite `training-plan.md §5` for the winner.
+- [?] Strip `ledger/solution` (main + test) and `notes/` before handout — same mechanism as the day-2 solutions, whatever that turns out to be.
+- [ ] Print PROTOCOL.md for the 9:00 briefing if the ledger is chosen; PROTOCOL-PART2.md is "after lunch".
 
 ## Build and repo infrastructure
 
@@ -40,8 +65,8 @@ Status key: `[ ]` open · `[~]` in progress · `[x]` done · `[?]` needs a decis
 - [?] **Decide how solutions are distributed.** They currently live in `com.rockthecode.day2.solutions` in `src/main`, which means attendees can read them. Options: strip that package from the advance repo and merge it live after each block, or move it to a `solutions` branch. Must be settled before the repo goes out.
 - [ ] Consider a `notes/day2-block-format.md` or README section explaining the exercise/solutions/test layout to attendees.
 - [ ] Every later block needs a stretch section too, in the same four files below a `STRETCH SECTION` banner. Budget for it when designing B through G.
-- [x] Command aliases in `build.sbt`: `block0`, `blockA`, `checkSolutions`.
-- [!] **Never check material with plain `sbt test`** — it stops at the deliberately red exercise suites and never reaches the solutions, reporting 74 failures / 0 passes. Use `sbt checkSolutions` (75 green).
+- [x] Command aliases in `build.sbt`: `block0`, `blockA`, `blockB`, `blockC`, `blockD`, `blockE`, `blockF`, `blockG`, `checkSolutions`.
+- [!] **Never check material with plain `sbt test`** — it stops at the deliberately red exercise suites and never reaches the solutions, reporting 74 failures / 0 passes. Use `sbt checkSolutions` (310 green).
 - [?] **Scala version.** Currently pinned to 3.8.4. Switch to 3.3.x LTS if that is closer to Blip production. Confirm what they run.
 - [ ] Decide what ships in the advance repo vs. what is added live. `notes/` is trainer-internal — strip it, gitignore it, or move it out before sending the repo to attendees.
 - [ ] Add a README for attendees: how to build, how to run, what to do if setup breaks.
@@ -50,12 +75,13 @@ Status key: `[ ]` open · `[~]` in progress · `[x]` done · `[?]` needs a decis
 
 Nothing gets cut. Implicits and concurrency stay — the goal there is recognition of other people's code.
 
+- [?] **Confirm the Scala 2 vs 3 call for Block C** — it uses `enum` throughout with a side-by-side comment showing the `sealed trait` form. Flip to sealed-trait style if you would rather keep every file Scala-2-readable.
 - [ ] **Collections transformation API**: `foldLeft`, `groupBy`, `partition`, `sortBy`, `collect`, `sliding`, `zip`, `sum`, `maxByOption`. The biggest gap — this is what replaces their `for` loops.
 - [ ] **Collections cheat sheet** handout.
 - [ ] **Immutability as a named topic**: `val` vs `var`, `.copy`, structural sharing, "state change = `State => State`".
 - [ ] **`sealed` traits / `enum` + ADTs** with pattern matching, and the live exhaustivity demo (add a case, watch the compiler list every match).
 - [ ] **`Either`** — introduce alongside `Option`/`Try`. Named by Big Guy as a struggle, currently absent.
-- [ ] **`LazyList`** — brief introduction; follows naturally from call-by-name, which is already in the file. Practised on day 2.
+- [x] **`LazyList`, views, `withFilter`** — laziness section added to `ScalaEssentials.scala` after the call-by-name material, with a TODO exercise. Values verified.
 - [ ] **Scala 2 vs 3 cheat sheet**: `implicit` vs `given`/`using`, `implicit class` vs `extension`, `sealed trait` vs `enum`, optional braces.
 
 ## Day 1 — repo fixes

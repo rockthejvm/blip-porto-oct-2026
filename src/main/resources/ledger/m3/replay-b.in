@@ -1,0 +1,18 @@
+# purpose: part B of the replay pair. Every line depends on state that must have survived the
+#          restart: balances, bob frozen, carol closed, and the next sequence number being 16.
+BALANCE alice
+BALANCE bob
+BALANCE dave
+DEPOSIT bob 1
+DEPOSIT carol 1
+OPEN alice USD
+OPEN carol GBP
+DEPOSIT alice 5
+UNFREEZE bob
+WITHDRAW bob 199.5
+CLOSE bob
+WITHDRAW alice 65
+WITHDRAW alice 0.01
+OPEN erin EUR
+DEPOSIT erin 1
+BALANCE erin

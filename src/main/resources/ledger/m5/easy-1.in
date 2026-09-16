@@ -1,0 +1,15 @@
+# purpose: the worked example from PROTOCOL.md and PROTOCOL-PART2.md, exactly.
+# exercises: HISTORY reuses the OK-line effect grammar; SUMMARY over the full range and a sub-range.
+OPEN acc-1 USD
+DEPOSIT acc-1 100.00
+DEPOSIT acc-1 25
+WITHDRAW acc-1 30.00
+FREEZE acc-1
+UNFREEZE acc-1
+OPEN acc-2 USD
+TRANSFER acc-1 acc-2 50
+HISTORY acc-1
+BALANCE acc-2
+SUMMARY acc-1 1 9
+SUMMARY acc-1 3 4
+SUMMARY acc-2 1 7

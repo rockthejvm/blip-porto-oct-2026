@@ -1,0 +1,32 @@
+REJECTED unknown-account account=nobody
+REJECTED unknown-account account=nobody
+OK 1 acc-usd OPENED USD
+OK 2 acc-eur OPENED EUR
+OK 3 acc-gbp OPENED GBP
+OK 4 acc-usd +1.00 1.00
+OK 5 acc-usd +1.50 2.50
+OK 6 acc-usd +1.50 4.00
+OK 7 acc-usd +0.01 4.01
+BALANCE acc-usd 4.01 USD
+OK 8 acc-eur +1234567.89 1234567.89
+BALANCE acc-eur 1234567.89 EUR
+REJECTED account-exists account=acc-usd
+REJECTED account-exists account=acc-usd
+REJECTED account-exists account=acc-gbp
+OK 9 acc-gbp +5.00 5.00
+REJECTED unknown-account account=acc-xyz
+OK 10 acc-eur +0.11 1234568.00
+OK 11 acc-gbp +5.00 10.00
+REJECTED unknown-account account=acc-xyz
+OK 12 acc-usd +96.49 100.50
+OK 13 a2345678901234567890123456789012 OPENED USD
+OK 14 42 OPENED EUR
+OK 15 - OPENED GBP
+OK 16 42 +0.50 0.50
+OK 17 - +0.50 0.50
+BALANCE acc-usd 100.50 USD
+BALANCE acc-eur 1234568.00 EUR
+BALANCE acc-gbp 10.00 GBP
+BALANCE a2345678901234567890123456789012 0.00 USD
+BALANCE 42 0.50 EUR
+BALANCE - 0.50 GBP

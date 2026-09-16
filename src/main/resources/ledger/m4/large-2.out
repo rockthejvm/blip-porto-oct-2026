@@ -1,0 +1,179 @@
+OK 1 c1 OPENED USD
+OK 2 c2 OPENED USD
+OK 3 c3 OPENED USD
+OK 4 c4 OPENED USD
+OK 5 c5 OPENED USD
+OK 6 c6 OPENED USD
+OK 7 d1 OPENED EUR
+OK 8 d2 OPENED EUR
+OK 9 c1 +600.00 600.00
+OK 10 c2 +500.00 500.00
+OK 11 c3 +400.00 400.00
+OK 12 c4 +300.00 300.00
+OK 13 c5 +200.00 200.00
+OK 14 c6 +100.00 100.00
+OK 15 d1 +50.00 50.00
+OK 16 d2 +50.00 50.00
+OK 17 c1 -0.75 599.25 xfer=t1
+OK 18 c2 +0.75 500.75 xfer=t1
+OK 19 c2 -120.00 380.75 xfer=t2
+OK 20 c3 +120.00 520.00 xfer=t2
+OK 21 c3 -5.50 514.50 xfer=t3
+OK 22 c4 +5.50 305.50 xfer=t3
+OK 23 c4 -99.99 205.51 xfer=t4
+OK 24 c5 +99.99 299.99 xfer=t4
+OK 25 c5 -0.01 299.98 xfer=t5
+OK 26 c6 +0.01 100.01 xfer=t5
+REJECTED insufficient-funds account=c6 balance=100.01 requested=300.00
+OK 27 d2 -5.50 44.50 xfer=t6
+OK 28 d1 +5.50 55.50 xfer=t6
+BALANCE c2 380.75 USD
+OK 29 c1 -120.00 479.25 xfer=t7
+OK 30 c3 +120.00 634.50 xfer=t7
+OK 31 c2 -5.50 375.25 xfer=t8
+OK 32 c4 +5.50 211.01 xfer=t8
+OK 33 c3 -99.99 534.51 xfer=t9
+OK 34 c5 +99.99 399.97 xfer=t9
+OK 35 c4 -0.01 211.00 xfer=t10
+OK 36 c6 +0.01 100.02 xfer=t10
+OK 37 c5 -300.00 99.97 xfer=t11
+OK 38 c1 +300.00 779.25 xfer=t11
+OK 39 c6 -42.00 58.02 xfer=t12
+OK 40 c2 +42.00 417.25 xfer=t12
+REJECTED insufficient-funds account=d1 balance=55.50 requested=300.00
+OK 41 c3 FROZEN
+REJECTED account-frozen account=c3
+REJECTED account-frozen account=c3
+REJECTED account-frozen account=c3
+BALANCE c3 534.51 USD
+OK 42 c1 -5.50 773.75 xfer=t13
+OK 43 c4 +5.50 216.50 xfer=t13
+OK 44 c2 -99.99 317.26 xfer=t14
+OK 45 c5 +99.99 199.96 xfer=t14
+REJECTED account-frozen account=c3
+REJECTED insufficient-funds account=c4 balance=216.50 requested=300.00
+OK 46 c5 -42.00 157.96 xfer=t15
+OK 47 c2 +42.00 359.26 xfer=t15
+REJECTED account-frozen account=c3
+OK 48 d2 -0.75 43.75 xfer=t16
+OK 49 d1 +0.75 56.25 xfer=t16
+ERROR unknown-command transfer
+ERROR bad-arguments TRANSFER
+ERROR bad-amount 1.123
+ERROR bad-account-id C1
+BALANCE c4 216.50 USD
+OK 50 c1 -99.99 673.76 xfer=t17
+OK 51 c5 +99.99 257.95 xfer=t17
+OK 52 c2 -0.01 359.25 xfer=t18
+OK 53 c6 +0.01 58.03 xfer=t18
+REJECTED account-frozen account=c3
+OK 54 c4 -42.00 174.50 xfer=t19
+OK 55 c2 +42.00 401.25 xfer=t19
+REJECTED account-frozen account=c3
+OK 56 c6 -0.75 57.28 xfer=t20
+OK 57 c4 +0.75 175.25 xfer=t20
+REJECTED insufficient-funds account=d1 balance=56.25 requested=99.99
+BALANCE c5 257.95 USD
+OK 58 c1 -0.01 673.75 xfer=t21
+OK 59 c6 +0.01 57.29 xfer=t21
+OK 60 c2 -300.00 101.25 xfer=t22
+OK 61 c1 +300.00 973.75 xfer=t22
+REJECTED account-frozen account=c3
+REJECTED account-frozen account=c3
+OK 62 c5 -0.75 257.20 xfer=t23
+OK 63 c4 +0.75 176.00 xfer=t23
+REJECTED insufficient-funds account=c6 balance=57.29 requested=120.00
+OK 64 d2 -42.00 1.75 xfer=t24
+OK 65 d1 +42.00 98.25 xfer=t24
+OK 66 c3 UNFROZEN
+REJECTED insufficient-funds account=c6 balance=57.29 requested=100000.00
+REJECTED currency-mismatch from=c6 to=d2 from-currency=USD to-currency=EUR
+REJECTED currency-mismatch from=d2 to=c6 from-currency=EUR to-currency=USD
+BALANCE c6 57.29 USD
+REJECTED same-account-transfer account=c1
+REJECTED same-account-transfer account=c2
+REJECTED same-account-transfer account=c3
+REJECTED same-account-transfer account=c4
+REJECTED same-account-transfer account=c5
+REJECTED same-account-transfer account=c6
+REJECTED insufficient-funds account=d1 balance=98.25 requested=120.00
+BALANCE c1 973.75 USD
+OK 67 c1 -42.00 931.75 xfer=t25
+OK 68 c2 +42.00 143.25 xfer=t25
+OK 69 c2 -11.00 132.25 xfer=t26
+OK 70 c3 +11.00 545.51 xfer=t26
+OK 71 c3 -0.75 544.76 xfer=t27
+OK 72 c4 +0.75 176.75 xfer=t27
+OK 73 c4 -120.00 56.75 xfer=t28
+OK 74 c5 +120.00 377.20 xfer=t28
+OK 75 c5 -5.50 371.70 xfer=t29
+OK 76 c6 +5.50 62.79 xfer=t29
+REJECTED insufficient-funds account=c6 balance=62.79 requested=99.99
+OK 77 d2 -0.01 1.74 xfer=t30
+OK 78 d1 +0.01 98.26 xfer=t30
+REJECTED insufficient-funds account=c6 balance=62.79 requested=100000.00
+BALANCE c6 62.79 USD
+BALANCE c2 132.25 USD
+OK 79 c1 -11.00 920.75 xfer=t31
+OK 80 c3 +11.00 555.76 xfer=t31
+OK 81 c2 -0.75 131.50 xfer=t32
+OK 82 c4 +0.75 57.50 xfer=t32
+OK 83 c3 -120.00 435.76 xfer=t33
+OK 84 c5 +120.00 491.70 xfer=t33
+OK 85 c4 -5.50 52.00 xfer=t34
+OK 86 c6 +5.50 68.29 xfer=t34
+OK 87 c5 -99.99 391.71 xfer=t35
+OK 88 c1 +99.99 1020.74 xfer=t35
+OK 89 c6 -0.01 68.28 xfer=t36
+OK 90 c2 +0.01 131.51 xfer=t36
+OK 91 d1 -11.00 87.26 xfer=t37
+OK 92 d2 +11.00 12.74 xfer=t37
+REJECTED same-account-transfer account=c6
+REJECTED unknown-account account=zz
+REJECTED unknown-account account=zz
+REJECTED same-account-transfer account=zz
+BALANCE c3 435.76 USD
+OK 93 c1 -0.75 1019.99 xfer=t38
+OK 94 c4 +0.75 52.75 xfer=t38
+OK 95 c2 -120.00 11.51 xfer=t39
+OK 96 c5 +120.00 511.71 xfer=t39
+OK 97 c3 -5.50 430.26 xfer=t40
+OK 98 c6 +5.50 73.78 xfer=t40
+REJECTED insufficient-funds account=c4 balance=52.75 requested=99.99
+OK 99 c5 -0.01 511.70 xfer=t41
+OK 100 c2 +0.01 11.52 xfer=t41
+REJECTED insufficient-funds account=c6 balance=73.78 requested=300.00
+OK 101 d2 -5.50 7.24 xfer=t42
+OK 102 d1 +5.50 92.76 xfer=t42
+BALANCE c4 52.75 USD
+OK 103 c1 -120.00 899.99 xfer=t43
+OK 104 c5 +120.00 631.70 xfer=t43
+OK 105 c2 -5.50 6.02 xfer=t44
+OK 106 c6 +5.50 79.28 xfer=t44
+OK 107 c3 -99.99 330.27 xfer=t45
+OK 108 c1 +99.99 999.98 xfer=t45
+OK 109 c4 -0.01 52.74 xfer=t46
+OK 110 c2 +0.01 6.03 xfer=t46
+OK 111 c5 -300.00 331.70 xfer=t47
+OK 112 c3 +300.00 630.27 xfer=t47
+OK 113 c6 -42.00 37.28 xfer=t48
+OK 114 c4 +42.00 94.74 xfer=t48
+REJECTED insufficient-funds account=d1 balance=92.76 requested=300.00
+BALANCE c5 331.70 USD
+BALANCE c6 37.28 USD
+OK 115 c6 -0.01 37.27 xfer=t49
+OK 116 c1 +0.01 999.99 xfer=t49
+BALANCE c6 37.27 USD
+REJECTED non-zero-balance account=c6 balance=37.27
+OK 117 c6 -1.00 36.27 xfer=t50
+OK 118 c1 +1.00 1000.99 xfer=t50
+OK 119 c1 -1.00 999.99 xfer=t51
+OK 120 c6 +1.00 37.27 xfer=t51
+BALANCE c1 999.99 USD
+BALANCE c2 6.03 USD
+BALANCE c3 630.27 USD
+BALANCE c4 94.74 USD
+BALANCE c5 331.70 USD
+BALANCE c6 37.27 USD
+BALANCE d1 92.76 EUR
+BALANCE d2 7.24 EUR

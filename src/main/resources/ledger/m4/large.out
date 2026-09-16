@@ -1,0 +1,131 @@
+OK 1 u1 OPENED USD
+OK 2 u2 OPENED USD
+OK 3 u3 OPENED USD
+OK 4 e1 OPENED EUR
+OK 5 e2 OPENED EUR
+OK 6 g1 OPENED GBP
+OK 7 u1 +1000.00 1000.00
+OK 8 u2 +500.00 500.00
+REJECTED non-positive-amount account=u3 amount=0.00
+OK 9 u3 +250.00 250.00
+OK 10 e1 +300.00 300.00
+OK 11 e2 +300.00 300.00
+OK 12 g1 +100.00 100.00
+OK 13 u2 -100.00 400.00 xfer=t1
+OK 14 u3 +100.00 350.00 xfer=t1
+OK 15 u3 -7.77 342.23 xfer=t2
+OK 16 u1 +7.77 1007.77 xfer=t2
+OK 17 u1 -33.00 974.77 xfer=t3
+OK 18 u2 +33.00 433.00 xfer=t3
+OK 19 e2 -250.00 50.00 xfer=t4
+OK 20 e1 +250.00 550.00 xfer=t4
+BALANCE u2 433.00 USD
+OK 21 u3 -1.00 341.23 xfer=t5
+OK 22 u1 +1.00 975.77 xfer=t5
+OK 23 u1 -250.00 725.77 xfer=t6
+OK 24 u2 +250.00 683.00 xfer=t6
+OK 25 u2 -0.50 682.50 xfer=t7
+OK 26 u3 +0.50 341.73 xfer=t7
+OK 27 e1 -7.77 542.23 xfer=t8
+OK 28 e2 +7.77 57.77 xfer=t8
+REJECTED currency-mismatch from=u3 to=e1 from-currency=USD to-currency=EUR
+OK 29 u2 FROZEN
+BALANCE u3 341.73 USD
+REJECTED account-frozen account=u2
+REJECTED account-frozen account=u2
+OK 30 u3 -25.50 316.23 xfer=t9
+OK 31 u1 +25.50 751.27 xfer=t9
+OK 32 e2 -25.50 32.27 xfer=t10
+OK 33 e1 +25.50 567.73 xfer=t10
+REJECTED same-account-transfer account=g1
+REJECTED currency-mismatch from=g1 to=u1 from-currency=GBP to-currency=USD
+REJECTED account-frozen account=u2
+REJECTED account-frozen account=u2
+OK 34 u2 UNFROZEN
+BALANCE e1 567.73 EUR
+OK 35 u2 -0.01 682.49 xfer=t11
+OK 36 u3 +0.01 316.24 xfer=t11
+OK 37 u3 -100.00 216.24 xfer=t12
+OK 38 u1 +100.00 851.27 xfer=t12
+OK 39 u1 -7.77 843.50 xfer=t13
+OK 40 u2 +7.77 690.26 xfer=t13
+OK 41 e1 -0.50 567.23 xfer=t14
+OK 42 e2 +0.50 32.77 xfer=t14
+REJECTED currency-mismatch from=u2 to=e1 from-currency=USD to-currency=EUR
+REJECTED insufficient-funds account=u3 balance=216.24 requested=100000.00
+OK 43 u3 +0.03 216.27
+BALANCE e2 32.77 EUR
+OK 44 u3 -33.00 183.27 xfer=t15
+OK 45 u1 +33.00 876.50 xfer=t15
+OK 46 u1 -1.00 875.50 xfer=t16
+OK 47 u2 +1.00 691.26 xfer=t16
+OK 48 u2 -250.00 441.26 xfer=t17
+OK 49 u3 +250.00 433.27 xfer=t17
+REJECTED insufficient-funds account=e2 balance=32.77 requested=33.00
+REJECTED unknown-account account=nope
+REJECTED unknown-account account=nope
+ERROR unknown-command transfer
+ERROR bad-arguments TRANSFER
+BALANCE g1 100.00 GBP
+OK 50 u1 -0.50 875.00 xfer=t18
+OK 51 u2 +0.50 441.76 xfer=t18
+OK 52 u2 -60.00 381.76 xfer=t19
+OK 53 u3 +60.00 493.27 xfer=t19
+OK 54 u3 -10.00 483.27 xfer=t20
+OK 55 u1 +10.00 885.00 xfer=t20
+OK 56 e1 -0.01 567.22 xfer=t21
+OK 57 e2 +0.01 32.78 xfer=t21
+REJECTED currency-mismatch from=u1 to=e1 from-currency=USD to-currency=EUR
+REJECTED same-account-transfer account=g1
+REJECTED currency-mismatch from=g1 to=u1 from-currency=GBP to-currency=USD
+REJECTED non-positive-amount account=e2 amount=-1.00
+REJECTED non-positive-amount account=e1 amount=-1.00
+REJECTED insufficient-funds account=e1 balance=567.22 requested=1000000.00
+BALANCE u1 885.00 USD
+OK 58 u2 -25.50 356.26 xfer=t22
+OK 59 u3 +25.50 508.77 xfer=t22
+OK 60 u3 -0.01 508.76 xfer=t23
+OK 61 u1 +0.01 885.01 xfer=t23
+OK 62 u1 -100.00 785.01 xfer=t24
+OK 63 u2 +100.00 456.26 xfer=t24
+REJECTED insufficient-funds account=e2 balance=32.78 requested=60.00
+REJECTED insufficient-funds account=u1 balance=785.01 requested=999999.00
+BALANCE u2 456.26 USD
+OK 64 u3 -7.77 500.99 xfer=t25
+OK 65 u1 +7.77 792.78 xfer=t25
+OK 66 u1 -33.00 759.78 xfer=t26
+OK 67 u2 +33.00 489.26 xfer=t26
+OK 68 u2 -1.00 488.26 xfer=t27
+OK 69 u3 +1.00 501.99 xfer=t27
+OK 70 e1 -1.00 566.22 xfer=t28
+OK 71 e2 +1.00 33.78 xfer=t28
+REJECTED currency-mismatch from=u3 to=e1 from-currency=USD to-currency=EUR
+BALANCE u3 501.99 USD
+OK 72 u1 -250.00 509.78 xfer=t29
+OK 73 u2 +250.00 738.26 xfer=t29
+OK 74 u2 -0.50 737.76 xfer=t30
+OK 75 u3 +0.50 502.49 xfer=t30
+OK 76 u3 -60.00 442.49 xfer=t31
+OK 77 u1 +60.00 569.78 xfer=t31
+REJECTED insufficient-funds account=e2 balance=33.78 requested=100.00
+REJECTED same-account-transfer account=g1
+REJECTED currency-mismatch from=g1 to=u1 from-currency=GBP to-currency=USD
+BALANCE e1 566.22 EUR
+OK 78 g1 -100.00 0.00
+OK 79 g1 CLOSED
+REJECTED account-closed account=g1
+REJECTED account-closed account=g1
+REJECTED same-account-transfer account=g1
+OK 80 e2 FROZEN
+REJECTED account-frozen account=e2
+REJECTED account-frozen account=e2
+BALANCE e2 33.78 EUR
+OK 81 e2 UNFROZEN
+OK 82 e1 -1.00 565.22 xfer=t32
+OK 83 e2 +1.00 34.78 xfer=t32
+BALANCE u1 569.78 USD
+BALANCE u2 737.76 USD
+BALANCE u3 442.49 USD
+BALANCE e1 565.22 EUR
+BALANCE e2 34.78 EUR
+REJECTED account-closed account=g1

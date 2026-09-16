@@ -1,0 +1,217 @@
+OK 1 p1 OPENED USD
+OK 2 p2 OPENED USD
+OK 3 p3 OPENED USD
+OK 4 q1 OPENED GBP
+OK 5 q2 OPENED GBP
+OK 6 p1 +400.00 400.00
+OK 7 p2 +400.00 400.00
+OK 8 p3 +400.00 400.00
+OK 9 q1 +80.00 80.00
+OK 10 q2 +20.00 20.00
+OK 11 p2 -3.00 397.00 xfer=t1
+OK 12 p3 +3.00 403.00 xfer=t1
+OK 13 p3 -150.00 253.00 xfer=t2
+OK 14 p1 +150.00 550.00 xfer=t2
+OK 15 p1 -1.25 548.75 xfer=t3
+OK 16 p2 +1.25 398.25 xfer=t3
+OK 17 p2 +0.50 398.75
+OK 18 q2 -1.25 18.75 xfer=t4
+OK 19 q1 +1.25 81.25 xfer=t4
+BALANCE p2 398.75 USD
+OK 20 p3 -40.00 213.00 xfer=t5
+OK 21 p1 +40.00 588.75 xfer=t5
+OK 22 p1 -8.08 580.67 xfer=t6
+OK 23 p2 +8.08 406.83 xfer=t6
+OK 24 p2 -12.00 394.83 xfer=t7
+OK 25 p3 +12.00 225.00 xfer=t7
+OK 26 p3 -99.99 125.01
+REJECTED insufficient-funds account=q1 balance=81.25 requested=99.99
+OK 27 p2 FROZEN
+REJECTED account-frozen account=p2
+REJECTED account-frozen account=p2
+BALANCE p3 125.01 USD
+REJECTED account-frozen account=p2
+REJECTED account-frozen account=p2
+OK 28 p3 -3.00 122.01 xfer=t8
+OK 29 p1 +3.00 583.67 xfer=t8
+OK 30 p1 +3.00 586.67
+OK 31 q2 -8.08 10.67 xfer=t9
+OK 32 q1 +8.08 89.33 xfer=t9
+OK 33 p2 UNFROZEN
+BALANCE p1 586.67 USD
+OK 34 p2 -150.00 244.83 xfer=t10
+OK 35 p3 +150.00 272.01 xfer=t10
+OK 36 p3 -1.25 270.76 xfer=t11
+OK 37 p1 +1.25 587.92 xfer=t11
+OK 38 p1 -40.00 547.92 xfer=t12
+OK 39 p2 +40.00 284.83 xfer=t12
+OK 40 p2 -150.00 134.83
+REJECTED insufficient-funds account=q1 balance=89.33 requested=150.00
+REJECTED currency-mismatch from=q1 to=p1 from-currency=GBP to-currency=USD
+SUMMARY q1 1 200 opening=0.00 credits=89.33 debits=0.00 closing=89.33 count=4
+HISTORY q2 4
+  5 OPENED GBP
+  10 +20.00 20.00
+  18 -1.25 18.75 xfer=t4
+  31 -8.08 10.67 xfer=t9
+BALANCE p2 134.83 USD
+OK 41 p3 -8.08 262.68 xfer=t13
+OK 42 p1 +8.08 556.00 xfer=t13
+OK 43 p1 -12.00 544.00 xfer=t14
+OK 44 p2 +12.00 146.83 xfer=t14
+OK 45 p2 -0.50 146.33 xfer=t15
+OK 46 p3 +0.50 263.18 xfer=t15
+OK 47 p3 +1.25 264.43
+OK 48 q2 -0.50 10.17 xfer=t16
+OK 49 q1 +0.50 89.83 xfer=t16
+REJECTED insufficient-funds account=q2 balance=10.17 requested=1000.00
+SUMMARY p2 10 20 opening=400.00 credits=1.75 debits=3.00 closing=398.75 count=3
+SUMMARY p2 20 30 opening=398.75 credits=8.08 debits=12.00 closing=394.83 count=3
+BALANCE p3 264.43 USD
+OK 50 p1 -99.99 444.01 xfer=t17
+OK 51 p2 +99.99 246.32 xfer=t17
+OK 52 p2 -3.00 243.32 xfer=t18
+OK 53 p3 +3.00 267.43 xfer=t18
+OK 54 p3 -150.00 117.43 xfer=t19
+OK 55 p1 +150.00 594.01 xfer=t19
+OK 56 p1 -40.00 554.01
+OK 57 q1 -40.00 49.83 xfer=t20
+OK 58 q2 +40.00 50.17 xfer=t20
+SUMMARY p1 1 1 opening=0.00 credits=0.00 debits=0.00 closing=0.00 count=1
+SUMMARY p1 2 2 opening=0.00 credits=0.00 debits=0.00 closing=0.00 count=0
+SUMMARY p1 36 37 opening=586.67 credits=1.25 debits=0.00 closing=587.92 count=1
+SUMMARY p3 37 38 opening=270.76 credits=0.00 debits=0.00 closing=270.76 count=0
+BALANCE p1 554.01 USD
+OK 59 p2 -1.25 242.07 xfer=t21
+OK 60 p3 +1.25 118.68 xfer=t21
+OK 61 p3 -40.00 78.68 xfer=t22
+OK 62 p1 +40.00 594.01 xfer=t22
+OK 63 p1 -8.08 585.93 xfer=t23
+OK 64 p2 +8.08 250.15 xfer=t23
+OK 65 p2 +8.08 258.23
+OK 66 q2 -3.00 47.17 xfer=t24
+OK 67 q1 +3.00 52.83 xfer=t24
+HISTORY p1 17
+  1 OPENED USD
+  6 +400.00 400.00
+  14 +150.00 550.00 xfer=t2
+  15 -1.25 548.75 xfer=t3
+  21 +40.00 588.75 xfer=t5
+  22 -8.08 580.67 xfer=t6
+  29 +3.00 583.67 xfer=t8
+  30 +3.00 586.67
+  37 +1.25 587.92 xfer=t11
+  38 -40.00 547.92 xfer=t12
+  42 +8.08 556.00 xfer=t13
+  43 -12.00 544.00 xfer=t14
+  50 -99.99 444.01 xfer=t17
+  55 +150.00 594.01 xfer=t19
+  56 -40.00 554.01
+  62 +40.00 594.01 xfer=t22
+  63 -8.08 585.93 xfer=t23
+SUMMARY p1 0 1000 opening=0.00 credits=795.33 debits=209.40 closing=585.93 count=17
+BALANCE p2 258.23 USD
+OK 68 p3 -12.00 66.68 xfer=t25
+OK 69 p1 +12.00 597.93 xfer=t25
+OK 70 p1 -0.50 597.43 xfer=t26
+OK 71 p2 +0.50 258.73 xfer=t26
+OK 72 p2 -99.99 158.74 xfer=t27
+OK 73 p3 +99.99 166.67 xfer=t27
+OK 74 p3 -12.00 154.67
+OK 75 q1 -12.00 40.83 xfer=t28
+OK 76 q2 +12.00 59.17 xfer=t28
+BALANCE p3 154.67 USD
+BALANCE q2 59.17 GBP
+HISTORY q2 8
+  5 OPENED GBP
+  10 +20.00 20.00
+  18 -1.25 18.75 xfer=t4
+  31 -8.08 10.67 xfer=t9
+  48 -0.50 10.17 xfer=t16
+  58 +40.00 50.17 xfer=t20
+  66 -3.00 47.17 xfer=t24
+  76 +12.00 59.17 xfer=t28
+SUMMARY q2 1 50 opening=0.00 credits=20.00 debits=9.83 closing=10.17 count=5
+OK 77 q2 -6.75 52.42
+BALANCE q2 52.42 GBP
+REJECTED non-zero-balance account=q2 balance=52.42
+HISTORY q2 9
+  5 OPENED GBP
+  10 +20.00 20.00
+  18 -1.25 18.75 xfer=t4
+  31 -8.08 10.67 xfer=t9
+  48 -0.50 10.17 xfer=t16
+  58 +40.00 50.17 xfer=t20
+  66 -3.00 47.17 xfer=t24
+  76 +12.00 59.17 xfer=t28
+  77 -6.75 52.42
+SUMMARY q2 1 60 opening=0.00 credits=60.00 debits=9.83 closing=50.17 count=6
+SUMMARY q1 1 60 opening=0.00 credits=89.83 debits=40.00 closing=49.83 count=6
+SUMMARY q1 50 60 opening=89.83 credits=0.00 debits=40.00 closing=49.83 count=1
+SUMMARY p1 12 13 opening=400.00 credits=0.00 debits=0.00 closing=400.00 count=0
+SUMMARY p2 12 13 opening=397.00 credits=0.00 debits=0.00 closing=397.00 count=0
+SUMMARY p3 12 13 opening=400.00 credits=3.00 debits=150.00 closing=253.00 count=2
+SUMMARY p1 13 14 opening=400.00 credits=150.00 debits=0.00 closing=550.00 count=1
+SUMMARY p2 13 14 opening=397.00 credits=0.00 debits=0.00 closing=397.00 count=0
+SUMMARY p1 1 30 opening=0.00 credits=596.00 debits=9.33 closing=586.67 count=8
+SUMMARY p2 1 30 opening=0.00 credits=409.83 debits=15.00 closing=394.83 count=8
+SUMMARY p3 1 30 opening=0.00 credits=415.00 debits=292.99 closing=122.01 count=8
+SUMMARY p1 31 60 opening=586.67 credits=159.33 debits=191.99 closing=554.01 count=7
+SUMMARY p2 31 60 opening=394.83 credits=151.99 debits=304.75 closing=242.07 count=9
+SUMMARY p3 31 60 opening=122.01 credits=156.00 debits=159.33 closing=118.68 count=8
+HISTORY p2 21
+  2 OPENED USD
+  7 +400.00 400.00
+  11 -3.00 397.00 xfer=t1
+  16 +1.25 398.25 xfer=t3
+  17 +0.50 398.75
+  23 +8.08 406.83 xfer=t6
+  24 -12.00 394.83 xfer=t7
+  27 FROZEN
+  33 UNFROZEN
+  34 -150.00 244.83 xfer=t10
+  39 +40.00 284.83 xfer=t12
+  40 -150.00 134.83
+  44 +12.00 146.83 xfer=t14
+  45 -0.50 146.33 xfer=t15
+  51 +99.99 246.32 xfer=t17
+  52 -3.00 243.32 xfer=t18
+  59 -1.25 242.07 xfer=t21
+  64 +8.08 250.15 xfer=t23
+  65 +8.08 258.23
+  71 +0.50 258.73 xfer=t26
+  72 -99.99 158.74 xfer=t27
+HISTORY p3 20
+  3 OPENED USD
+  8 +400.00 400.00
+  12 +3.00 403.00 xfer=t1
+  13 -150.00 253.00 xfer=t2
+  20 -40.00 213.00 xfer=t5
+  25 +12.00 225.00 xfer=t7
+  26 -99.99 125.01
+  28 -3.00 122.01 xfer=t8
+  35 +150.00 272.01 xfer=t10
+  36 -1.25 270.76 xfer=t11
+  41 -8.08 262.68 xfer=t13
+  46 +0.50 263.18 xfer=t15
+  47 +1.25 264.43
+  53 +3.00 267.43 xfer=t18
+  54 -150.00 117.43 xfer=t19
+  60 +1.25 118.68 xfer=t21
+  61 -40.00 78.68 xfer=t22
+  68 -12.00 66.68 xfer=t25
+  73 +99.99 166.67 xfer=t27
+  74 -12.00 154.67
+HISTORY q1 8
+  4 OPENED GBP
+  9 +80.00 80.00
+  19 +1.25 81.25 xfer=t4
+  32 +8.08 89.33 xfer=t9
+  49 +0.50 89.83 xfer=t16
+  57 -40.00 49.83 xfer=t20
+  67 +3.00 52.83 xfer=t24
+  75 -12.00 40.83 xfer=t28
+BALANCE p1 597.43 USD
+BALANCE p2 158.74 USD
+BALANCE p3 154.67 USD
+BALANCE q1 40.83 GBP

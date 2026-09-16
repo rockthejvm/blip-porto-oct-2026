@@ -1,0 +1,26 @@
+OK 1 t1 OPENED USD
+OK 2 t2 OPENED USD
+OK 3 t3 OPENED USD
+OK 4 t1 +100.00 100.00
+OK 5 t2 +100.00 100.00
+OK 6 t1 -10.00 90.00 xfer=t1
+OK 7 t2 +10.00 110.00 xfer=t1
+OK 8 t2 -110.00 0.00 xfer=t2
+OK 9 t3 +110.00 110.00 xfer=t2
+OK 10 t3 -0.50 109.50 xfer=t3
+OK 11 t1 +0.50 90.50 xfer=t3
+OK 12 t2 CLOSED
+OK 13 t3 FROZEN
+REJECTED account-frozen account=t3
+BALANCE t1 90.50 USD
+REJECTED account-frozen account=t3
+REJECTED account-closed account=t2
+OK 14 t3 UNFROZEN
+OK 15 t3 -109.50 0.00 xfer=t4
+OK 16 t1 +109.50 200.00 xfer=t4
+OK 17 t1 -200.00 0.00 xfer=t5
+OK 18 t3 +200.00 200.00 xfer=t5
+REJECTED insufficient-funds account=t1 balance=0.00 requested=0.01
+BALANCE t1 0.00 USD
+BALANCE t3 200.00 USD
+REJECTED account-closed account=t2

@@ -1,0 +1,13 @@
+OK 1 alice OPENED USD
+OK 2 bob OPENED USD
+OK 3 alice +10.00 10.00
+HISTORY bob 1
+  2 OPENED USD
+SUMMARY bob 1 1 opening=0.00 credits=0.00 debits=0.00 closing=0.00 count=0
+SUMMARY bob 3 10 opening=0.00 credits=0.00 debits=0.00 closing=0.00 count=0
+SUMMARY alice 4 4 opening=10.00 credits=0.00 debits=0.00 closing=10.00 count=0
+SUMMARY alice 1 3 opening=0.00 credits=10.00 debits=0.00 closing=10.00 count=2
+SUMMARY alice 3 3 opening=0.00 credits=10.00 debits=0.00 closing=10.00 count=1
+HISTORY alice 2
+  1 OPENED USD
+  3 +10.00 10.00

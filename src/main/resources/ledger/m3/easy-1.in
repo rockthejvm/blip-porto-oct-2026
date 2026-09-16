@@ -1,0 +1,14 @@
+# purpose: M3 adds no commands; this is a short M1+M2 regression so the milestone has a golden of its own.
+# exercises: deposits, withdrawals, a freeze window, a closure.
+OPEN alice USD
+OPEN bob USD
+DEPOSIT alice 30
+DEPOSIT bob 30
+WITHDRAW alice 10
+FREEZE bob
+WITHDRAW bob 10
+UNFREEZE bob
+WITHDRAW bob 30
+CLOSE bob
+BALANCE alice
+BALANCE bob

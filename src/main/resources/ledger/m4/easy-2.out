@@ -1,0 +1,14 @@
+OK 1 alice OPENED USD
+OK 2 bob OPENED EUR
+OK 3 carol OPENED USD
+OK 4 alice +50.00 50.00
+REJECTED same-account-transfer account=alice
+REJECTED currency-mismatch from=alice to=bob from-currency=USD to-currency=EUR
+REJECTED insufficient-funds account=alice balance=50.00 requested=60.00
+OK 5 alice -50.00 0.00 xfer=t1
+OK 6 carol +50.00 50.00 xfer=t1
+REJECTED insufficient-funds account=alice balance=0.00 requested=0.01
+OK 7 carol -25.00 25.00 xfer=t2
+OK 8 alice +25.00 25.00 xfer=t2
+BALANCE alice 25.00 USD
+BALANCE carol 25.00 USD

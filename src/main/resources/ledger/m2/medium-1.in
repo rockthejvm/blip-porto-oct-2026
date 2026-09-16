@@ -1,0 +1,65 @@
+# purpose: every rejection that exists at M2, and the precedence between them.
+# exercises: unknown-account, account-exists, unsupported-currency, account-closed, account-frozen,
+#            non-positive-amount, insufficient-funds, non-zero-balance; idempotent FREEZE/UNFREEZE
+#            consume a sequence number; frozen permits BALANCE, UNFREEZE and CLOSE; closure is terminal.
+
+OPEN alice USD
+OPEN bob EUR
+OPEN carol GBP
+OPEN dave JPY
+OPEN alice JPY
+DEPOSIT alice 50
+DEPOSIT bob 50
+DEPOSIT carol 50
+
+# --- frozen: what is refused and what is not
+FREEZE bob
+FREEZE bob
+DEPOSIT bob 1
+WITHDRAW bob 1
+BALANCE bob
+CLOSE bob
+UNFREEZE bob
+UNFREEZE bob
+DEPOSIT bob 1
+BALANCE bob
+
+# --- precedence on one account: closed beats frozen beats non-positive beats insufficient
+FREEZE carol
+WITHDRAW carol 999
+WITHDRAW carol -1
+UNFREEZE carol
+WITHDRAW carol -999
+WITHDRAW carol 999
+WITHDRAW carol 50
+CLOSE carol
+WITHDRAW carol -1
+WITHDRAW carol 999
+FREEZE carol
+UNFREEZE carol
+CLOSE carol
+BALANCE carol
+OPEN carol GBP
+OPEN carol USD
+
+# --- unknown beats everything
+WITHDRAW erin -1
+FREEZE erin
+CLOSE erin
+BALANCE erin
+
+# --- closing needs exactly zero
+CLOSE alice
+WITHDRAW alice 49.99
+CLOSE alice
+WITHDRAW alice 0.01
+CLOSE alice
+BALANCE alice
+
+# --- a frozen account can be closed if empty
+FREEZE bob
+CLOSE bob
+WITHDRAW bob 51
+BALANCE bob
+CLOSE bob
+BALANCE bob

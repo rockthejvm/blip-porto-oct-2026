@@ -1,0 +1,1000 @@
+OK 1 acc-01 OPENED USD
+BALANCE acc-01 0.00 USD
+OK 2 acc-02 OPENED USD
+OK 3 acc-03 OPENED EUR
+OK 4 acc-04 OPENED GBP
+OK 5 acc-05 OPENED USD
+OK 6 acc-06 OPENED EUR
+REJECTED account-exists account=acc-01
+OK 7 acc-01 +125.60 125.60
+OK 8 acc-04 +78.86 78.86
+REJECTED unknown-account account=ghost-1
+REJECTED account-exists account=acc-06
+OK 9 acc-06 +27.51 27.51
+OK 10 acc-06 +10.11 37.62
+OK 11 acc-04 +10.47 89.33
+REJECTED unknown-account account=ghost-2
+OK 12 acc-05 +501.83 501.83
+OK 13 acc-02 +26.54 26.54
+OK 14 acc-02 +502.02 528.56
+OK 15 acc-05 +2.43 504.26
+OK 16 acc-07 OPENED USD
+OK 17 acc-07 +10.81 10.81
+OK 18 acc-08 OPENED EUR
+OK 19 acc-06 +3.54 41.16
+REJECTED account-exists account=acc-04
+OK 20 acc-07 +500.80 511.61
+OK 21 acc-04 +12.44 101.77
+OK 22 acc-09 OPENED USD
+OK 23 acc-09 +3.06 3.06
+OK 24 acc-09 +3.23 6.29
+BALANCE acc-09 6.29 USD
+OK 25 acc-01 +126.17 251.77
+OK 26 acc-05 +79.61 583.87
+OK 27 acc-06 +11.12 52.28
+REJECTED unknown-account account=ghost-3
+OK 28 acc-05 +501.04 1084.91
+REJECTED unknown-account account=ghost-4
+OK 29 acc-05 +4.72 1089.63
+OK 30 acc-05 +80.12 1169.75
+BALANCE acc-02 528.56 USD
+OK 31 acc-08 +0.56 0.56
+OK 32 acc-01 +501.81 753.58
+REJECTED account-exists account=acc-09
+OK 33 acc-04 +2.96 104.73
+OK 34 acc-05 +3.21 1172.96
+OK 35 acc-10 OPENED USD
+BALANCE acc-05 1172.96 USD
+REJECTED account-exists account=acc-07
+REJECTED unknown-account account=ghost-5
+OK 36 acc-02 +2.97 531.53
+OK 37 acc-04 +27.80 132.53
+OK 38 acc-06 +26.03 78.31
+REJECTED account-exists account=acc-10
+OK 39 acc-05 +12.61 1185.57
+BALANCE acc-10 0.00 USD
+OK 40 acc-05 +500.97 1686.54
+REJECTED unknown-account account=ghost-6
+OK 41 acc-08 +10.40 10.96
+OK 42 acc-11 OPENED EUR
+REJECTED account-exists account=acc-11
+BALANCE acc-09 6.29 USD
+OK 43 acc-03 +0.92 0.92
+OK 44 acc-02 +1.34 532.87
+OK 45 acc-04 +502.39 634.92
+OK 46 acc-09 +11.87 18.16
+OK 47 acc-02 +1.16 534.03
+OK 48 acc-11 +11.20 11.20
+BALANCE acc-02 534.03 USD
+REJECTED unknown-account account=ghost-7
+OK 49 acc-04 +3.93 638.85
+BALANCE acc-04 638.85 GBP
+OK 50 acc-05 +500.99 2187.53
+OK 51 acc-10 +11.17 11.17
+OK 52 acc-05 +500.54 2688.07
+OK 53 acc-08 +124.21 135.17
+OK 54 acc-07 +25.59 537.20
+OK 55 acc-12 OPENED GBP
+OK 56 acc-10 +2.38 13.55
+OK 57 acc-04 +4.69 643.54
+OK 58 acc-08 +5.24 140.41
+OK 59 acc-05 +3.17 2691.24
+OK 60 acc-11 +1.71 12.91
+OK 61 acc-02 +26.71 560.74
+REJECTED unknown-account account=ghost-8
+OK 62 acc-11 +25.87 38.78
+REJECTED account-exists account=acc-06
+OK 63 acc-12 +2.24 2.24
+OK 64 acc-07 +5.41 542.61
+REJECTED account-exists account=acc-09
+OK 65 acc-10 +10.88 24.43
+REJECTED unknown-account account=ghost-9
+OK 66 acc-07 +3.04 545.65
+OK 67 acc-10 +125.92 150.35
+OK 68 acc-10 +500.40 650.75
+OK 69 acc-12 +3.44 5.68
+REJECTED account-exists account=acc-07
+OK 70 acc-12 +78.75 84.43
+OK 71 acc-03 +0.31 1.23
+REJECTED unknown-account account=ghost-10
+OK 72 acc-11 +4.93 43.71
+OK 73 acc-12 +10.30 94.73
+OK 74 acc-09 +12.43 30.59
+OK 75 acc-05 +0.38 2691.62
+REJECTED unknown-account account=ghost-11
+OK 76 acc-01 +1.79 755.37
+OK 77 acc-12 +2.89 97.62
+REJECTED account-exists account=acc-12
+REJECTED unknown-account account=ghost-12
+OK 78 acc-12 +1.84 99.46
+REJECTED account-exists account=acc-10
+BALANCE acc-09 30.59 USD
+OK 79 acc-10 +2.86 653.61
+OK 80 acc-09 +2.36 32.95
+BALANCE acc-10 653.61 USD
+BALANCE acc-05 2691.62 USD
+REJECTED account-exists account=acc-01
+OK 81 acc-12 +0.56 100.02
+OK 82 acc-10 +2.74 656.35
+REJECTED unknown-account account=ghost-13
+OK 83 acc-01 +2.41 757.78
+REJECTED unknown-account account=ghost-14
+OK 84 acc-12 +2.18 102.20
+OK 85 acc-06 +124.98 203.29
+OK 86 acc-02 +123.51 684.25
+OK 87 acc-09 +27.73 60.68
+BALANCE acc-09 60.68 USD
+BALANCE acc-05 2691.62 USD
+OK 88 acc-04 +10.38 653.92
+REJECTED account-exists account=acc-06
+REJECTED unknown-account account=ghost-15
+OK 89 acc-08 +124.77 265.18
+REJECTED account-exists account=acc-10
+OK 90 acc-11 +10.60 54.31
+REJECTED account-exists account=acc-07
+OK 91 acc-01 +1.45 759.23
+OK 92 acc-01 +2.73 761.96
+OK 93 acc-08 +25.90 291.08
+REJECTED unknown-account account=ghost-16
+OK 94 acc-03 +125.91 127.14
+REJECTED account-exists account=acc-01
+OK 95 acc-07 +501.00 1046.65
+REJECTED unknown-account account=ghost-17
+REJECTED unknown-account account=ghost-18
+OK 96 acc-03 +502.38 629.52
+OK 97 acc-12 +5.36 107.56
+OK 98 acc-11 +78.65 132.96
+OK 99 acc-07 +102.45 1149.10
+REJECTED account-exists account=acc-06
+OK 100 acc-07 +1.01 1150.11
+OK 101 acc-11 +4.83 137.79
+REJECTED unknown-account account=ghost-19
+OK 102 acc-02 +11.87 696.12
+OK 103 acc-01 +12.08 774.04
+OK 104 acc-05 +102.28 2793.90
+REJECTED account-exists account=acc-08
+REJECTED unknown-account account=ghost-20
+OK 105 acc-12 +25.94 133.50
+OK 106 acc-11 +10.26 148.05
+REJECTED account-exists account=acc-02
+OK 107 acc-08 +501.65 792.73
+OK 108 acc-01 +1.91 775.95
+REJECTED account-exists account=acc-09
+OK 109 acc-01 +26.67 802.62
+OK 110 acc-11 +1.89 149.94
+OK 111 acc-05 +125.42 2919.32
+OK 112 acc-01 +1.62 804.24
+BALANCE acc-08 792.73 EUR
+REJECTED unknown-account account=ghost-21
+OK 113 acc-12 +10.95 144.45
+OK 114 acc-12 +2.46 146.91
+OK 115 acc-11 +125.09 275.03
+OK 116 acc-02 +126.13 822.25
+REJECTED unknown-account account=ghost-22
+OK 117 acc-07 +27.35 1177.46
+OK 118 acc-12 +11.41 158.32
+OK 119 acc-03 +0.55 630.07
+REJECTED account-exists account=acc-05
+OK 120 acc-11 +4.77 279.80
+OK 121 acc-02 +12.59 834.84
+OK 122 acc-09 +1.65 62.33
+OK 123 acc-06 +1.69 204.98
+OK 124 acc-01 +3.57 807.81
+REJECTED account-exists account=acc-04
+REJECTED unknown-account account=ghost-23
+OK 125 acc-08 +123.84 916.57
+OK 126 acc-07 +3.07 1180.53
+OK 127 acc-06 +124.61 329.59
+BALANCE acc-06 329.59 EUR
+OK 128 acc-09 +101.46 163.79
+OK 129 acc-09 +2.06 165.85
+OK 130 acc-01 +5.24 813.05
+OK 131 acc-11 +10.94 290.74
+REJECTED account-exists account=acc-07
+OK 132 acc-05 +12.82 2932.14
+OK 133 acc-12 +11.17 169.49
+REJECTED unknown-account account=ghost-24
+OK 134 acc-06 +12.76 342.35
+REJECTED unknown-account account=ghost-25
+REJECTED account-exists account=acc-12
+OK 135 acc-01 +125.18 938.23
+REJECTED account-exists account=acc-10
+BALANCE acc-10 656.35 USD
+OK 136 acc-12 +27.72 197.21
+OK 137 acc-09 +500.98 666.83
+OK 138 acc-05 +12.23 2944.37
+BALANCE acc-02 834.84 USD
+BALANCE acc-12 197.21 GBP
+REJECTED unknown-account account=ghost-26
+OK 139 acc-12 +12.14 209.35
+OK 140 acc-06 +502.11 844.46
+REJECTED unknown-account account=ghost-27
+OK 141 acc-09 +80.66 747.49
+REJECTED account-exists account=acc-12
+BALANCE acc-05 2944.37 USD
+BALANCE acc-04 653.92 GBP
+BALANCE acc-10 656.35 USD
+OK 142 acc-09 +12.29 759.78
+BALANCE acc-02 834.84 USD
+REJECTED account-exists account=acc-05
+OK 143 acc-09 +101.47 861.25
+OK 144 acc-11 +0.60 291.34
+OK 145 acc-05 +0.82 2945.19
+REJECTED unknown-account account=ghost-28
+BALANCE acc-09 861.25 USD
+OK 146 acc-07 +102.29 1282.82
+OK 147 acc-07 +11.72 1294.54
+REJECTED unknown-account account=ghost-29
+BALANCE acc-07 1294.54 USD
+REJECTED account-exists account=acc-04
+OK 148 acc-01 +3.64 941.87
+REJECTED account-exists account=acc-07
+OK 149 acc-10 +12.81 669.16
+OK 150 acc-04 +26.67 680.59
+REJECTED unknown-account account=ghost-30
+REJECTED account-exists account=acc-11
+REJECTED unknown-account account=ghost-31
+REJECTED account-exists account=acc-02
+REJECTED unknown-account account=ghost-32
+OK 151 acc-10 +1.72 670.88
+OK 152 acc-08 +1.96 918.53
+OK 153 acc-06 +1.08 845.54
+OK 154 acc-10 +25.18 696.06
+OK 155 acc-06 +27.19 872.73
+OK 156 acc-01 +100.41 1042.28
+OK 157 acc-01 +78.45 1120.73
+OK 158 acc-11 +101.41 392.75
+OK 159 acc-09 +2.39 863.64
+OK 160 acc-02 +501.43 1336.27
+REJECTED unknown-account account=ghost-33
+BALANCE acc-06 872.73 EUR
+OK 161 acc-07 +78.86 1373.40
+OK 162 acc-07 +502.33 1875.73
+OK 163 acc-11 +126.23 518.98
+REJECTED account-exists account=acc-10
+OK 164 acc-03 +2.37 632.44
+REJECTED unknown-account account=ghost-34
+REJECTED account-exists account=acc-12
+OK 165 acc-08 +10.52 929.05
+OK 166 acc-07 +79.56 1955.29
+BALANCE acc-10 696.06 USD
+OK 167 acc-10 +500.98 1197.04
+OK 168 acc-03 +3.21 635.65
+REJECTED account-exists account=acc-09
+OK 169 acc-08 +1.56 930.61
+OK 170 acc-07 +124.65 2079.94
+OK 171 acc-07 +100.16 2180.10
+OK 172 acc-08 +2.99 933.60
+OK 173 acc-06 +80.58 953.31
+OK 174 acc-05 +2.64 2947.83
+OK 175 acc-10 +1.59 1198.63
+BALANCE acc-11 518.98 EUR
+REJECTED unknown-account account=ghost-35
+OK 176 acc-03 +102.84 738.49
+REJECTED account-exists account=acc-06
+REJECTED unknown-account account=ghost-36
+OK 177 acc-02 +10.87 1347.14
+OK 178 acc-10 +2.73 1201.36
+OK 179 acc-12 +101.16 310.51
+OK 180 acc-05 +12.21 2960.04
+OK 181 acc-03 +102.70 841.19
+OK 182 acc-02 +10.58 1357.72
+REJECTED account-exists account=acc-10
+OK 183 acc-12 +500.83 811.34
+BALANCE acc-05 2960.04 USD
+OK 184 acc-02 +2.58 1360.30
+OK 185 acc-11 +10.21 529.19
+REJECTED unknown-account account=ghost-37
+OK 186 acc-10 +0.45 1201.81
+OK 187 acc-06 +500.91 1454.22
+OK 188 acc-11 +125.16 654.35
+REJECTED unknown-account account=ghost-38
+REJECTED account-exists account=acc-07
+OK 189 acc-02 +124.01 1484.31
+REJECTED account-exists account=acc-06
+OK 190 acc-10 +0.99 1202.80
+OK 191 acc-11 +1.00 655.35
+OK 192 acc-09 +1.02 864.66
+BALANCE acc-09 864.66 USD
+OK 193 acc-12 +1.04 812.38
+OK 194 acc-02 +80.29 1564.60
+BALANCE acc-07 2180.10 USD
+OK 195 acc-07 +27.81 2207.91
+OK 196 acc-06 +2.84 1457.06
+OK 197 acc-09 +102.33 966.99
+OK 198 acc-09 +1.00 967.99
+REJECTED unknown-account account=ghost-39
+OK 199 acc-12 +11.21 823.59
+REJECTED unknown-account account=ghost-40
+OK 200 acc-08 +12.83 946.43
+OK 201 acc-02 +5.03 1569.63
+BALANCE acc-09 967.99 USD
+OK 202 acc-09 +10.63 978.62
+OK 203 acc-04 +11.51 692.10
+OK 204 acc-12 +26.81 850.40
+BALANCE acc-10 1202.80 USD
+REJECTED account-exists account=acc-10
+OK 205 acc-10 +5.08 1207.88
+OK 206 acc-07 +0.81 2208.72
+OK 207 acc-02 +11.77 1581.40
+OK 208 acc-10 +0.63 1208.51
+BALANCE acc-02 1581.40 USD
+REJECTED unknown-account account=ghost-41
+OK 209 acc-08 +2.71 949.14
+BALANCE acc-06 1457.06 EUR
+OK 210 acc-05 +4.10 2964.14
+OK 211 acc-03 +78.49 919.68
+OK 212 acc-06 +12.57 1469.63
+REJECTED account-exists account=acc-03
+OK 213 acc-07 +100.38 2309.10
+OK 214 acc-01 +0.53 1121.26
+REJECTED account-exists account=acc-10
+OK 215 acc-06 +1.81 1471.44
+OK 216 acc-10 +2.74 1211.25
+REJECTED unknown-account account=ghost-42
+OK 217 acc-06 +11.09 1482.53
+REJECTED account-exists account=acc-09
+OK 218 acc-08 +500.43 1449.57
+OK 219 acc-05 +0.95 2965.09
+BALANCE acc-04 692.10 GBP
+BALANCE acc-07 2309.10 USD
+OK 220 acc-11 +26.02 681.37
+OK 221 acc-09 +78.27 1056.89
+OK 222 acc-11 +3.57 684.94
+OK 223 acc-06 +126.22 1608.75
+OK 224 acc-06 +80.70 1689.45
+REJECTED unknown-account account=ghost-43
+OK 225 acc-10 +502.32 1713.57
+OK 226 acc-07 +101.94 2411.04
+OK 227 acc-03 +26.80 946.48
+OK 228 acc-08 +12.85 1462.42
+OK 229 acc-10 +11.48 1725.05
+OK 230 acc-05 +125.13 3090.22
+REJECTED account-exists account=acc-03
+REJECTED unknown-account account=ghost-44
+OK 231 acc-05 +101.48 3191.70
+OK 232 acc-10 +124.06 1849.11
+BALANCE acc-01 1121.26 USD
+OK 233 acc-01 +101.07 1222.33
+OK 234 acc-05 +0.33 3192.03
+OK 235 acc-04 +3.43 695.53
+OK 236 acc-06 +501.17 2190.62
+REJECTED account-exists account=acc-04
+OK 237 acc-11 +100.55 785.49
+OK 238 acc-08 +0.78 1463.20
+OK 239 acc-11 +1.35 786.84
+OK 240 acc-04 +100.80 796.33
+OK 241 acc-07 +1.25 2412.29
+OK 242 acc-06 +124.44 2315.06
+OK 243 acc-09 +11.79 1068.68
+OK 244 acc-07 +10.98 2423.27
+OK 245 acc-09 +10.05 1078.73
+BALANCE acc-05 3192.03 USD
+REJECTED unknown-account account=ghost-45
+BALANCE acc-05 3192.03 USD
+OK 246 acc-08 +502.40 1965.60
+REJECTED unknown-account account=ghost-46
+OK 247 acc-02 +101.05 1682.45
+REJECTED account-exists account=acc-09
+OK 248 acc-12 +0.84 851.24
+OK 249 acc-06 +2.63 2317.69
+OK 250 acc-04 +1.81 798.14
+BALANCE acc-06 2317.69 EUR
+OK 251 acc-03 +100.72 1047.20
+OK 252 acc-01 +2.07 1224.40
+OK 253 acc-12 +4.73 855.97
+OK 254 acc-01 +2.65 1227.05
+OK 255 acc-07 +27.17 2450.44
+OK 256 acc-03 +3.81 1051.01
+OK 257 acc-06 +4.84 2322.53
+REJECTED unknown-account account=ghost-47
+OK 258 acc-05 +12.22 3204.25
+REJECTED account-exists account=acc-09
+OK 259 acc-06 +1.20 2323.73
+OK 260 acc-11 +80.75 867.59
+REJECTED unknown-account account=ghost-48
+OK 261 acc-04 +3.23 801.37
+OK 262 acc-02 +1.13 1683.58
+OK 263 acc-03 +2.65 1053.66
+BALANCE acc-07 2450.44 USD
+OK 264 acc-12 +1.02 856.99
+OK 265 acc-01 +125.95 1353.00
+OK 266 acc-03 +123.46 1177.12
+REJECTED account-exists account=acc-09
+OK 267 acc-06 +102.20 2425.93
+OK 268 acc-08 +27.92 1993.52
+BALANCE acc-03 1177.12 EUR
+OK 269 acc-05 +101.20 3305.45
+REJECTED unknown-account account=ghost-49
+OK 270 acc-11 +27.88 895.47
+REJECTED account-exists account=acc-10
+REJECTED account-exists account=acc-04
+OK 271 acc-09 +102.94 1181.67
+REJECTED unknown-account account=ghost-50
+OK 272 acc-05 +12.07 3317.52
+REJECTED unknown-account account=ghost-51
+OK 273 acc-06 +125.70 2551.63
+OK 274 acc-04 +501.06 1302.43
+BALANCE acc-11 895.47 EUR
+OK 275 acc-06 +501.29 3052.92
+OK 276 acc-07 +502.52 2952.96
+OK 277 acc-12 +5.14 862.13
+REJECTED account-exists account=acc-08
+OK 278 acc-09 +79.26 1260.93
+REJECTED account-exists account=acc-05
+OK 279 acc-04 +0.47 1302.90
+REJECTED unknown-account account=ghost-52
+REJECTED unknown-account account=ghost-53
+OK 280 acc-11 +2.80 898.27
+OK 281 acc-03 +26.48 1203.60
+REJECTED account-exists account=acc-04
+OK 282 acc-07 +101.23 3054.19
+BALANCE acc-04 1302.90 GBP
+REJECTED account-exists account=acc-07
+OK 283 acc-04 +126.14 1429.04
+OK 284 acc-05 +79.49 3397.01
+BALANCE acc-12 862.13 GBP
+OK 285 acc-01 +3.82 1356.82
+OK 286 acc-11 +80.57 978.84
+BALANCE acc-06 3052.92 EUR
+OK 287 acc-11 +126.38 1105.22
+REJECTED unknown-account account=ghost-54
+OK 288 acc-09 +2.51 1263.44
+REJECTED account-exists account=acc-03
+OK 289 acc-09 +126.02 1389.46
+OK 290 acc-12 +124.02 986.15
+OK 291 acc-03 +124.74 1328.34
+REJECTED unknown-account account=ghost-55
+REJECTED unknown-account account=ghost-56
+OK 292 acc-05 +3.36 3400.37
+OK 293 acc-10 +11.01 1860.12
+OK 294 acc-07 +126.08 3180.27
+OK 295 acc-02 +500.22 2183.80
+OK 296 acc-10 +11.92 1872.04
+OK 297 acc-04 +11.90 1440.94
+REJECTED account-exists account=acc-09
+OK 298 acc-08 +2.35 1995.87
+REJECTED unknown-account account=ghost-57
+OK 299 acc-02 +11.94 2195.74
+OK 300 acc-07 +102.03 3282.30
+BALANCE acc-06 3052.92 EUR
+OK 301 acc-02 +4.16 2199.90
+OK 302 acc-10 +27.71 1899.75
+OK 303 acc-12 +11.11 997.26
+OK 304 acc-12 +26.51 1023.77
+REJECTED account-exists account=acc-07
+REJECTED unknown-account account=ghost-58
+OK 305 acc-04 +2.57 1443.51
+OK 306 acc-12 +9.99 1033.76
+OK 307 acc-02 +10.24 2210.14
+OK 308 acc-02 +501.93 2712.07
+OK 309 acc-04 +78.34 1521.85
+OK 310 acc-12 +1.11 1034.87
+OK 311 acc-03 +78.95 1407.29
+OK 312 acc-04 +5.36 1527.21
+REJECTED account-exists account=acc-02
+OK 313 acc-03 +124.11 1531.40
+OK 314 acc-07 +0.72 3283.02
+REJECTED account-exists account=acc-10
+OK 315 acc-08 +2.41 1998.28
+BALANCE acc-02 2712.07 USD
+OK 316 acc-12 +25.58 1060.45
+OK 317 acc-11 +11.26 1116.48
+REJECTED unknown-account account=ghost-59
+OK 318 acc-12 +10.03 1070.48
+OK 319 acc-12 +2.68 1073.16
+OK 320 acc-01 +11.09 1367.91
+OK 321 acc-03 +0.71 1532.11
+OK 322 acc-03 +11.53 1543.64
+OK 323 acc-07 +27.58 3310.60
+OK 324 acc-08 +2.88 2001.16
+BALANCE acc-09 1389.46 USD
+OK 325 acc-03 +78.54 1622.18
+OK 326 acc-05 +124.78 3525.15
+BALANCE acc-02 2712.07 USD
+BALANCE acc-10 1899.75 USD
+OK 327 acc-07 +26.24 3336.84
+OK 328 acc-03 +2.03 1624.21
+OK 329 acc-05 +0.06 3525.21
+OK 330 acc-01 +124.89 1492.80
+OK 331 acc-06 +124.52 3177.44
+OK 332 acc-08 +12.60 2013.76
+OK 333 acc-01 +2.73 1495.53
+BALANCE acc-07 3336.84 USD
+OK 334 acc-01 +502.90 1998.43
+OK 335 acc-04 +1.98 1529.19
+OK 336 acc-08 +10.56 2024.32
+OK 337 acc-08 +4.10 2028.42
+BALANCE acc-10 1899.75 USD
+OK 338 acc-10 +1.33 1901.08
+OK 339 acc-03 +1.30 1625.51
+OK 340 acc-06 +80.66 3258.10
+BALANCE acc-03 1625.51 EUR
+OK 341 acc-04 +79.89 1609.08
+BALANCE acc-05 3525.21 USD
+REJECTED account-exists account=acc-04
+OK 342 acc-12 +502.60 1575.76
+OK 343 acc-04 +1.44 1610.52
+OK 344 acc-06 +10.62 3268.72
+OK 345 acc-04 +0.34 1610.86
+REJECTED unknown-account account=ghost-60
+BALANCE acc-08 2028.42 EUR
+OK 346 acc-04 +124.15 1735.01
+OK 347 acc-04 +501.93 2236.94
+OK 348 acc-02 +27.54 2739.61
+REJECTED account-exists account=acc-09
+OK 349 acc-09 +3.87 1393.33
+OK 350 acc-12 +0.04 1575.80
+OK 351 acc-06 +102.04 3370.76
+OK 352 acc-08 +102.49 2130.91
+OK 353 acc-02 +0.89 2740.50
+OK 354 acc-12 +1.50 1577.30
+REJECTED unknown-account account=ghost-61
+OK 355 acc-08 +0.20 2131.11
+OK 356 acc-02 +123.75 2864.25
+OK 357 acc-04 +27.15 2264.09
+OK 358 acc-01 +2.89 2001.32
+OK 359 acc-10 +80.48 1981.56
+REJECTED unknown-account account=ghost-62
+BALANCE acc-10 1981.56 USD
+BALANCE acc-09 1393.33 USD
+REJECTED account-exists account=acc-06
+REJECTED unknown-account account=ghost-63
+OK 360 acc-05 +79.89 3605.10
+REJECTED account-exists account=acc-08
+OK 361 acc-12 +100.11 1677.41
+OK 362 acc-05 +0.39 3605.49
+OK 363 acc-04 +1.77 2265.86
+OK 364 acc-12 +10.63 1688.04
+REJECTED unknown-account account=ghost-64
+REJECTED account-exists account=acc-01
+OK 365 acc-07 +1.62 3338.46
+OK 366 acc-04 +124.54 2390.40
+OK 367 acc-11 +2.92 1119.40
+REJECTED account-exists account=acc-02
+REJECTED unknown-account account=ghost-65
+OK 368 acc-07 +502.41 3840.87
+OK 369 acc-10 +123.64 2105.20
+OK 370 acc-05 +12.05 3617.54
+OK 371 acc-10 +101.21 2206.41
+OK 372 acc-12 +3.60 1691.64
+OK 373 acc-04 +101.11 2491.51
+OK 374 acc-10 +2.12 2208.53
+OK 375 acc-07 +3.19 3844.06
+OK 376 acc-08 +1.16 2132.27
+OK 377 acc-05 +25.80 3643.34
+OK 378 acc-12 +25.09 1716.73
+BALANCE acc-02 2864.25 USD
+REJECTED unknown-account account=ghost-66
+OK 379 acc-06 +80.61 3451.37
+OK 380 acc-02 +10.18 2874.43
+BALANCE acc-07 3844.06 USD
+OK 381 acc-06 +2.59 3453.96
+OK 382 acc-02 +124.49 2998.92
+OK 383 acc-04 +12.95 2504.46
+OK 384 acc-03 +11.35 1636.86
+REJECTED account-exists account=acc-01
+OK 385 acc-07 +11.32 3855.38
+OK 386 acc-11 +80.10 1199.50
+OK 387 acc-04 +1.40 2505.86
+OK 388 acc-12 +2.12 1718.85
+OK 389 acc-02 +1.88 3000.80
+REJECTED account-exists account=acc-08
+REJECTED unknown-account account=ghost-67
+OK 390 acc-02 +4.94 3005.74
+BALANCE acc-08 2132.27 EUR
+OK 391 acc-09 +78.29 1471.62
+OK 392 acc-06 +3.99 3457.95
+OK 393 acc-05 +1.63 3644.97
+OK 394 acc-03 +0.65 1637.51
+OK 395 acc-11 +1.88 1201.38
+OK 396 acc-06 +102.46 3560.41
+OK 397 acc-01 +3.62 2004.94
+BALANCE acc-02 3005.74 USD
+OK 398 acc-01 +101.81 2106.75
+OK 399 acc-09 +0.86 1472.48
+OK 400 acc-06 +79.78 3640.19
+OK 401 acc-07 +25.77 3881.15
+OK 402 acc-01 +101.64 2208.39
+OK 403 acc-11 +3.83 1205.21
+BALANCE acc-06 3640.19 EUR
+REJECTED unknown-account account=ghost-68
+OK 404 acc-05 +4.98 3649.95
+OK 405 acc-05 +4.77 3654.72
+OK 406 acc-05 +4.58 3659.30
+REJECTED account-exists account=acc-07
+REJECTED account-exists account=acc-06
+OK 407 acc-10 +102.15 2310.68
+OK 408 acc-09 +502.90 1975.38
+OK 409 acc-05 +2.14 3661.44
+OK 410 acc-06 +3.56 3643.75
+BALANCE acc-05 3661.44 USD
+OK 411 acc-08 +3.12 2135.39
+OK 412 acc-04 +12.77 2518.63
+OK 413 acc-03 +11.28 1648.79
+OK 414 acc-04 +1.75 2520.38
+OK 415 acc-09 +124.62 2100.00
+REJECTED unknown-account account=ghost-69
+REJECTED unknown-account account=ghost-70
+OK 416 acc-10 +0.14 2310.82
+OK 417 acc-08 +125.03 2260.42
+OK 418 acc-08 +25.43 2285.85
+OK 419 acc-03 +1.90 1650.69
+OK 420 acc-08 +0.74 2286.59
+OK 421 acc-07 +126.10 4007.25
+REJECTED account-exists account=acc-01
+OK 422 acc-01 +125.89 2334.28
+BALANCE acc-03 1650.69 EUR
+OK 423 acc-09 +2.01 2102.01
+OK 424 acc-08 +2.89 2289.48
+REJECTED account-exists account=acc-11
+OK 425 acc-06 +102.53 3746.28
+REJECTED unknown-account account=ghost-71
+BALANCE acc-02 3005.74 USD
+OK 426 acc-05 +2.73 3664.17
+OK 427 acc-02 +2.25 3007.99
+REJECTED unknown-account account=ghost-72
+OK 428 acc-06 +1.21 3747.49
+OK 429 acc-03 +125.58 1776.27
+REJECTED account-exists account=acc-09
+OK 430 acc-12 +101.61 1820.46
+REJECTED unknown-account account=ghost-73
+OK 431 acc-01 +2.16 2336.44
+REJECTED account-exists account=acc-10
+OK 432 acc-02 +1.98 3009.97
+BALANCE acc-08 2289.48 EUR
+OK 433 acc-10 +80.65 2391.47
+REJECTED unknown-account account=ghost-74
+OK 434 acc-06 +11.50 3758.99
+REJECTED account-exists account=acc-07
+OK 435 acc-08 +3.96 2293.44
+REJECTED account-exists account=acc-07
+OK 436 acc-05 +2.55 3666.72
+OK 437 acc-06 +78.67 3837.66
+REJECTED unknown-account account=ghost-75
+OK 438 acc-06 +2.25 3839.91
+OK 439 acc-09 +125.86 2227.87
+OK 440 acc-05 +0.79 3667.51
+REJECTED account-exists account=acc-07
+REJECTED unknown-account account=ghost-76
+OK 441 acc-04 +27.15 2547.53
+OK 442 acc-12 +2.12 1822.58
+REJECTED unknown-account account=ghost-77
+OK 443 acc-08 +1.82 2295.26
+OK 444 acc-01 +12.52 2348.96
+OK 445 acc-05 +124.96 3792.47
+OK 446 acc-09 +78.84 2306.71
+REJECTED account-exists account=acc-09
+OK 447 acc-10 +500.36 2891.83
+BALANCE acc-04 2547.53 GBP
+OK 448 acc-11 +124.45 1329.66
+OK 449 acc-05 +3.14 3795.61
+REJECTED unknown-account account=ghost-78
+REJECTED account-exists account=acc-04
+REJECTED unknown-account account=ghost-79
+REJECTED account-exists account=acc-07
+REJECTED account-exists account=acc-03
+REJECTED unknown-account account=ghost-80
+REJECTED account-exists account=acc-06
+BALANCE acc-02 3009.97 USD
+OK 450 acc-02 +125.92 3135.89
+REJECTED unknown-account account=ghost-81
+OK 451 acc-05 +3.42 3799.03
+REJECTED account-exists account=acc-08
+REJECTED unknown-account account=ghost-82
+BALANCE acc-10 2891.83 USD
+OK 452 acc-10 +12.90 2904.73
+REJECTED unknown-account account=ghost-83
+OK 453 acc-03 +4.46 1780.73
+REJECTED account-exists account=acc-05
+OK 454 acc-01 +2.51 2351.47
+REJECTED account-exists account=acc-08
+OK 455 acc-06 +4.85 3844.76
+OK 456 acc-05 +100.73 3899.76
+OK 457 acc-08 +11.05 2306.31
+REJECTED unknown-account account=ghost-84
+BALANCE acc-09 2306.71 USD
+REJECTED account-exists account=acc-03
+OK 458 acc-10 +10.85 2915.58
+REJECTED unknown-account account=ghost-85
+OK 459 acc-09 +11.03 2317.74
+OK 460 acc-10 +1.31 2916.89
+OK 461 acc-03 +500.85 2281.58
+OK 462 acc-11 +25.35 1355.01
+OK 463 acc-12 +78.72 1901.30
+REJECTED account-exists account=acc-07
+OK 464 acc-12 +27.12 1928.42
+OK 465 acc-04 +502.31 3049.84
+BALANCE acc-07 4007.25 USD
+REJECTED unknown-account account=ghost-86
+OK 466 acc-05 +2.47 3902.23
+REJECTED unknown-account account=ghost-87
+OK 467 acc-03 +102.53 2384.11
+REJECTED account-exists account=acc-05
+OK 468 acc-04 +1.94 3051.78
+OK 469 acc-06 +502.31 4347.07
+REJECTED account-exists account=acc-02
+OK 470 acc-12 +1.59 1930.01
+BALANCE acc-03 2384.11 EUR
+REJECTED unknown-account account=ghost-88
+REJECTED unknown-account account=ghost-89
+OK 471 acc-08 +78.78 2385.09
+REJECTED account-exists account=acc-01
+OK 472 acc-02 +10.80 3146.69
+REJECTED unknown-account account=ghost-90
+OK 473 acc-11 +0.36 1355.37
+OK 474 acc-03 +2.70 2386.81
+OK 475 acc-11 +0.96 1356.33
+REJECTED account-exists account=acc-10
+OK 476 acc-01 +79.79 2431.26
+BALANCE acc-06 4347.07 EUR
+OK 477 acc-04 +501.55 3553.33
+OK 478 acc-08 +2.69 2387.78
+OK 479 acc-06 +2.75 4349.82
+OK 480 acc-01 +4.94 2436.20
+OK 481 acc-09 +5.33 2323.07
+OK 482 acc-05 +1.79 3904.02
+OK 483 acc-10 +12.18 2929.07
+OK 484 acc-02 +12.27 3158.96
+REJECTED account-exists account=acc-12
+OK 485 acc-06 +125.20 4475.02
+REJECTED unknown-account account=ghost-91
+OK 486 acc-07 +3.52 4010.77
+OK 487 acc-07 +125.48 4136.25
+OK 488 acc-12 +78.89 2008.90
+REJECTED account-exists account=acc-07
+OK 489 acc-11 +12.65 1368.98
+OK 490 acc-04 +3.41 3556.74
+OK 491 acc-06 +11.30 4486.32
+OK 492 acc-08 +2.00 2389.78
+OK 493 acc-04 +25.12 3581.86
+BALANCE acc-07 4136.25 USD
+OK 494 acc-08 +11.31 2401.09
+OK 495 acc-05 +1.46 3905.48
+OK 496 acc-05 +12.88 3918.36
+REJECTED unknown-account account=ghost-92
+REJECTED account-exists account=acc-11
+REJECTED unknown-account account=ghost-93
+OK 497 acc-07 +500.91 4637.16
+OK 498 acc-09 +2.33 2325.40
+OK 499 acc-09 +1.45 2326.85
+BALANCE acc-09 2326.85 USD
+OK 500 acc-09 +12.25 2339.10
+OK 501 acc-08 +2.61 2403.70
+OK 502 acc-12 +2.75 2011.65
+OK 503 acc-09 +2.85 2341.95
+OK 504 acc-03 +0.37 2387.18
+REJECTED account-exists account=acc-06
+OK 505 acc-06 +4.04 4490.36
+REJECTED unknown-account account=ghost-94
+BALANCE acc-11 1368.98 EUR
+OK 506 acc-02 +4.72 3163.68
+OK 507 acc-10 +11.62 2940.69
+OK 508 acc-09 +3.27 2345.22
+OK 509 acc-08 +0.67 2404.37
+OK 510 acc-03 +12.23 2399.41
+OK 511 acc-12 +2.69 2014.34
+REJECTED account-exists account=acc-11
+OK 512 acc-02 +2.80 3166.48
+REJECTED unknown-account account=ghost-95
+REJECTED unknown-account account=ghost-96
+OK 513 acc-10 +124.75 3065.44
+OK 514 acc-03 +1.12 2400.53
+OK 515 acc-05 +1.57 3919.93
+OK 516 acc-06 +79.98 4570.34
+OK 517 acc-04 +2.84 3584.70
+OK 518 acc-04 +126.05 3710.75
+OK 519 acc-07 +123.86 4761.02
+OK 520 acc-03 +4.48 2405.01
+OK 521 acc-09 +124.86 2470.08
+OK 522 acc-03 +2.72 2407.73
+BALANCE acc-01 2436.20 USD
+REJECTED account-exists account=acc-06
+OK 523 acc-06 +12.67 4583.01
+OK 524 acc-04 +501.68 4212.43
+OK 525 acc-05 +12.26 3932.19
+OK 526 acc-02 +2.51 3168.99
+OK 527 acc-07 +3.59 4764.61
+OK 528 acc-11 +124.41 1493.39
+OK 529 acc-01 +11.60 2447.80
+OK 530 acc-09 +26.53 2496.61
+OK 531 acc-05 +26.73 3958.92
+OK 532 acc-09 +502.47 2999.08
+OK 533 acc-01 +1.59 2449.39
+REJECTED unknown-account account=ghost-97
+OK 534 acc-03 +10.12 2417.85
+REJECTED account-exists account=acc-05
+OK 535 acc-06 +11.11 4594.12
+REJECTED account-exists account=acc-09
+OK 536 acc-11 +12.83 1506.22
+OK 537 acc-02 +1.78 3170.77
+OK 538 acc-08 +3.17 2407.54
+BALANCE acc-05 3958.92 USD
+OK 539 acc-11 +80.43 1586.65
+OK 540 acc-10 +78.21 3143.65
+REJECTED unknown-account account=ghost-98
+OK 541 acc-12 +126.24 2140.58
+REJECTED unknown-account account=ghost-99
+REJECTED account-exists account=acc-09
+OK 542 acc-05 +10.21 3969.13
+OK 543 acc-03 +100.82 2518.67
+OK 544 acc-08 +1.29 2408.83
+OK 545 acc-02 +1.70 3172.47
+OK 546 acc-12 +2.55 2143.13
+REJECTED account-exists account=acc-01
+REJECTED unknown-account account=ghost-100
+REJECTED unknown-account account=ghost-101
+OK 547 acc-06 +11.99 4606.11
+OK 548 acc-10 +1.34 3144.99
+OK 549 acc-09 +11.46 3010.54
+REJECTED account-exists account=acc-12
+OK 550 acc-09 +101.82 3112.36
+BALANCE acc-12 2143.13 GBP
+OK 551 acc-01 +1.36 2450.75
+OK 552 acc-12 +3.17 2146.30
+REJECTED unknown-account account=ghost-102
+OK 553 acc-06 +26.89 4633.00
+OK 554 acc-08 +27.64 2436.47
+OK 555 acc-09 +27.15 3139.51
+OK 556 acc-02 +0.21 3172.68
+OK 557 acc-05 +79.62 4048.75
+BALANCE acc-08 2436.47 EUR
+OK 558 acc-07 +12.59 4777.20
+OK 559 acc-03 +26.44 2545.11
+OK 560 acc-02 +77.95 3250.63
+BALANCE acc-03 2545.11 EUR
+OK 561 acc-10 +502.42 3647.41
+REJECTED account-exists account=acc-08
+OK 562 acc-10 +2.65 3650.06
+OK 563 acc-07 +1.35 4778.55
+OK 564 acc-09 +2.51 3142.02
+OK 565 acc-09 +1.81 3143.83
+BALANCE acc-03 2545.11 EUR
+OK 566 acc-10 +78.58 3728.64
+REJECTED account-exists account=acc-11
+REJECTED unknown-account account=ghost-103
+REJECTED unknown-account account=ghost-104
+OK 567 acc-02 +12.38 3263.01
+OK 568 acc-12 +26.54 2172.84
+REJECTED account-exists account=acc-08
+OK 569 acc-01 +502.57 2953.32
+OK 570 acc-05 +125.57 4174.32
+OK 571 acc-09 +1.95 3145.78
+OK 572 acc-08 +27.37 2463.84
+OK 573 acc-12 +1.99 2174.83
+OK 574 acc-05 +11.23 4185.55
+OK 575 acc-10 +3.51 3732.15
+OK 576 acc-08 +12.16 2476.00
+OK 577 acc-06 +3.54 4636.54
+OK 578 acc-09 +78.63 3224.41
+REJECTED unknown-account account=ghost-105
+REJECTED account-exists account=acc-04
+OK 579 acc-02 +10.58 3273.59
+OK 580 acc-07 +126.15 4904.70
+OK 581 acc-09 +2.05 3226.46
+OK 582 acc-02 +126.28 3399.87
+OK 583 acc-02 +26.09 3425.96
+OK 584 acc-05 +2.59 4188.14
+BALANCE acc-05 4188.14 USD
+OK 585 acc-02 +79.73 3505.69
+OK 586 acc-03 +80.31 2625.42
+OK 587 acc-04 +3.94 4216.37
+REJECTED account-exists account=acc-03
+OK 588 acc-08 +4.40 2480.40
+OK 589 acc-09 +10.79 3237.25
+OK 590 acc-05 +12.50 4200.64
+OK 591 acc-11 +12.26 1598.91
+BALANCE acc-01 2953.32 USD
+REJECTED unknown-account account=ghost-106
+REJECTED unknown-account account=ghost-107
+OK 592 acc-05 +2.16 4202.80
+BALANCE acc-05 4202.80 USD
+REJECTED account-exists account=acc-03
+OK 593 acc-11 +80.48 1679.39
+BALANCE acc-12 2174.83 GBP
+OK 594 acc-02 +26.49 3532.18
+REJECTED unknown-account account=ghost-108
+OK 595 acc-01 +10.45 2963.77
+OK 596 acc-10 +100.42 3832.57
+OK 597 acc-05 +100.63 4303.43
+REJECTED account-exists account=acc-11
+OK 598 acc-07 +0.60 4905.30
+REJECTED account-exists account=acc-12
+OK 599 acc-02 +100.51 3632.69
+OK 600 acc-01 +501.90 3465.67
+OK 601 acc-04 +2.20 4218.57
+REJECTED unknown-account account=ghost-109
+OK 602 acc-09 +3.54 3240.79
+REJECTED account-exists account=acc-06
+OK 603 acc-01 +1.54 3467.21
+REJECTED unknown-account account=ghost-110
+OK 604 acc-10 +0.36 3832.93
+OK 605 acc-04 +1.30 4219.87
+BALANCE acc-09 3240.79 USD
+BALANCE acc-07 4905.30 USD
+OK 606 acc-06 +4.18 4640.72
+REJECTED account-exists account=acc-04
+OK 607 acc-01 +502.59 3969.80
+REJECTED unknown-account account=ghost-111
+REJECTED account-exists account=acc-04
+OK 608 acc-09 +2.43 3243.22
+REJECTED unknown-account account=ghost-112
+OK 609 acc-08 +11.77 2492.17
+OK 610 acc-04 +10.41 4230.28
+BALANCE acc-12 2174.83 GBP
+OK 611 acc-10 +123.49 3956.42
+OK 612 acc-12 +2.73 2177.56
+REJECTED account-exists account=acc-04
+OK 613 acc-01 +1.96 3971.76
+OK 614 acc-08 +4.32 2496.49
+OK 615 acc-08 +12.26 2508.75
+REJECTED unknown-account account=ghost-113
+OK 616 acc-05 +11.97 4315.40
+OK 617 acc-04 +11.11 4241.39
+REJECTED account-exists account=acc-03
+REJECTED unknown-account account=ghost-114
+OK 618 acc-02 +11.57 3644.26
+BALANCE acc-09 3243.22 USD
+OK 619 acc-01 +1.69 3973.45
+REJECTED account-exists account=acc-05
+OK 620 acc-02 +1.26 3645.52
+OK 621 acc-06 +26.89 4667.61
+OK 622 acc-12 +124.92 2302.48
+BALANCE acc-09 3243.22 USD
+REJECTED unknown-account account=ghost-115
+OK 623 acc-12 +3.17 2305.65
+OK 624 acc-11 +3.66 1683.05
+BALANCE acc-10 3956.42 USD
+OK 625 acc-01 +11.50 3984.95
+OK 626 acc-02 +12.83 3658.35
+OK 627 acc-01 +0.07 3985.02
+OK 628 acc-07 +5.05 4910.35
+REJECTED unknown-account account=ghost-116
+OK 629 acc-01 +500.50 4485.52
+OK 630 acc-04 +0.54 4241.93
+OK 631 acc-02 +2.90 3661.25
+REJECTED account-exists account=acc-01
+OK 632 acc-09 +502.79 3746.01
+OK 633 acc-11 +10.58 1693.63
+BALANCE acc-10 3956.42 USD
+OK 634 acc-03 +125.10 2750.52
+OK 635 acc-07 +102.76 5013.11
+OK 636 acc-02 +500.16 4161.41
+OK 637 acc-01 +101.98 4587.50
+OK 638 acc-01 +11.99 4599.49
+REJECTED unknown-account account=ghost-117
+OK 639 acc-06 +3.10 4670.71
+BALANCE acc-05 4315.40 USD
+OK 640 acc-10 +3.81 3960.23
+BALANCE acc-05 4315.40 USD
+OK 641 acc-06 +102.47 4773.18
+OK 642 acc-01 +1.13 4600.62
+OK 643 acc-02 +126.25 4287.66
+OK 644 acc-10 +124.75 4084.98
+BALANCE acc-04 4241.93 GBP
+OK 645 acc-08 +2.71 2511.46
+OK 646 acc-07 +10.98 5024.09
+OK 647 acc-03 +3.32 2753.84
+OK 648 acc-11 +5.14 1698.77
+REJECTED account-exists account=acc-10
+REJECTED account-exists account=acc-01
+OK 649 acc-01 +2.67 4603.29
+OK 650 acc-07 +1.39 5025.48
+OK 651 acc-02 +125.59 4413.25
+BALANCE acc-01 4603.29 USD
+BALANCE acc-02 4413.25 USD
+OK 652 acc-02 +10.09 4423.34
+OK 653 acc-10 +2.04 4087.02
+REJECTED unknown-account account=ghost-118
+REJECTED unknown-account account=ghost-119
+OK 654 acc-06 +1.81 4774.99
+OK 655 acc-08 +2.57 2514.03
+OK 656 acc-03 +26.83 2780.67
+BALANCE acc-08 2514.03 EUR
+REJECTED account-exists account=acc-05
+REJECTED account-exists account=acc-08
+OK 657 acc-03 +1.60 2782.27
+OK 658 acc-02 +10.03 4433.37
+REJECTED unknown-account account=ghost-120
+REJECTED unknown-account account=ghost-121
+OK 659 acc-02 +27.75 4461.12

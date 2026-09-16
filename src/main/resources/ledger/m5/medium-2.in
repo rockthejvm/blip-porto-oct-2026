@@ -1,0 +1,41 @@
+# purpose: SUMMARY windows that start or end between the two facts of a transfer, windows on
+#          the receiving side only, and windows containing no facts; HISTORY on a busy account.
+OPEN x USD
+OPEN y USD
+OPEN z USD
+DEPOSIT x 100
+TRANSFER x y 10
+TRANSFER y z 5
+TRANSFER z x 1
+FREEZE y
+UNFREEZE y
+TRANSFER x y 20
+WITHDRAW z 4
+CLOSE z
+SUMMARY x 5 5
+SUMMARY x 6 6
+SUMMARY y 6 6
+SUMMARY y 5 8
+SUMMARY y 8 9
+SUMMARY y 9 14
+SUMMARY z 7 12
+SUMMARY z 1 6
+SUMMARY x 6 13
+SUMMARY x 15 99
+SUMMARY x 1 3
+SUMMARY y 1 1
+SUMMARY z 1 100
+HISTORY x
+HISTORY y
+HISTORY z
+SUMMARY x 0 0
+SUMMARY x 7 6
+SUMMARY x 7 seven
+SUMMARY x
+HISTORY
+HISTORY x y
+FREEZE x
+SUMMARY x 1 16
+HISTORY x
+BALANCE x
+BALANCE y

@@ -1,0 +1,12 @@
+OK 1 alice OPENED USD
+OK 2 bob OPENED USD
+OK 3 alice +30.00 30.00
+OK 4 bob +30.00 30.00
+OK 5 alice -10.00 20.00
+OK 6 bob FROZEN
+REJECTED account-frozen account=bob
+OK 7 bob UNFROZEN
+OK 8 bob -30.00 0.00
+OK 9 bob CLOSED
+BALANCE alice 20.00 USD
+REJECTED account-closed account=bob

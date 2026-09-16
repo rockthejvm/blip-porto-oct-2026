@@ -1,0 +1,45 @@
+# purpose: precedence pairs the other m2 scenarios do not combine, and the close/withdraw/close dance.
+# exercises: frozen + insufficient; frozen + non-positive; closed + non-positive; closed + insufficient;
+#            CLOSE with money -> WITHDRAW to zero -> CLOSE; open -> close -> re-open rejected;
+#            every ERROR variant interleaved with accepted lines.
+OPEN m USD
+OPEN n USD
+DEPOSIT m 10
+DEPOSIT n 10
+FREEZE m
+WITHDRAW m 100
+WITHDRAW m -1
+DEPOSIT m 0
+BALANCE m
+CLOSE m
+UNFREEZE m
+WITHDRAW m 100
+CLOSE m
+WITHDRAW m 10
+CLOSE m
+WITHDRAW m -1
+WITHDRAW m 100
+DEPOSIT m 5
+OPEN m USD
+OPEN m GBP
+deposit n 1
+DEPOSIT n 1
+DEPOSIT n
+DEPOSIT n 1
+DEPOSIT N 1
+DEPOSIT n 1
+DEPOSIT n 1.001
+DEPOSIT n 1
+OPEN o eur
+OPEN o EUR
+DEPOSIT o 1
+BALANCE n
+FREEZE n
+FREEZE n
+UNFREEZE n
+UNFREEZE n
+WITHDRAW n 14
+CLOSE n
+WITHDRAW n 0.01
+BALANCE n
+BALANCE o

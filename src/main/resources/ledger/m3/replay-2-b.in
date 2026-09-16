@@ -1,0 +1,15 @@
+# purpose: replay part B - first fact must be OK 21; r2 must still be frozen, r3 closed.
+DEPOSIT r1 0.5
+WITHDRAW r2 0.01
+UNFREEZE r2
+WITHDRAW r2 0.01
+DEPOSIT r3 1
+OPEN r3 GBP
+BALANCE r1
+BALANCE r2
+BALANCE r4
+CLOSE r2
+CLOSE r1
+WITHDRAW r1 1
+CLOSE r1
+BALANCE r1

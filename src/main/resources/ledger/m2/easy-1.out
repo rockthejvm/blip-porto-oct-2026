@@ -1,0 +1,13 @@
+OK 1 alice OPENED USD
+OK 2 alice +100.00 100.00
+OK 3 alice -30.00 70.00
+OK 4 alice -70.00 0.00
+REJECTED insufficient-funds account=alice balance=0.00 requested=0.01
+OK 5 alice +50.00 50.00
+REJECTED insufficient-funds account=alice balance=50.00 requested=50.01
+REJECTED non-positive-amount account=alice amount=0.00
+REJECTED non-positive-amount account=alice amount=-10.00
+REJECTED non-positive-amount account=alice amount=-10.00
+REJECTED non-positive-amount account=alice amount=0.00
+OK 6 alice -50.00 0.00
+BALANCE alice 0.00 USD

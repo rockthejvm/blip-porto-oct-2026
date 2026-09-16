@@ -1,0 +1,47 @@
+OK 1 src OPENED USD
+OK 2 dst OPENED USD
+OK 3 eur OPENED EUR
+OK 4 gone OPENED USD
+OK 5 ice OPENED USD
+OK 6 src +100.00 100.00
+OK 7 dst +100.00 100.00
+OK 8 eur +100.00 100.00
+OK 9 ice +100.00 100.00
+OK 10 gone CLOSED
+OK 11 ice FROZEN
+REJECTED same-account-transfer account=nobody
+REJECTED same-account-transfer account=gone
+REJECTED same-account-transfer account=src
+REJECTED unknown-account account=nobody
+REJECTED unknown-account account=nobody
+REJECTED unknown-account account=nobody
+REJECTED account-closed account=gone
+REJECTED account-closed account=gone
+REJECTED account-closed account=gone
+REJECTED account-closed account=gone
+REJECTED account-frozen account=ice
+REJECTED account-frozen account=ice
+REJECTED account-frozen account=ice
+REJECTED account-frozen account=ice
+REJECTED non-positive-amount account=src amount=-5.00
+REJECTED non-positive-amount account=src amount=0.00
+REJECTED non-positive-amount account=src amount=-500.00
+REJECTED currency-mismatch from=src to=eur from-currency=USD to-currency=EUR
+REJECTED currency-mismatch from=src to=eur from-currency=USD to-currency=EUR
+REJECTED currency-mismatch from=eur to=src from-currency=EUR to-currency=USD
+REJECTED insufficient-funds account=src balance=100.00 requested=100.01
+REJECTED insufficient-funds account=dst balance=100.00 requested=100.01
+OK 12 src -100.00 0.00 xfer=t1
+OK 13 dst +100.00 200.00 xfer=t1
+REJECTED insufficient-funds account=src balance=0.00 requested=0.01
+OK 14 dst -200.00 0.00 xfer=t2
+OK 15 src +200.00 200.00 xfer=t2
+REJECTED insufficient-funds account=dst balance=0.00 requested=0.01
+OK 16 ice UNFROZEN
+OK 17 ice -100.00 0.00 xfer=t3
+OK 18 src +100.00 300.00 xfer=t3
+REJECTED same-account-transfer account=eur
+BALANCE src 300.00 USD
+BALANCE dst 0.00 USD
+BALANCE ice 0.00 USD
+BALANCE eur 100.00 EUR

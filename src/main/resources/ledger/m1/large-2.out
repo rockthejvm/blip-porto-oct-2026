@@ -1,0 +1,80 @@
+OK 1 h1 OPENED USD
+OK 2 h2 OPENED EUR
+REJECTED unknown-account account=h3
+OK 3 h3 OPENED GBP
+OK 4 h4 OPENED USD
+OK 5 h5 OPENED EUR
+REJECTED unknown-account account=h6
+OK 6 h6 OPENED GBP
+OK 7 h7 OPENED USD
+OK 8 h8 OPENED EUR
+OK 9 h1 +0.05 0.05
+OK 10 h5 +5.55 5.55
+BALANCE h6 0.00 GBP
+REJECTED account-exists account=h7
+OK 11 h1 +50.00 50.05
+OK 12 h3 +500.00 500.00
+OK 13 h5 +55.50 61.05
+REJECTED account-exists account=h6
+OK 14 h7 +5.00 5.00
+OK 15 h1 +0.50 50.55
+OK 16 h5 +0.01 61.06
+REJECTED account-exists account=h5
+REJECTED unknown-account account=h11
+REJECTED unknown-account account=h0
+OK 17 h1 +500.00 550.55
+OK 18 h2 +5.55 5.55
+OK 19 h3 +55.50 555.50
+OK 20 h4 +0.01 0.01
+REJECTED account-exists account=h4
+OK 21 h5 +5.00 66.06
+BALANCE h5 66.06 EUR
+OK 22 h6 +0.05 0.05
+OK 23 h7 +50.00 55.00
+OK 24 h8 +0.50 0.50
+OK 25 h1 +5.55 556.10
+BALANCE h2 5.55 EUR
+REJECTED account-exists account=h3
+OK 26 h5 +0.05 66.11
+OK 27 h1 +55.50 611.60
+REJECTED account-exists account=h2
+OK 28 h3 +5.00 560.50
+OK 29 h5 +50.00 116.11
+OK 30 h7 +500.00 555.00
+REJECTED unknown-account account=h14
+REJECTED unknown-account account=h0
+OK 31 h1 +0.01 611.61
+REJECTED account-exists account=h1
+OK 32 h5 +0.50 116.61
+REJECTED account-exists account=h8
+BALANCE h8 0.50 EUR
+OK 33 h1 +5.00 616.61
+OK 34 h2 +0.05 5.60
+OK 35 h3 +50.00 610.50
+BALANCE h3 610.50 GBP
+OK 36 h4 +0.50 0.51
+OK 37 h5 +500.00 616.61
+OK 38 h6 +5.55 5.60
+OK 39 h7 +55.50 610.50
+REJECTED account-exists account=h7
+OK 40 h8 +0.01 0.51
+OK 41 h1 +0.05 616.66
+BALANCE h4 0.51 USD
+OK 42 h5 +5.55 622.16
+REJECTED account-exists account=h6
+REJECTED unknown-account account=h17
+REJECTED unknown-account account=h0
+OK 43 h1 +50.00 666.66
+OK 44 h3 +500.00 1110.50
+OK 45 h5 +55.50 677.66
+REJECTED account-exists account=h5
+OK 46 h7 +5.00 615.50
+BALANCE h7 615.50 USD
+BALANCE h1 666.66 USD
+BALANCE h2 5.60 EUR
+BALANCE h3 1110.50 GBP
+BALANCE h4 0.51 USD
+BALANCE h5 677.66 EUR
+BALANCE h6 5.60 GBP
+BALANCE h7 615.50 USD
+BALANCE h8 0.51 EUR

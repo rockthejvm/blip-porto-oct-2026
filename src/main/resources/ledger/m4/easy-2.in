@@ -1,0 +1,15 @@
+# purpose: the three most common transfer rejections.
+# exercises: same-account-transfer; currency-mismatch; insufficient-funds on the source;
+#            a rejected transfer consumes neither a sequence number nor a transfer tag.
+OPEN alice USD
+OPEN bob EUR
+OPEN carol USD
+DEPOSIT alice 50
+TRANSFER alice alice 10
+TRANSFER alice bob 10
+TRANSFER alice carol 60
+TRANSFER alice carol 50
+TRANSFER alice carol 0.01
+TRANSFER carol alice 25
+BALANCE alice
+BALANCE carol

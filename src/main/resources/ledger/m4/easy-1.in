@@ -1,0 +1,9 @@
+# purpose: the happy path for transfers.
+# exercises: TRANSFER produces two facts, debit first, both tagged; tags count successful transfers.
+OPEN alice USD
+OPEN bob USD
+DEPOSIT alice 100
+TRANSFER alice bob 40
+TRANSFER bob alice 15
+BALANCE alice
+BALANCE bob

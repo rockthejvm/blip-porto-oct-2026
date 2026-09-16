@@ -1,0 +1,86 @@
+OK 1 w OPENED USD
+OK 2 x OPENED USD
+OK 3 y OPENED EUR
+OK 4 z OPENED GBP
+OK 5 w +3.50 3.50
+OK 6 x +250.00 250.00
+OK 7 x FROZEN
+OK 8 y +0.09 0.09
+OK 9 y -0.09 0.00
+OK 10 y UNFROZEN
+OK 11 z +42.42 42.42
+REJECTED insufficient-funds account=z balance=42.42 requested=100000.00
+REJECTED unknown-account account=q
+BALANCE x 250.00 USD
+OK 12 w +250.00 253.50
+REJECTED account-frozen account=x
+REJECTED account-frozen account=x
+OK 13 x UNFROZEN
+OK 14 y +42.42 42.42
+REJECTED insufficient-funds account=y balance=42.42 requested=100000.00
+OK 15 z +8.00 50.42
+OK 16 z FROZEN
+BALANCE y 42.42 EUR
+OK 17 w +0.09 253.59
+OK 18 w -0.09 253.50
+OK 19 x +42.42 292.42
+REJECTED insufficient-funds account=x balance=292.42 requested=100000.00
+OK 20 y +8.00 50.42
+OK 21 y FROZEN
+REJECTED account-frozen account=z
+REJECTED account-frozen account=z
+REJECTED unknown-account account=q
+ERROR unknown-command deposit
+ERROR bad-amount 1.234
+BALANCE z 50.42 GBP
+OK 22 w +42.42 295.92
+REJECTED insufficient-funds account=w balance=295.92 requested=100000.00
+OK 23 x +8.00 300.42
+REJECTED account-frozen account=y
+REJECTED account-frozen account=y
+REJECTED account-frozen account=z
+OK 24 z UNFROZEN
+BALANCE w 295.92 USD
+OK 25 w +8.00 303.92
+OK 26 x +17.00 317.42
+OK 27 x -17.00 300.42
+REJECTED account-frozen account=y
+OK 28 z +250.00 300.42
+REJECTED insufficient-funds account=z balance=300.42 requested=100000.00
+REJECTED unknown-account account=q
+BALANCE x 300.42 USD
+OK 29 w +17.00 320.92
+OK 30 w -17.00 303.92
+OK 31 x +3.50 303.92
+OK 32 x FROZEN
+REJECTED account-frozen account=y
+REJECTED account-frozen account=y
+OK 33 y UNFROZEN
+OK 34 z +0.09 300.51
+OK 35 z -0.09 300.42
+ERROR unknown-command deposit
+ERROR bad-amount 1.234
+BALANCE y 50.42 EUR
+OK 36 w +3.50 307.42
+REJECTED account-frozen account=x
+REJECTED account-frozen account=x
+OK 37 x UNFROZEN
+OK 38 y +0.09 50.51
+OK 39 y -0.09 50.42
+OK 40 z +42.42 342.84
+OK 41 z FROZEN
+REJECTED unknown-account account=q
+BALANCE z 342.84 GBP
+OK 42 w UNFROZEN
+OK 43 x UNFROZEN
+OK 44 y UNFROZEN
+OK 45 z UNFROZEN
+BALANCE w 307.42 USD
+BALANCE x 303.92 USD
+BALANCE y 50.42 EUR
+BALANCE z 342.84 GBP
+REJECTED non-zero-balance account=w balance=307.42
+REJECTED non-zero-balance account=x balance=303.92
+OK 46 y -0.01 50.41
+BALANCE y 50.41 EUR
+REJECTED non-zero-balance account=y balance=50.41

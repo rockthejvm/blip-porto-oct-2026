@@ -1,0 +1,38 @@
+# purpose: M1+M2 regression at medium size while the team works on the journal.
+# exercises: the same rule set as m2, in a different order, with different accounts.
+OPEN acc-a EUR
+OPEN acc-b EUR
+OPEN acc-c GBP
+DEPOSIT acc-a 10.10
+DEPOSIT acc-b 20.20
+DEPOSIT acc-c 30.30
+WITHDRAW acc-a 0.10
+WITHDRAW acc-b 20.21
+WITHDRAW acc-b 20.20
+FREEZE acc-c
+DEPOSIT acc-c 1
+BALANCE acc-c
+UNFREEZE acc-c
+DEPOSIT acc-c 1
+CLOSE acc-b
+DEPOSIT acc-b 1
+OPEN acc-b USD
+OPEN acc-d USD
+DEPOSIT acc-d -1
+DEPOSIT acc-d 0
+DEPOSIT acc-d 1
+WITHDRAW acc-d 1.01
+FREEZE acc-d
+FREEZE acc-d
+CLOSE acc-d
+UNFREEZE acc-d
+WITHDRAW acc-d 1
+CLOSE acc-d
+OPEN acc-e CHF
+DEPOSIT acc-e 1
+DEPOSIT acc-a 90
+BALANCE acc-a
+BALANCE acc-b
+BALANCE acc-c
+BALANCE acc-d
+BALANCE acc-e

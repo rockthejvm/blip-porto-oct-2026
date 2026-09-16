@@ -1,0 +1,106 @@
+# purpose: M1+M2 regression at large size. Four accounts cycling through deposit, withdraw,
+#          freeze, unfreeze, with malformed lines and rejections interleaved.
+# exercises: nothing new - everything from m1 and m2, ~120 lines.
+
+OPEN w USD
+OPEN x USD
+OPEN y EUR
+OPEN z GBP
+
+# cycle 1
+DEPOSIT w 3.5
+DEPOSIT x 250
+FREEZE x
+DEPOSIT y 0.09
+WITHDRAW y 0.09
+UNFREEZE y
+DEPOSIT z 42.42
+WITHDRAW z 100000
+DEPOSIT q 1
+BALANCE x
+
+# cycle 2
+DEPOSIT w 250
+DEPOSIT x 0.09
+WITHDRAW x 0.09
+UNFREEZE x
+DEPOSIT y 42.42
+WITHDRAW y 100000
+DEPOSIT z 8
+FREEZE z
+BALANCE y
+
+# cycle 3
+DEPOSIT w 0.09
+WITHDRAW w 0.09
+DEPOSIT x 42.42
+WITHDRAW x 100000
+DEPOSIT y 8
+FREEZE y
+DEPOSIT z 17
+WITHDRAW z 17
+DEPOSIT q 1
+deposit w 1
+DEPOSIT w 1.234
+BALANCE z
+
+# cycle 4
+DEPOSIT w 42.42
+WITHDRAW w 100000
+DEPOSIT x 8
+DEPOSIT y 17
+WITHDRAW y 17
+DEPOSIT z 3.5
+UNFREEZE z
+BALANCE w
+
+# cycle 5
+DEPOSIT w 8
+DEPOSIT x 17
+WITHDRAW x 17
+DEPOSIT y 3.5
+DEPOSIT z 250
+WITHDRAW z 100000
+DEPOSIT q 1
+BALANCE x
+
+# cycle 6
+DEPOSIT w 17
+WITHDRAW w 17
+DEPOSIT x 3.5
+FREEZE x
+DEPOSIT y 250
+WITHDRAW y 100000
+UNFREEZE y
+DEPOSIT z 0.09
+WITHDRAW z 0.09
+deposit w 1
+DEPOSIT w 1.234
+BALANCE y
+
+# cycle 7
+DEPOSIT w 3.5
+DEPOSIT x 250
+WITHDRAW x 100000
+UNFREEZE x
+DEPOSIT y 0.09
+WITHDRAW y 0.09
+DEPOSIT z 42.42
+FREEZE z
+DEPOSIT q 1
+BALANCE z
+
+# unfreeze everyone, then try to close accounts that still hold money
+UNFREEZE w
+UNFREEZE x
+UNFREEZE y
+UNFREEZE z
+BALANCE w
+BALANCE x
+BALANCE y
+BALANCE z
+CLOSE w
+CLOSE x
+WITHDRAW y 0.01
+BALANCE y
+CLOSE y

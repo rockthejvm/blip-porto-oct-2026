@@ -1,0 +1,129 @@
+# purpose: transfers among six accounts, ~130 lines, with everything from M1/M2 still going on.
+#          Tags climb well past t10; frozen and closed accounts appear on both ends of transfers.
+# exercises: TRANSFER interleaved with DEPOSIT/WITHDRAW/FREEZE/UNFREEZE/CLOSE; rejected transfers
+#            consume no tag; balances that only add up if every transfer moved money exactly once.
+
+OPEN u1 USD
+OPEN u2 USD
+OPEN u3 USD
+OPEN e1 EUR
+OPEN e2 EUR
+OPEN g1 GBP
+
+DEPOSIT u1 1000
+DEPOSIT u2 500
+DEPOSIT u3 0
+DEPOSIT u3 250
+DEPOSIT e1 300
+DEPOSIT e2 300
+DEPOSIT g1 100
+
+# round 1
+TRANSFER u2 u3 100
+TRANSFER u3 u1 7.77
+TRANSFER u1 u2 33
+TRANSFER e2 e1 250
+BALANCE u2
+
+# round 2
+TRANSFER u3 u1 1
+TRANSFER u1 u2 250
+TRANSFER u2 u3 0.5
+TRANSFER e1 e2 7.77
+TRANSFER u3 e1 5
+FREEZE u2
+BALANCE u3
+
+# round 3
+TRANSFER u1 u2 60
+TRANSFER u2 u3 10
+TRANSFER u3 u1 25.5
+TRANSFER e2 e1 25.5
+TRANSFER g1 g1 5
+TRANSFER g1 u1 5
+TRANSFER u1 u2 1
+TRANSFER u2 u1 1
+UNFREEZE u2
+BALANCE e1
+
+# round 4
+TRANSFER u2 u3 0.01
+TRANSFER u3 u1 100
+TRANSFER u1 u2 7.77
+TRANSFER e1 e2 0.5
+TRANSFER u2 e1 5
+WITHDRAW u3 100000
+DEPOSIT u3 0.03
+BALANCE e2
+
+# round 5
+TRANSFER u3 u1 33
+TRANSFER u1 u2 1
+TRANSFER u2 u3 250
+TRANSFER e2 e1 33
+TRANSFER u1 nope 5
+TRANSFER nope u1 5
+transfer u1 u2 5
+TRANSFER u1 u2
+BALANCE g1
+
+# round 6
+TRANSFER u1 u2 0.5
+TRANSFER u2 u3 60
+TRANSFER u3 u1 10
+TRANSFER e1 e2 0.01
+TRANSFER u1 e1 5
+TRANSFER g1 g1 5
+TRANSFER g1 u1 5
+WITHDRAW e2 -1
+TRANSFER e1 e2 -1
+TRANSFER e1 e2 1000000
+BALANCE u1
+
+# round 7
+TRANSFER u2 u3 25.5
+TRANSFER u3 u1 0.01
+TRANSFER u1 u2 100
+TRANSFER e2 e1 60
+TRANSFER u1 u3 999999
+BALANCE u2
+
+# round 8
+TRANSFER u3 u1 7.77
+TRANSFER u1 u2 33
+TRANSFER u2 u3 1
+TRANSFER e1 e2 1
+TRANSFER u3 e1 5
+BALANCE u3
+
+# round 9
+TRANSFER u1 u2 250
+TRANSFER u2 u3 0.5
+TRANSFER u3 u1 60
+TRANSFER e2 e1 100
+TRANSFER g1 g1 5
+TRANSFER g1 u1 5
+BALANCE e1
+
+# g1 empties into nothing, closes, and is then unusable on either end
+WITHDRAW g1 100
+CLOSE g1
+TRANSFER g1 u1 1
+TRANSFER u1 g1 1
+TRANSFER g1 g1 1
+
+# e2 frozen: refused as source and as destination, still answers BALANCE
+FREEZE e2
+TRANSFER e2 e1 1
+TRANSFER e1 e2 1
+BALANCE e2
+UNFREEZE e2
+TRANSFER e1 e2 1
+
+# final balances - USD total must still be 1750.03, EUR total 600.00
+BALANCE u1
+BALANCE u2
+BALANCE u3
+BALANCE e1
+BALANCE e2
+BALANCE g1

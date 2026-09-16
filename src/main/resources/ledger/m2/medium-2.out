@@ -1,0 +1,37 @@
+OK 1 alice OPENED USD
+ERROR unknown-command deposit
+ERROR unknown-command Deposit
+ERROR unknown-command DEPOSITT
+OK 2 alice +5.00 5.00
+ERROR bad-arguments OPEN
+ERROR bad-arguments OPEN
+ERROR bad-arguments OPEN
+ERROR bad-arguments DEPOSIT
+ERROR bad-arguments DEPOSIT
+ERROR bad-arguments BALANCE
+ERROR bad-arguments BALANCE
+OK 3 alice +5.00 10.00
+ERROR bad-account-id Alice
+ERROR bad-account-id alice_1
+ERROR bad-account-id a2345678901234567890123456789012x
+ERROR bad-amount 1.005
+ERROR bad-amount 5,00
+ERROR bad-amount five
+ERROR bad-amount .5
+ERROR bad-amount 5.
+ERROR bad-account-id Alice
+OK 4 alice +5.00 15.00
+ERROR bad-currency usd
+ERROR bad-currency US
+ERROR bad-currency USDD
+ERROR bad-account-id Bob
+REJECTED unsupported-currency currency=XXX
+OK 5 bob OPENED EUR
+OK 6 alice -2.50 12.50
+OK 7 bob +1.00 1.00
+ERROR unknown-command TRANSFERR
+ERROR unknown-command withdraw
+ERROR bad-arguments WITHDRAW
+REJECTED non-positive-amount account=alice amount=-1.00
+BALANCE alice 12.50 USD
+BALANCE bob 1.00 EUR

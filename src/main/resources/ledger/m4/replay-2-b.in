@@ -1,0 +1,10 @@
+# purpose: M4 replay part B - next fact is OK 13, next tag is t4; t2 closed, t3 frozen.
+TRANSFER t1 t3 1
+TRANSFER t1 t2 1
+UNFREEZE t3
+TRANSFER t3 t1 109.5
+TRANSFER t1 t3 200
+TRANSFER t1 t3 0.01
+BALANCE t1
+BALANCE t3
+BALANCE t2

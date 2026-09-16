@@ -1,0 +1,108 @@
+OK 1 ann OPENED USD
+OK 2 ben OPENED USD
+OK 3 cat OPENED EUR
+OK 4 dan OPENED GBP
+OK 5 eve OPENED EUR
+OK 6 ann +500.00 500.00
+OK 7 ben +20.00 20.00
+OK 8 cat +75.25 75.25
+OK 9 dan +1000.00 1000.00
+OK 10 eve +0.50 0.50
+OK 11 ann -120.00 380.00
+OK 12 ben +30.00 50.00
+OK 13 cat -25.25 50.00
+OK 14 dan -999.99 0.01
+OK 15 eve +4.50 5.00
+REJECTED insufficient-funds account=ben balance=50.00 requested=60.00
+REJECTED non-positive-amount account=ann amount=0.00
+OK 16 dan +0.01 0.02
+OK 17 eve -5.00 0.00
+BALANCE eve 0.00 EUR
+REJECTED insufficient-funds account=eve balance=0.00 requested=0.01
+REJECTED non-positive-amount account=cat amount=-3.00
+OK 18 cat +3.00 53.00
+OK 19 ben -50.00 0.00
+REJECTED insufficient-funds account=ben balance=0.00 requested=0.01
+BALANCE ann 380.00 USD
+OK 20 ben FROZEN
+REJECTED account-frozen account=ben
+REJECTED account-frozen account=ben
+REJECTED account-frozen account=ben
+REJECTED account-frozen account=ben
+BALANCE ben 0.00 USD
+OK 21 ben FROZEN
+OK 22 ann +1.00 381.00
+REJECTED insufficient-funds account=dan balance=0.02 requested=1.00
+REJECTED account-frozen account=ben
+OK 23 ben UNFROZEN
+OK 24 ben +10.00 10.00
+BALANCE ben 10.00 USD
+OK 25 ann +2.00 383.00
+ERROR unknown-command deposit
+ERROR bad-arguments DEPOSIT
+ERROR bad-amount 2.001
+OK 26 ann +2.00 385.00
+ERROR bad-currency usd
+ERROR bad-arguments OPEN
+OK 27 fay OPENED USD
+OK 28 fay +1.00 1.00
+REJECTED non-zero-balance account=cat balance=53.00
+BALANCE cat 53.00 EUR
+OK 29 cat -53.00 0.00
+OK 30 cat CLOSED
+REJECTED account-closed account=cat
+REJECTED account-closed account=cat
+REJECTED account-closed account=cat
+REJECTED account-closed account=cat
+REJECTED account-closed account=cat
+REJECTED account-closed account=cat
+REJECTED account-exists account=cat
+REJECTED account-exists account=cat
+OK 31 dan -0.02 0.00
+OK 32 dan FROZEN
+REJECTED account-frozen account=dan
+REJECTED account-frozen account=dan
+OK 33 dan UNFROZEN
+REJECTED insufficient-funds account=dan balance=0.00 requested=5.00
+REJECTED non-positive-amount account=dan amount=-5.00
+OK 34 dan +5.00 5.00
+OK 35 dan -5.00 0.00
+BALANCE dan 0.00 GBP
+OK 36 eve +0.01 0.01
+OK 37 eve +0.02 0.03
+OK 38 eve +0.03 0.06
+OK 39 eve +0.04 0.10
+OK 40 eve +0.05 0.15
+OK 41 eve +0.06 0.21
+OK 42 eve +0.07 0.28
+OK 43 eve +0.08 0.36
+OK 44 eve +0.09 0.45
+BALANCE eve 0.45 EUR
+OK 45 eve -0.45 0.00
+REJECTED insufficient-funds account=eve balance=0.00 requested=0.01
+BALANCE eve 0.00 EUR
+REJECTED unknown-account account=gus
+REJECTED unknown-account account=gus
+REJECTED unknown-account account=gus
+REJECTED unknown-account account=gus
+REJECTED unknown-account account=gus
+REJECTED unknown-account account=gus
+OK 46 fay +9.00 10.00
+OK 47 fay FROZEN
+REJECTED non-zero-balance account=fay balance=10.00
+OK 48 fay UNFROZEN
+OK 49 fay -9.00 1.00
+OK 50 fay FROZEN
+REJECTED non-zero-balance account=fay balance=1.00
+BALANCE fay 1.00 USD
+OK 51 ann -300.00 85.00
+OK 52 ann -80.00 5.00
+OK 53 ann -4.00 1.00
+OK 54 ann -0.50 0.50
+BALANCE ann 0.50 USD
+OK 55 ann -0.50 0.00
+OK 56 ann CLOSED
+REJECTED account-closed account=ann
+BALANCE ben 10.00 USD
+BALANCE dan 0.00 GBP
+BALANCE eve 0.00 EUR

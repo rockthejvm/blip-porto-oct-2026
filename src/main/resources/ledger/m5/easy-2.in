@@ -1,0 +1,12 @@
+# purpose: the degenerate windows - before the account existed, after its last fact, one with no facts.
+# exercises: HISTORY on a fresh account (just OPENED); SUMMARY with count=0 where opening == closing.
+OPEN alice USD
+OPEN bob USD
+DEPOSIT alice 10
+HISTORY bob
+SUMMARY bob 1 1
+SUMMARY bob 3 10
+SUMMARY alice 4 4
+SUMMARY alice 1 3
+SUMMARY alice 3 3
+HISTORY alice

@@ -1,0 +1,28 @@
+OK 1 alice OPENED USD
+OK 2 bob OPENED USD
+OK 3 carol OPENED EUR
+OK 4 alice +100.00 100.00
+OK 5 bob +50.00 50.00
+OK 6 carol +75.00 75.00
+OK 7 alice -30.00 70.00 xfer=t1
+OK 8 bob +30.00 80.00 xfer=t1
+OK 9 bob -5.00 75.00 xfer=t2
+OK 10 alice +5.00 75.00 xfer=t2
+REJECTED currency-mismatch from=alice to=carol from-currency=USD to-currency=EUR
+OK 11 carol FROZEN
+OK 12 bob -0.50 74.50
+BALANCE alice 75.00 USD
+BALANCE bob 74.50 USD
+BALANCE alice 75.00 USD
+BALANCE bob 74.50 USD
+OK 13 alice -25.00 50.00 xfer=t3
+OK 14 bob +25.00 99.50 xfer=t3
+REJECTED account-frozen account=carol
+REJECTED account-frozen account=carol
+OK 15 carol UNFROZEN
+REJECTED insufficient-funds account=bob balance=99.50 requested=100.00
+OK 16 bob -99.50 0.00 xfer=t4
+OK 17 alice +99.50 149.50 xfer=t4
+BALANCE alice 149.50 USD
+BALANCE bob 0.00 USD
+BALANCE carol 75.00 EUR

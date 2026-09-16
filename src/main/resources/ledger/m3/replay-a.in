@@ -1,0 +1,23 @@
+# purpose: part A of the replay pair. The test runs A, writes the journal, starts a fresh
+#          engine from that journal, then runs replay-b.in - and expects the same output as
+#          running A and B in one go. Records 15 facts, so a sequence counter that restarts
+#          is visible immediately in B.
+# exercises: journal + replay of every M1/M2 fact type: opened, deposited, withdrawn, frozen,
+#            unfrozen, closed.
+OPEN alice USD
+OPEN bob EUR
+OPEN carol GBP
+DEPOSIT alice 100
+DEPOSIT bob 200
+DEPOSIT carol 300
+WITHDRAW alice 40
+WITHDRAW bob 0.5
+FREEZE carol
+DEPOSIT carol 1
+UNFREEZE carol
+WITHDRAW carol 300
+CLOSE carol
+FREEZE bob
+OPEN dave USD
+DEPOSIT dave 12.34
+BALANCE alice

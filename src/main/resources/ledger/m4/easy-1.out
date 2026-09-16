@@ -1,0 +1,9 @@
+OK 1 alice OPENED USD
+OK 2 bob OPENED USD
+OK 3 alice +100.00 100.00
+OK 4 alice -40.00 60.00 xfer=t1
+OK 5 bob +40.00 40.00 xfer=t1
+OK 6 bob -15.00 25.00 xfer=t2
+OK 7 alice +15.00 75.00 xfer=t2
+BALANCE alice 75.00 USD
+BALANCE bob 25.00 USD

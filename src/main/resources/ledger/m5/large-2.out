@@ -1,0 +1,146 @@
+OK 1 f1 OPENED USD
+OK 2 f2 OPENED USD
+OK 3 f3 OPENED USD
+OK 4 g1 OPENED EUR
+OK 5 f1 +250.00 250.00
+OK 6 f2 +250.00 250.00
+OK 7 f3 +250.00 250.00
+OK 8 g1 +25.00 25.00
+OK 9 f1 -7.00 243.00 xfer=t1
+OK 10 f2 +7.00 257.00 xfer=t1
+OK 11 f2 -0.25 256.75 xfer=t2
+OK 12 f3 +0.25 250.25 xfer=t2
+OK 13 f3 -60.00 190.25 xfer=t3
+OK 14 f1 +60.00 303.00 xfer=t3
+OK 15 f2 FROZEN
+OK 16 f1 -7.00 296.00 xfer=t4
+OK 17 f3 +7.00 197.25 xfer=t4
+REJECTED account-frozen account=f2
+REJECTED account-frozen account=f2
+OK 18 f3 UNFROZEN
+REJECTED insufficient-funds account=g1 balance=25.00 requested=60.00
+REJECTED same-account-transfer account=f1
+REJECTED same-account-transfer account=f2
+REJECTED same-account-transfer account=f3
+OK 19 f1 +3.30 299.30
+SUMMARY f1 1 12 opening=0.00 credits=250.00 debits=7.00 closing=243.00 count=3
+SUMMARY f2 1 12 opening=0.00 credits=257.00 debits=0.25 closing=256.75 count=4
+SUMMARY f3 1 12 opening=0.00 credits=250.25 debits=0.00 closing=250.25 count=3
+HISTORY g1 2
+  4 OPENED EUR
+  8 +25.00 25.00
+REJECTED account-frozen account=f2
+REJECTED account-frozen account=f2
+OK 20 f3 -7.00 190.25 xfer=t5
+OK 21 f1 +7.00 306.30 xfer=t5
+REJECTED account-frozen account=f2
+REJECTED insufficient-funds account=g1 balance=25.00 requested=110.00
+OK 22 f1 -7.00 299.30 xfer=t6
+OK 23 f3 +7.00 197.25 xfer=t6
+REJECTED account-frozen account=f2
+REJECTED account-frozen account=f2
+OK 24 f3 FROZEN
+SUMMARY f1 13 24 opening=243.00 credits=70.30 debits=14.00 closing=299.30 count=5
+SUMMARY f2 13 24 opening=256.75 credits=0.00 debits=0.00 closing=256.75 count=1
+SUMMARY f3 13 24 opening=250.25 credits=14.00 debits=67.00 closing=197.25 count=6
+HISTORY f2 5
+  2 OPENED USD
+  6 +250.00 250.00
+  10 +7.00 257.00 xfer=t1
+  11 -0.25 256.75 xfer=t2
+  15 FROZEN
+REJECTED same-account-transfer account=f1
+REJECTED same-account-transfer account=f2
+REJECTED same-account-transfer account=f3
+OK 25 f1 UNFROZEN
+OK 26 g1 -19.00 6.00
+REJECTED account-frozen account=f2
+REJECTED account-frozen account=f2
+REJECTED account-frozen account=f3
+REJECTED account-frozen account=f2
+SUMMARY g1 1 1000 opening=0.00 credits=25.00 debits=19.00 closing=6.00 count=3
+SUMMARY g1 10 10 opening=25.00 credits=0.00 debits=0.00 closing=25.00 count=0
+SUMMARY g1 11 11 opening=25.00 credits=0.00 debits=0.00 closing=25.00 count=0
+SUMMARY g1 12 12 opening=25.00 credits=0.00 debits=0.00 closing=25.00 count=0
+SUMMARY g1 13 13 opening=25.00 credits=0.00 debits=0.00 closing=25.00 count=0
+REJECTED account-frozen account=f3
+REJECTED account-frozen account=f2
+REJECTED account-frozen account=f3
+REJECTED account-frozen account=f3
+REJECTED insufficient-funds account=g1 balance=6.00 requested=7.00
+SUMMARY f1 1 1 opening=0.00 credits=0.00 debits=0.00 closing=0.00 count=1
+SUMMARY f1 2 2 opening=0.00 credits=0.00 debits=0.00 closing=0.00 count=0
+SUMMARY f1 3 3 opening=0.00 credits=0.00 debits=0.00 closing=0.00 count=0
+SUMMARY f1 4 4 opening=0.00 credits=0.00 debits=0.00 closing=0.00 count=0
+SUMMARY f1 5 5 opening=0.00 credits=250.00 debits=0.00 closing=250.00 count=1
+SUMMARY f1 6 6 opening=250.00 credits=0.00 debits=0.00 closing=250.00 count=0
+SUMMARY f1 7 7 opening=250.00 credits=0.00 debits=0.00 closing=250.00 count=0
+SUMMARY f1 8 8 opening=250.00 credits=0.00 debits=0.00 closing=250.00 count=0
+SUMMARY f1 9 9 opening=250.00 credits=0.00 debits=7.00 closing=243.00 count=1
+SUMMARY f1 10 10 opening=243.00 credits=0.00 debits=0.00 closing=243.00 count=0
+SUMMARY f1 11 11 opening=243.00 credits=0.00 debits=0.00 closing=243.00 count=0
+SUMMARY f1 12 12 opening=243.00 credits=0.00 debits=0.00 closing=243.00 count=0
+SUMMARY f1 13 13 opening=243.00 credits=0.00 debits=0.00 closing=243.00 count=0
+SUMMARY f1 14 14 opening=243.00 credits=60.00 debits=0.00 closing=303.00 count=1
+SUMMARY f1 15 15 opening=303.00 credits=0.00 debits=0.00 closing=303.00 count=0
+SUMMARY f1 16 16 opening=303.00 credits=0.00 debits=7.00 closing=296.00 count=1
+SUMMARY f1 17 17 opening=296.00 credits=0.00 debits=0.00 closing=296.00 count=0
+SUMMARY f1 18 18 opening=296.00 credits=0.00 debits=0.00 closing=296.00 count=0
+SUMMARY f1 19 19 opening=296.00 credits=3.30 debits=0.00 closing=299.30 count=1
+SUMMARY f1 20 20 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 21 21 opening=299.30 credits=7.00 debits=0.00 closing=306.30 count=1
+SUMMARY f1 22 22 opening=306.30 credits=0.00 debits=7.00 closing=299.30 count=1
+SUMMARY f1 23 23 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 24 24 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 25 25 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=1
+SUMMARY f1 26 26 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 27 27 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 28 28 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 29 29 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 30 30 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 31 31 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 32 32 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 33 33 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 34 34 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 35 35 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 36 36 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 37 37 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 38 38 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 39 39 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 40 40 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 41 41 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 42 42 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 43 43 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 44 44 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 45 45 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 1 10 opening=0.00 credits=250.00 debits=7.00 closing=243.00 count=3
+SUMMARY f1 7 16 opening=250.00 credits=60.00 debits=14.00 closing=296.00 count=3
+SUMMARY f1 13 22 opening=243.00 credits=70.30 debits=14.00 closing=299.30 count=5
+SUMMARY f1 19 28 opening=296.00 credits=10.30 debits=7.00 closing=299.30 count=4
+SUMMARY f1 25 34 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=1
+SUMMARY f1 31 40 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+SUMMARY f1 37 46 opening=299.30 credits=0.00 debits=0.00 closing=299.30 count=0
+HISTORY f1 9
+  1 OPENED USD
+  5 +250.00 250.00
+  9 -7.00 243.00 xfer=t1
+  14 +60.00 303.00 xfer=t3
+  16 -7.00 296.00 xfer=t4
+  19 +3.30 299.30
+  21 +7.00 306.30 xfer=t5
+  22 -7.00 299.30 xfer=t6
+  25 UNFROZEN
+HISTORY f3 9
+  3 OPENED USD
+  7 +250.00 250.00
+  12 +0.25 250.25 xfer=t2
+  13 -60.00 190.25 xfer=t3
+  17 +7.00 197.25 xfer=t4
+  18 UNFROZEN
+  20 -7.00 190.25 xfer=t5
+  23 +7.00 197.25 xfer=t6
+  24 FROZEN
+BALANCE f1 299.30 USD
+BALANCE f2 256.75 USD
+BALANCE f3 197.25 USD
+BALANCE g1 6.00 EUR

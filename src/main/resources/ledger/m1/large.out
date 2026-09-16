@@ -1,0 +1,85 @@
+OK 1 acct-01 OPENED USD
+OK 2 acct-02 OPENED EUR
+REJECTED unknown-account account=acct-05
+OK 3 acct-03 OPENED GBP
+OK 4 acct-04 OPENED USD
+REJECTED unknown-account account=acct-06
+OK 5 acct-05 OPENED EUR
+OK 6 acct-06 OPENED GBP
+OK 7 acct-01 +7.00 7.00
+OK 8 acct-02 +12.50 12.50
+OK 9 acct-03 +0.99 0.99
+OK 10 acct-04 +250.00 250.00
+OK 11 acct-04 +1.00 251.00
+OK 12 acct-05 +1.10 1.10
+REJECTED account-exists account=acct-05
+OK 13 acct-06 +5.00 5.00
+OK 14 acct-01 +64.80 71.80
+OK 15 acct-02 +0.20 12.70
+OK 16 acct-03 +10.00 10.99
+OK 17 acct-04 +2.50 253.50
+REJECTED account-exists account=acct-04
+OK 18 acct-05 +0.75 1.85
+OK 19 acct-06 +100.00 105.00
+REJECTED unknown-account account=acct-07
+BALANCE acct-03 10.99 GBP
+REJECTED unknown-account account=acct-08
+OK 20 acct-01 +33.33 105.13
+OK 21 acct-02 +0.01 12.71
+OK 22 acct-04 +1.00 254.50
+OK 23 acct-03 +7.00 17.99
+REJECTED account-exists account=acct-03
+OK 24 acct-04 +12.50 267.00
+OK 25 acct-05 +0.99 2.84
+OK 26 acct-06 +250.00 355.00
+OK 27 acct-01 +1.10 106.23
+OK 28 acct-02 +5.00 17.71
+REJECTED account-exists account=acct-02
+OK 29 acct-03 +64.80 82.79
+OK 30 acct-04 +0.20 267.20
+OK 31 acct-05 +10.00 12.84
+OK 32 acct-06 +2.50 357.50
+BALANCE acct-05 12.84 EUR
+REJECTED unknown-account account=acct-10
+OK 33 acct-01 +0.75 106.98
+REJECTED account-exists account=acct-01
+OK 34 acct-02 +100.00 117.71
+OK 35 acct-03 +33.33 116.12
+REJECTED unknown-account account=acct-07
+OK 36 acct-04 +0.01 267.21
+OK 37 acct-05 +7.00 19.84
+OK 38 acct-06 +12.50 370.00
+REJECTED account-exists account=acct-06
+OK 39 acct-01 +0.99 107.97
+OK 40 acct-02 +250.00 367.71
+OK 41 acct-03 +1.10 117.22
+OK 42 acct-04 +5.00 272.21
+OK 43 acct-05 +64.80 84.64
+REJECTED account-exists account=acct-05
+REJECTED unknown-account account=acct-010
+OK 44 acct-06 +0.20 370.20
+BALANCE acct-01 107.97 USD
+REJECTED unknown-account account=acct-12
+OK 45 acct-01 +10.00 117.97
+OK 46 acct-02 +2.50 370.21
+OK 47 acct-03 +0.75 117.97
+OK 48 acct-04 +100.00 372.21
+REJECTED account-exists account=acct-04
+OK 49 acct-05 +33.33 117.97
+OK 50 acct-06 +0.01 370.21
+OK 51 acct-01 +7.00 124.97
+OK 52 acct-02 +12.50 382.71
+OK 53 acct-03 +0.99 118.96
+REJECTED account-exists account=acct-03
+OK 54 acct-04 +250.00 622.21
+REJECTED unknown-account account=acct-011
+OK 55 acct-05 +1.10 119.07
+OK 56 acct-06 +5.00 375.21
+BALANCE acct-03 118.96 GBP
+REJECTED unknown-account account=acct-14
+BALANCE acct-01 124.97 USD
+BALANCE acct-02 382.71 EUR
+BALANCE acct-03 118.96 GBP
+BALANCE acct-04 622.21 USD
+BALANCE acct-05 119.07 EUR
+BALANCE acct-06 375.21 GBP

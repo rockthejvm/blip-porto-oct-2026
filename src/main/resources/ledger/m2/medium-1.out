@@ -1,0 +1,50 @@
+OK 1 alice OPENED USD
+OK 2 bob OPENED EUR
+OK 3 carol OPENED GBP
+REJECTED unsupported-currency currency=JPY
+REJECTED account-exists account=alice
+OK 4 alice +50.00 50.00
+OK 5 bob +50.00 50.00
+OK 6 carol +50.00 50.00
+OK 7 bob FROZEN
+OK 8 bob FROZEN
+REJECTED account-frozen account=bob
+REJECTED account-frozen account=bob
+BALANCE bob 50.00 EUR
+REJECTED non-zero-balance account=bob balance=50.00
+OK 9 bob UNFROZEN
+OK 10 bob UNFROZEN
+OK 11 bob +1.00 51.00
+BALANCE bob 51.00 EUR
+OK 12 carol FROZEN
+REJECTED account-frozen account=carol
+REJECTED account-frozen account=carol
+OK 13 carol UNFROZEN
+REJECTED non-positive-amount account=carol amount=-999.00
+REJECTED insufficient-funds account=carol balance=50.00 requested=999.00
+OK 14 carol -50.00 0.00
+OK 15 carol CLOSED
+REJECTED account-closed account=carol
+REJECTED account-closed account=carol
+REJECTED account-closed account=carol
+REJECTED account-closed account=carol
+REJECTED account-closed account=carol
+REJECTED account-closed account=carol
+REJECTED account-exists account=carol
+REJECTED account-exists account=carol
+REJECTED unknown-account account=erin
+REJECTED unknown-account account=erin
+REJECTED unknown-account account=erin
+REJECTED unknown-account account=erin
+REJECTED non-zero-balance account=alice balance=50.00
+OK 16 alice -49.99 0.01
+REJECTED non-zero-balance account=alice balance=0.01
+OK 17 alice -0.01 0.00
+OK 18 alice CLOSED
+REJECTED account-closed account=alice
+OK 19 bob FROZEN
+REJECTED non-zero-balance account=bob balance=51.00
+REJECTED account-frozen account=bob
+BALANCE bob 51.00 EUR
+REJECTED non-zero-balance account=bob balance=51.00
+BALANCE bob 51.00 EUR

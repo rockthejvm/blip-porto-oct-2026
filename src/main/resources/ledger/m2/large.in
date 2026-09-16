@@ -1,0 +1,135 @@
+# purpose: M1 and M2 rules in combination across five accounts, ~150 lines. Not a test of any one
+#          rule - a test of keeping the state straight when everything happens at once.
+# exercises: deposits/withdrawals interleaved across accounts; freeze windows during which a
+#            burst of commands is refused; closures mid-file; malformed lines that must not
+#            advance <seq>; precedence pairs (frozen+insufficient, closed+non-positive).
+
+# --- setup
+OPEN ann USD
+OPEN ben USD
+OPEN cat EUR
+OPEN dan GBP
+OPEN eve EUR
+DEPOSIT ann 500
+DEPOSIT ben 20
+DEPOSIT cat 75.25
+DEPOSIT dan 1000
+DEPOSIT eve 0.5
+
+# --- a normal day
+WITHDRAW ann 120
+DEPOSIT ben 30
+WITHDRAW cat 25.25
+WITHDRAW dan 999.99
+DEPOSIT eve 4.5
+WITHDRAW ben 60
+WITHDRAW ann 0
+DEPOSIT dan 0.01
+WITHDRAW eve 5
+BALANCE eve
+WITHDRAW eve 0.01
+DEPOSIT cat -3
+DEPOSIT cat 3
+WITHDRAW ben 50
+WITHDRAW ben 0.01
+BALANCE ann
+
+# --- ben is frozen: a burst of refusals, then things he is still allowed to do
+FREEZE ben
+DEPOSIT ben 10
+WITHDRAW ben 10
+DEPOSIT ben -10
+WITHDRAW ben 1000
+BALANCE ben
+FREEZE ben
+DEPOSIT ann 1
+WITHDRAW dan 1
+DEPOSIT ben 10
+UNFREEZE ben
+DEPOSIT ben 10
+BALANCE ben
+
+# --- malformed lines sprinkled in; <seq> must not move
+DEPOSIT ann 2
+deposit ann 2
+DEPOSIT ann
+DEPOSIT ann 2.001
+DEPOSIT ann 2
+OPEN fay usd
+OPEN fay
+OPEN fay USD
+DEPOSIT fay 1
+
+# --- cat closes: needs zero first, and stays closed
+CLOSE cat
+BALANCE cat
+WITHDRAW cat 53
+CLOSE cat
+DEPOSIT cat 1
+WITHDRAW cat 1
+FREEZE cat
+UNFREEZE cat
+CLOSE cat
+BALANCE cat
+OPEN cat EUR
+OPEN cat USD
+
+# --- dan: frozen and broke at the same time - frozen wins; then unfrozen and broke
+WITHDRAW dan 0.02
+FREEZE dan
+WITHDRAW dan 5
+WITHDRAW dan -5
+UNFREEZE dan
+WITHDRAW dan 5
+WITHDRAW dan -5
+DEPOSIT dan 5
+WITHDRAW dan 5
+BALANCE dan
+
+# --- eve: tiny amounts, many times
+DEPOSIT eve 0.01
+DEPOSIT eve 0.02
+DEPOSIT eve 0.03
+DEPOSIT eve 0.04
+DEPOSIT eve 0.05
+DEPOSIT eve 0.06
+DEPOSIT eve 0.07
+DEPOSIT eve 0.08
+DEPOSIT eve 0.09
+BALANCE eve
+WITHDRAW eve 0.45
+WITHDRAW eve 0.01
+BALANCE eve
+
+# --- unknown accounts, every verb
+DEPOSIT gus 1
+WITHDRAW gus 1
+FREEZE gus
+UNFREEZE gus
+CLOSE gus
+BALANCE gus
+
+# --- fay finally exists, is frozen with money in it, and cannot be closed
+DEPOSIT fay 9
+FREEZE fay
+CLOSE fay
+UNFREEZE fay
+WITHDRAW fay 9
+FREEZE fay
+CLOSE fay
+BALANCE fay
+
+# --- ann drains to zero the long way
+WITHDRAW ann 300
+WITHDRAW ann 80
+WITHDRAW ann 4
+WITHDRAW ann 0.5
+BALANCE ann
+WITHDRAW ann 0.5
+CLOSE ann
+BALANCE ann
+
+# --- final state
+BALANCE ben
+BALANCE dan
+BALANCE eve

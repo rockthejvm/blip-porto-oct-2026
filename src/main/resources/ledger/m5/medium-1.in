@@ -1,0 +1,49 @@
+# purpose: every kind of SUMMARY window, and HISTORY on both ends of a transfer.
+# exercises: full / prefix / suffix / mid / from==to / empty / beyond-the-end windows; a window that
+#            opens between a transfer's two facts; bad-sequence and bad-range; queries on a frozen
+#            account are allowed, on a closed one rejected; count includes non-financial facts.
+OPEN a USD
+OPEN b USD
+OPEN c EUR
+DEPOSIT a 100
+DEPOSIT b 50
+WITHDRAW a 20
+TRANSFER a b 30
+DEPOSIT c 10
+FREEZE a
+TRANSFER b a 5
+UNFREEZE a
+TRANSFER b a 5
+WITHDRAW c 10
+CLOSE c
+
+HISTORY a
+HISTORY b
+HISTORY c
+HISTORY nobody
+
+SUMMARY a 1 15
+SUMMARY a 1 6
+SUMMARY a 7 15
+SUMMARY a 5 9
+SUMMARY a 7 7
+SUMMARY a 8 9
+SUMMARY a 14 15
+SUMMARY a 100 200
+SUMMARY b 7 8
+SUMMARY b 8 12
+SUMMARY c 1 15
+SUMMARY nobody 1 2
+
+SUMMARY a x 5
+SUMMARY a 5 x
+SUMMARY a 9 5
+SUMMARY a -1 5
+SUMMARY a 1.5 5
+SUMMARY a 0 0
+SUMMARY a
+SUMMARY a 1
+
+FREEZE a
+SUMMARY a 1 16
+HISTORY a

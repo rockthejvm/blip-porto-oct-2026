@@ -1,0 +1,16 @@
+# purpose: withdrawals, and the two ways an amount can be refused.
+# exercises: WITHDRAW; insufficient-funds (with balance= and requested=); non-positive-amount
+#            for zero and for negative amounts, on WITHDRAW and on DEPOSIT.
+OPEN alice USD
+DEPOSIT alice 100
+WITHDRAW alice 30
+WITHDRAW alice 70
+WITHDRAW alice 0.01
+DEPOSIT alice 50
+WITHDRAW alice 50.01
+WITHDRAW alice 0
+WITHDRAW alice -10
+DEPOSIT alice -10
+DEPOSIT alice 0.00
+WITHDRAW alice 50
+BALANCE alice

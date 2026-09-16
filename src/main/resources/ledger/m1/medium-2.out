@@ -1,0 +1,26 @@
+REJECTED unknown-account account=k1
+OK 1 k1 OPENED USD
+OK 2 k1 +1.00 1.00
+OK 3 k2 OPENED USD
+REJECTED account-exists account=k1
+OK 4 k2 +2.00 2.00
+REJECTED unknown-account account=k3
+OK 5 k3 OPENED GBP
+OK 6 k3 +3.00 3.00
+OK 7 k1 +0.99 1.99
+OK 8 k2 +0.01 2.01
+BALANCE k1 1.99 USD
+BALANCE k2 2.01 USD
+BALANCE k3 3.00 GBP
+REJECTED unknown-account account=k4
+OK 9 k4 OPENED EUR
+BALANCE k4 0.00 EUR
+OK 10 k4 +1000000.00 1000000.00
+OK 11 k4 +0.01 1000000.01
+OK 12 k1 +98.01 100.00
+BALANCE k1 100.00 USD
+BALANCE k4 1000000.01 EUR
+REJECTED account-exists account=k4
+REJECTED account-exists account=k2
+OK 13 k2 +7.98 9.99
+BALANCE k2 9.99 USD

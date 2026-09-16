@@ -1,0 +1,65 @@
+# purpose: every TRANSFER rejection, in precedence order, each proven against the one below it.
+# exercises: same-account before lookup; unknown source before unknown destination; closed before
+#            frozen, source before destination; frozen before non-positive; non-positive before
+#            currency-mismatch; mismatch before insufficient; frozen in EITHER direction is refused.
+
+OPEN src USD
+OPEN dst USD
+OPEN eur EUR
+OPEN gone USD
+OPEN ice USD
+DEPOSIT src 100
+DEPOSIT dst 100
+DEPOSIT eur 100
+DEPOSIT ice 100
+CLOSE gone
+FREEZE ice
+
+# 1. same-account: even when the account does not exist, or is closed
+TRANSFER nobody nobody 5
+TRANSFER gone gone 5
+TRANSFER src src 5
+
+# 2/3. unknown source before unknown destination
+TRANSFER nobody nobody2 5
+TRANSFER nobody src 5
+TRANSFER src nobody 5
+
+# 4/5. closed source before closed destination; closed before frozen
+TRANSFER gone ice 5
+TRANSFER ice gone 5
+TRANSFER gone dst 5
+TRANSFER src gone 5
+
+# 6/7. frozen source before frozen destination; frozen before non-positive
+TRANSFER ice src -5
+TRANSFER src ice -5
+TRANSFER ice src 5
+TRANSFER src ice 5
+
+# 8. non-positive before currency-mismatch and before insufficient
+TRANSFER src eur -5
+TRANSFER src eur 0
+TRANSFER src dst -500
+
+# 9. currency-mismatch before insufficient
+TRANSFER src eur 500
+TRANSFER src eur 5
+TRANSFER eur src 5
+
+# 10. insufficient-funds names the source
+TRANSFER src dst 100.01
+TRANSFER dst src 100.01
+
+# and now some succeed; tags count only successes
+TRANSFER src dst 100
+TRANSFER src dst 0.01
+TRANSFER dst src 200
+TRANSFER dst src 0.01
+UNFREEZE ice
+TRANSFER ice src 100
+TRANSFER eur eur 1
+BALANCE src
+BALANCE dst
+BALANCE ice
+BALANCE eur

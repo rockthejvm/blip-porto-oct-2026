@@ -1,0 +1,1 @@
+Your data model goes here, and nothing else does. Nothing outside this package should need to know how you represented an account, a request, or a thing that happened. Delete this file when you are done.

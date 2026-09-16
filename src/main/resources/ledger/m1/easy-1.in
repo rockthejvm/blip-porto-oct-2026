@@ -1,0 +1,7 @@
+# purpose: the happy path on one account - open, deposit three times, ask the balance.
+# exercises: OPEN, DEPOSIT, BALANCE; sequence numbers; amounts rendered with two decimals.
+OPEN alice USD
+DEPOSIT alice 100
+DEPOSIT alice 25.5
+DEPOSIT alice 0.05
+BALANCE alice

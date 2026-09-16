@@ -1,0 +1,13 @@
+# purpose: two accounts interleaved, plus the two rejections that exist at M1.
+# exercises: unknown-account on DEPOSIT and BALANCE; account-exists; rejections and
+#            queries do not consume a sequence number.
+OPEN alice USD
+OPEN bob EUR
+DEPOSIT alice 10
+DEPOSIT bob 20
+DEPOSIT carol 5
+BALANCE carol
+OPEN alice GBP
+DEPOSIT alice 1.25
+BALANCE alice
+BALANCE bob

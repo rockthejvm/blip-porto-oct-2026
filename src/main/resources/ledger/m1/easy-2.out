@@ -1,0 +1,10 @@
+OK 1 alice OPENED USD
+OK 2 bob OPENED EUR
+OK 3 alice +10.00 10.00
+OK 4 bob +20.00 20.00
+REJECTED unknown-account account=carol
+REJECTED unknown-account account=carol
+REJECTED account-exists account=alice
+OK 5 alice +1.25 11.25
+BALANCE alice 11.25 USD
+BALANCE bob 20.00 EUR

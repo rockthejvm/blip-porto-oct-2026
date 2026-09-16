@@ -1,0 +1,129 @@
+# purpose: all ten commands over ~150 lines, with SUMMARY windows that straddle transfers and
+#          freeze/unfreeze pairs, and HISTORY on accounts with long and short pasts.
+# exercises: everything; in particular SUMMARY closing must agree with the running balance at
+#            every window edge, and count must include OPENED/FROZEN/UNFROZEN/CLOSED facts.
+
+OPEN p1 USD
+OPEN p2 USD
+OPEN p3 USD
+OPEN q1 GBP
+OPEN q2 GBP
+
+DEPOSIT p1 400
+DEPOSIT p2 400
+DEPOSIT p3 400
+DEPOSIT q1 80
+DEPOSIT q2 20
+
+# round 1
+TRANSFER p2 p3 3
+TRANSFER p3 p1 150
+TRANSFER p1 p2 1.25
+DEPOSIT p2 0.5
+TRANSFER q2 q1 1.25
+BALANCE p2
+
+# round 2
+TRANSFER p3 p1 40
+TRANSFER p1 p2 8.08
+TRANSFER p2 p3 12
+WITHDRAW p3 99.99
+TRANSFER q1 q2 99.99
+FREEZE p2
+TRANSFER p1 p2 1
+DEPOSIT p2 1
+BALANCE p3
+
+# round 3
+TRANSFER p1 p2 0.5
+TRANSFER p2 p3 99.99
+TRANSFER p3 p1 3
+DEPOSIT p1 3
+TRANSFER q2 q1 8.08
+UNFREEZE p2
+BALANCE p1
+
+# round 4
+TRANSFER p2 p3 150
+TRANSFER p3 p1 1.25
+TRANSFER p1 p2 40
+WITHDRAW p2 150
+TRANSFER q1 q2 150
+TRANSFER q1 p1 1
+SUMMARY q1 1 200
+HISTORY q2
+BALANCE p2
+
+# round 5
+TRANSFER p3 p1 8.08
+TRANSFER p1 p2 12
+TRANSFER p2 p3 0.5
+DEPOSIT p3 1.25
+TRANSFER q2 q1 0.5
+WITHDRAW q2 1000
+SUMMARY p2 10 20
+SUMMARY p2 20 30
+BALANCE p3
+
+# round 6
+TRANSFER p1 p2 99.99
+TRANSFER p2 p3 3
+TRANSFER p3 p1 150
+WITHDRAW p1 40
+TRANSFER q1 q2 40
+SUMMARY p1 1 1
+SUMMARY p1 2 2
+SUMMARY p1 36 37
+SUMMARY p3 37 38
+BALANCE p1
+
+# round 7
+TRANSFER p2 p3 1.25
+TRANSFER p3 p1 40
+TRANSFER p1 p2 8.08
+DEPOSIT p2 8.08
+TRANSFER q2 q1 3
+HISTORY p1
+SUMMARY p1 0 1000
+BALANCE p2
+
+# round 8
+TRANSFER p3 p1 12
+TRANSFER p1 p2 0.5
+TRANSFER p2 p3 99.99
+WITHDRAW p3 12
+TRANSFER q1 q2 12
+BALANCE p3
+
+# q2 drains and closes; queries on it are then refused, but its facts still count in others' windows
+BALANCE q2
+HISTORY q2
+SUMMARY q2 1 50
+WITHDRAW q2 6.75
+BALANCE q2
+CLOSE q2
+HISTORY q2
+SUMMARY q2 1 60
+SUMMARY q1 1 60
+SUMMARY q1 50 60
+
+# windows on every account, edges chosen to fall inside transfers
+SUMMARY p1 12 13
+SUMMARY p2 12 13
+SUMMARY p3 12 13
+SUMMARY p1 13 14
+SUMMARY p2 13 14
+SUMMARY p1 1 30
+SUMMARY p2 1 30
+SUMMARY p3 1 30
+SUMMARY p1 31 60
+SUMMARY p2 31 60
+SUMMARY p3 31 60
+HISTORY p2
+HISTORY p3
+HISTORY q1
+
+BALANCE p1
+BALANCE p2
+BALANCE p3
+BALANCE q1

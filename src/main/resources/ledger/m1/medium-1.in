@@ -1,0 +1,49 @@
+# purpose: every M1 rule at least once, with the input format stretched a little.
+# exercises: all three currencies; blank lines and comments in the middle of the file;
+#            the amount forms 1 / 1.5 / 1.50 / 0.01; unknown-account before any OPEN;
+#            a rejection between two accepted commands must not leave a gap in <seq>.
+
+DEPOSIT nobody 10
+BALANCE nobody
+
+OPEN acc-usd USD
+OPEN acc-eur EUR
+OPEN acc-gbp GBP
+
+# amounts in every accepted shape
+DEPOSIT acc-usd 1
+DEPOSIT acc-usd 1.5
+DEPOSIT acc-usd 1.50
+DEPOSIT acc-usd 0.01
+BALANCE acc-usd
+
+# a large amount, no thousands separators on the way out
+DEPOSIT acc-eur 1234567.89
+BALANCE acc-eur
+
+# re-opening under any currency is account-exists
+OPEN acc-usd USD
+OPEN acc-usd EUR
+OPEN acc-gbp GBP
+
+# interleaved, with rejections in between
+DEPOSIT acc-gbp 5
+DEPOSIT acc-xyz 5
+DEPOSIT acc-eur 0.11
+DEPOSIT acc-gbp 5
+BALANCE acc-xyz
+DEPOSIT acc-usd 96.49
+
+# ids at the edges of the grammar: 32 chars, digits only, a lone dash
+OPEN a2345678901234567890123456789012 USD
+OPEN 42 EUR
+OPEN - GBP
+DEPOSIT 42 0.5
+DEPOSIT - 0.5
+
+BALANCE acc-usd
+BALANCE acc-eur
+BALANCE acc-gbp
+BALANCE a2345678901234567890123456789012
+BALANCE 42
+BALANCE -

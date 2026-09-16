@@ -1,0 +1,118 @@
+OK 1 s1 OPENED USD
+OK 2 s2 OPENED USD
+OK 3 s3 OPENED EUR
+OK 4 s4 OPENED EUR
+OK 5 s5 OPENED GBP
+OK 6 s6 OPENED GBP
+OK 7 s1 +100.00 100.00
+OK 8 s2 +200.00 200.00
+OK 9 s3 +300.00 300.00
+OK 10 s4 +400.00 400.00
+OK 11 s5 +500.00 500.00
+OK 12 s6 +600.00 600.00
+OK 13 s1 -2.25 97.75
+OK 14 s2 FROZEN
+OK 15 s3 -9.99 290.01
+REJECTED non-positive-amount account=s3 amount=-1.00
+OK 16 s4 UNFROZEN
+REJECTED insufficient-funds account=s5 balance=500.00 requested=100000.00
+BALANCE s5 500.00 GBP
+OK 17 s6 +150.00 750.00
+ERROR bad-arguments WITHDRAW
+OK 18 s1 FROZEN
+REJECTED account-frozen account=s2
+REJECTED account-frozen account=s2
+OK 19 s3 UNFROZEN
+REJECTED insufficient-funds account=s4 balance=400.00 requested=100000.00
+BALANCE s4 400.00 EUR
+OK 20 s5 +1.00 501.00
+OK 21 s6 -33.00 717.00
+ERROR bad-account-id S1
+REJECTED account-frozen account=s1
+REJECTED account-frozen account=s1
+OK 22 s2 UNFROZEN
+REJECTED insufficient-funds account=s3 balance=290.01 requested=100000.00
+BALANCE s3 290.01 EUR
+OK 23 s4 +2.25 402.25
+OK 24 s5 -33.00 468.00
+OK 25 s6 FROZEN
+ERROR bad-amount 1.5.5
+OK 26 s1 UNFROZEN
+REJECTED insufficient-funds account=s2 balance=200.00 requested=100000.00
+BALANCE s2 200.00 USD
+OK 27 s3 +1.00 291.01
+OK 28 s4 -33.00 369.25
+OK 29 s5 FROZEN
+REJECTED account-frozen account=s6
+REJECTED account-frozen account=s6
+ERROR bad-currency Usd
+REJECTED insufficient-funds account=s1 balance=97.75 requested=100000.00
+BALANCE s1 97.75 USD
+REJECTED non-zero-balance account=s1 balance=97.75
+REJECTED insufficient-funds account=s1 balance=97.75 requested=100000.00
+BALANCE s1 97.75 USD
+OK 30 s2 +150.00 350.00
+OK 31 s3 -33.00 258.01
+OK 32 s4 FROZEN
+REJECTED account-frozen account=s5
+REJECTED account-frozen account=s5
+OK 33 s6 UNFROZEN
+ERROR bad-arguments FREEZE
+OK 34 s1 +1.00 98.75
+OK 35 s2 -33.00 317.00
+OK 36 s3 FROZEN
+REJECTED account-frozen account=s4
+REJECTED account-frozen account=s4
+OK 37 s5 UNFROZEN
+REJECTED insufficient-funds account=s6 balance=717.00 requested=100000.00
+BALANCE s6 717.00 GBP
+ERROR bad-arguments CLOSE
+REJECTED non-zero-balance account=s6 balance=717.00
+BALANCE s6 717.00 GBP
+OK 38 s6 -600.00 117.00
+REJECTED non-zero-balance account=s6 balance=117.00
+BALANCE s6 117.00 GBP
+REJECTED account-exists account=s6
+OK 39 s6 +1.00 118.00
+OK 40 s1 -33.00 65.75
+OK 41 s2 FROZEN
+REJECTED account-frozen account=s3
+REJECTED account-frozen account=s3
+OK 42 s4 UNFROZEN
+REJECTED insufficient-funds account=s5 balance=468.00 requested=100000.00
+BALANCE s5 468.00 GBP
+OK 43 s6 +75.00 193.00
+ERROR bad-amount -0.001
+OK 44 s1 FROZEN
+REJECTED account-frozen account=s2
+REJECTED account-frozen account=s2
+OK 45 s3 UNFROZEN
+REJECTED insufficient-funds account=s4 balance=369.25 requested=100000.00
+BALANCE s4 369.25 EUR
+OK 46 s5 +1.00 469.00
+OK 47 s6 -150.00 43.00
+ERROR unknown-command withdraw
+REJECTED account-frozen account=s1
+REJECTED account-frozen account=s1
+OK 48 s2 UNFROZEN
+REJECTED insufficient-funds account=s3 balance=258.01 requested=100000.00
+BALANCE s3 258.01 EUR
+OK 49 s4 +75.00 444.25
+OK 50 s5 -150.00 319.00
+OK 51 s6 FROZEN
+ERROR bad-arguments WITHDRAW
+OK 52 s1 UNFROZEN
+OK 53 s2 UNFROZEN
+OK 54 s3 UNFROZEN
+OK 55 s4 UNFROZEN
+OK 56 s5 UNFROZEN
+BALANCE s1 65.75 USD
+BALANCE s2 317.00 USD
+BALANCE s3 258.01 EUR
+BALANCE s4 444.25 EUR
+BALANCE s5 319.00 GBP
+REJECTED non-zero-balance account=s1 balance=65.75
+REJECTED non-zero-balance account=s2 balance=317.00
+REJECTED non-zero-balance account=s3 balance=258.01
+REJECTED non-zero-balance account=s4 balance=444.25
+REJECTED non-zero-balance account=s5 balance=319.00

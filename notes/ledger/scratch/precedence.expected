@@ -1,0 +1,51 @@
+OK 1 a OPENED USD
+OK 2 b OPENED EUR
+OK 3 c OPENED USD
+OK 4 a +10.00 10.00
+OK 5 b FROZEN
+REJECTED account-frozen account=b
+REJECTED account-frozen account=b
+REJECTED non-positive-amount account=a amount=-1.00
+REJECTED non-positive-amount account=a amount=0.00
+REJECTED insufficient-funds account=a balance=10.00 requested=20.00
+OK 6 c CLOSED
+REJECTED account-closed account=c
+REJECTED account-closed account=c
+REJECTED account-closed account=c
+REJECTED account-exists account=c
+REJECTED unsupported-currency currency=JPY
+REJECTED account-exists account=a
+REJECTED non-zero-balance account=a balance=10.00
+BALANCE b 0.00 EUR
+OK 7 b FROZEN
+OK 8 a UNFROZEN
+REJECTED same-account-transfer account=x
+REJECTED unknown-account account=x
+REJECTED unknown-account account=x
+REJECTED account-closed account=c
+REJECTED account-closed account=c
+REJECTED account-frozen account=b
+REJECTED account-frozen account=b
+REJECTED account-frozen account=b
+OK 9 b UNFROZEN
+REJECTED non-positive-amount account=a amount=-5.00
+REJECTED currency-mismatch from=a to=b from-currency=USD to-currency=EUR
+REJECTED currency-mismatch from=a to=b from-currency=USD to-currency=EUR
+OK 10 e OPENED USD
+REJECTED insufficient-funds account=a balance=10.00 requested=500.00
+OK 11 a -5.00 5.00 xfer=t1
+OK 12 e +5.00 5.00 xfer=t1
+ERROR unknown-command deposit
+ERROR bad-arguments DEPOSIT
+ERROR bad-account-id A
+ERROR bad-amount 1.005
+ERROR bad-account-id A
+ERROR bad-currency usd
+ERROR bad-arguments OPEN
+ERROR bad-sequence x
+ERROR bad-range 5-3
+ERROR bad-range 5-3
+REJECTED unknown-account account=zz
+REJECTED unknown-account account=zz
+REJECTED account-closed account=c
+OK 13 a +1.50 6.50

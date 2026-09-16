@@ -1,0 +1,21 @@
+# purpose: the account lifecycle - open, frozen, open again, closed.
+# exercises: FREEZE / UNFREEZE / CLOSE; account-frozen; account-closed (even for BALANCE);
+#            non-zero-balance; BALANCE is allowed on a frozen account; a closed id cannot be re-opened.
+OPEN alice USD
+DEPOSIT alice 20
+FREEZE alice
+DEPOSIT alice 5
+WITHDRAW alice 5
+BALANCE alice
+UNFREEZE alice
+WITHDRAW alice 20
+CLOSE alice
+DEPOSIT alice 1
+BALANCE alice
+OPEN alice USD
+OPEN bob EUR
+DEPOSIT bob 1
+CLOSE bob
+WITHDRAW bob 1
+CLOSE bob
+BALANCE bob

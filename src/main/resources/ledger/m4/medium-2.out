@@ -1,0 +1,38 @@
+OK 1 a1 OPENED USD
+OK 2 a2 OPENED EUR
+OK 3 a3 OPENED USD
+OK 4 a4 OPENED USD
+OK 5 a1 +10.00 10.00
+OK 6 a2 +10.00 10.00
+OK 7 a3 +10.00 10.00
+OK 8 a1 FROZEN
+OK 9 a2 FROZEN
+REJECTED account-frozen account=a1
+REJECTED account-frozen account=a2
+REJECTED account-frozen account=a1
+OK 10 a1 UNFROZEN
+REJECTED account-frozen account=a2
+REJECTED account-frozen account=a2
+REJECTED insufficient-funds account=a1 balance=10.00 requested=500.00
+REJECTED account-frozen account=a2
+OK 11 a1 -10.00 0.00 xfer=t1
+OK 12 a4 +10.00 10.00 xfer=t1
+REJECTED insufficient-funds account=a1 balance=0.00 requested=0.01
+OK 13 a4 -10.00 0.00 xfer=t2
+OK 14 a1 +10.00 10.00 xfer=t2
+OK 15 a4 CLOSED
+REJECTED unknown-account account=nobody
+REJECTED account-closed account=a4
+REJECTED account-closed account=a4
+OK 16 a3 -10.00 0.00 xfer=t3
+OK 17 a1 +10.00 20.00 xfer=t3
+REJECTED insufficient-funds account=a3 balance=0.00 requested=0.01
+OK 18 a1 -20.00 0.00 xfer=t4
+OK 19 a3 +20.00 20.00 xfer=t4
+OK 20 a2 UNFROZEN
+REJECTED currency-mismatch from=a2 to=a1 from-currency=EUR to-currency=USD
+REJECTED same-account-transfer account=a2
+BALANCE a1 0.00 USD
+BALANCE a2 10.00 EUR
+BALANCE a3 20.00 USD
+REJECTED account-closed account=a4

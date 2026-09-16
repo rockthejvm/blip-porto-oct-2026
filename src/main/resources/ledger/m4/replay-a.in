@@ -1,0 +1,16 @@
+# purpose: part A of the M4 replay pair. Two successful transfers happen here, so after the restart
+#          the next tag must be t3 - a transfer counter that restarts emits t1 twice.
+# exercises: journal + replay of transfer facts, on top of everything from the m3 pair.
+OPEN alice USD
+OPEN bob USD
+OPEN carol EUR
+DEPOSIT alice 100
+DEPOSIT bob 50
+DEPOSIT carol 75
+TRANSFER alice bob 30
+TRANSFER bob alice 5
+TRANSFER alice carol 1
+FREEZE carol
+WITHDRAW bob 0.5
+BALANCE alice
+BALANCE bob

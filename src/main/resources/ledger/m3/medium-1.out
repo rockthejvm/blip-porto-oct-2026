@@ -1,0 +1,36 @@
+OK 1 acc-a OPENED EUR
+OK 2 acc-b OPENED EUR
+OK 3 acc-c OPENED GBP
+OK 4 acc-a +10.10 10.10
+OK 5 acc-b +20.20 20.20
+OK 6 acc-c +30.30 30.30
+OK 7 acc-a -0.10 10.00
+REJECTED insufficient-funds account=acc-b balance=20.20 requested=20.21
+OK 8 acc-b -20.20 0.00
+OK 9 acc-c FROZEN
+REJECTED account-frozen account=acc-c
+BALANCE acc-c 30.30 GBP
+OK 10 acc-c UNFROZEN
+OK 11 acc-c +1.00 31.30
+OK 12 acc-b CLOSED
+REJECTED account-closed account=acc-b
+REJECTED account-exists account=acc-b
+OK 13 acc-d OPENED USD
+REJECTED non-positive-amount account=acc-d amount=-1.00
+REJECTED non-positive-amount account=acc-d amount=0.00
+OK 14 acc-d +1.00 1.00
+REJECTED insufficient-funds account=acc-d balance=1.00 requested=1.01
+OK 15 acc-d FROZEN
+OK 16 acc-d FROZEN
+REJECTED non-zero-balance account=acc-d balance=1.00
+OK 17 acc-d UNFROZEN
+OK 18 acc-d -1.00 0.00
+OK 19 acc-d CLOSED
+REJECTED unsupported-currency currency=CHF
+REJECTED unknown-account account=acc-e
+OK 20 acc-a +90.00 100.00
+BALANCE acc-a 100.00 EUR
+REJECTED account-closed account=acc-b
+BALANCE acc-c 31.30 GBP
+REJECTED account-closed account=acc-d
+REJECTED unknown-account account=acc-e

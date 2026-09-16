@@ -1,0 +1,14 @@
+# purpose: M4 replay part A - three successful transfers, one to a now-frozen account,
+#          and one account closed after transferring everything away.
+OPEN t1 USD
+OPEN t2 USD
+OPEN t3 USD
+DEPOSIT t1 100
+DEPOSIT t2 100
+TRANSFER t1 t2 10
+TRANSFER t2 t3 110
+TRANSFER t3 t1 0.5
+CLOSE t2
+FREEZE t3
+TRANSFER t1 t3 1
+BALANCE t1
