@@ -61,7 +61,7 @@ object Wire {
     case BadRange(from, to)   => s"bad-range $from-$to"
   })
 
-  def balance(account: Account): String =
+  def balance(account: Account.Active): String =
     s"BALANCE ${account.id} ${money(account.balance)} ${account.currency}"
 
   def history(account: String, facts: List[Fact]): List[String] =

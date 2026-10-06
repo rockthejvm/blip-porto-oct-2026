@@ -143,22 +143,26 @@ those two.
 
 Agreed 2026-10-06 (while Daniel's from-scratch dummy implementation occupies `MyLedger`): the
 following go in once the dry run is done and the reference solution is back in place. None of them
-touches the protocol or regenerates a golden file.
+touches the protocol or regenerates a golden file. (2026-10-06: the two solution-side items are in —
+behavior-preserving, `ledgerVerify` 91/91 and the reference suite green after the refactor. The
+remaining unticked items are doc/stretch work.)
 
-- [ ] **The closed-account sum, in the reference.** `Account.scala`'s design-note comment grows the
-  alternative: `Active(currency, balance, frozen)` / `Closed(currency)` — the closed case has no
-  balance field, so "closed with money" is unwritable rather than checked. Add the teaching line
-  (here and/or in the guide): the protocol rules — zero-balance close, no `BALANCE` on closed —
-  are exactly what make the field droppable; spec design and type design are the same activity.
+- [x] **The closed-account sum — applied as the reference's primary model (2026-10-06).**
+  `Account` is now the sum `Active(id, currency, balance, frozen)` / `Closed(id, currency)`; the
+  product-with-Status alternative and the "spec design is type design" line live in
+  `Account.scala`'s design comment. Bonus the refactor surfaced: `Decide.queryable` now *returns*
+  `Account.Active`, so "past the closed check you are holding a balance" is a type, and
+  `Wire.balance` takes `Account.Active` — it cannot be called on a closed account.
 - [ ] **The staged exhaustiveness demo (~16:00, or stretch #6).** "The PM wants `NOTE <acc> <text>`,
   recorded as a fact." The new `Event` case makes every non-exhaustive match light up — `evolve`,
   the effect renderer, the journal codec, the history delta — and the compiler hands out the
   complete to-do list. Day 1's exhaustivity demo at project scale. Script it in §2/§3 of this file;
   keep it golden-free.
-- [ ] **Mutation/Query split, mentioned in the guide?** Decide whether the guide should hint that
-  "queries never record" can be a type-level fact, or whether it stays review-question-only (the
-  rows in §4 above are already in). Leaning: review-question-only — the guide must not design for
-  them.
+- [x] **Mutation/Query split — applied in the solution (2026-10-06).** `Command` is now
+  `sealed trait Command` with `enum Mutation` and `enum Query` under it; `decide` accepts only
+  `Mutation`, queries go through `Decide.queryable` alone, so "a query cannot consume a sequence
+  number" is a function that cannot be called. The guide stays silent (review-question-only, per
+  the §4 rows) — it must not design for them.
 - [ ] **Stretch ladder additions** in `ledger/README.md` §11:
   - hand-rolled `NonEmptyList` for `decide`'s result ("an accepted command records at least one
     fact" as a type; loops back to day 1's `MyList`);

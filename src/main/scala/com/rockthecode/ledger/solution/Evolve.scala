@@ -14,23 +14,26 @@ object Evolve {
 
   def evolve(bank: Bank, event: Event): Bank = {
     val accounts = event match {
-      case Opened(id, currency)          => bank.accounts + (id -> Account(id, currency, Money.zero, Status.Open))
-      case Deposited(id, amount)         => adjust(bank, id, _ + amount)
-      case Withdrawn(id, amount)         => adjust(bank, id, _ - amount)
+      case Opened(id, currency)            => bank.accounts + (id -> Account.Active(id, currency, Money.zero, frozen = false))
+      case Deposited(id, amount)           => adjust(bank, id, _ + amount)
+      case Withdrawn(id, amount)           => adjust(bank, id, _ - amount)
       case TransferDebited(id, amount, _)  => adjust(bank, id, _ - amount)
       case TransferCredited(id, amount, _) => adjust(bank, id, _ + amount)
-      case Frozen(id)                    => setStatus(bank, id, Status.Frozen)
-      case Unfrozen(id)                  => setStatus(bank, id, Status.Open)
-      case Closed(id)                    => setStatus(bank, id, Status.Closed)
+      case Frozen(id)                      => withActive(bank, id)(_.copy(frozen = true))
+      case Unfrozen(id)                    => withActive(bank, id)(_.copy(frozen = false))
+      case Closed(id)                      => withActive(bank, id)(a => Account.Closed(a.id, a.currency))
     }
     Bank(accounts, bank.events :+ event)
   }
 
-  // Both helpers are no-ops for an account that does not exist. A valid log
-  // never contains such an event, and totality means we do not throw.
   private def adjust(bank: Bank, id: String, f: Money => Money): Map[String, Account] =
-    bank.accounts.updatedWith(id)(_.map(a => a.copy(balance = f(a.balance))))
+    withActive(bank, id)(a => a.copy(balance = f(a.balance)))
 
-  private def setStatus(bank: Bank, id: String, status: Status): Map[String, Account] =
-    bank.accounts.updatedWith(id)(_.map(_.copy(status = status)))
+  // A no-op for an account that does not exist or is already closed. A valid
+  // log never contains such an event, and totality means we do not throw.
+  private def withActive(bank: Bank, id: String)(f: Account.Active => Account): Map[String, Account] =
+    bank.accounts.updatedWith(id)(_.map {
+      case a: Account.Active => f(a)
+      case closed            => closed
+    })
 }

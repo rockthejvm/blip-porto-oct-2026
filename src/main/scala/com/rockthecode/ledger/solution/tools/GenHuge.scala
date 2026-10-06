@@ -122,11 +122,12 @@ object GenHuge {
   // --- views of the bank, always in a deterministic order ----------------------
 
   private def sorted(b: Bank): List[Account] = b.accounts.keys.toList.sorted.map(b.accounts)
-  private def open(b: Bank): List[Account] = sorted(b).filter(_.status == Status.Open)
-  private def frozen(b: Bank): List[Account] = sorted(b).filter(_.status == Status.Frozen)
-  private def closed(b: Bank): List[Account] = sorted(b).filter(_.status == Status.Closed)
-  private def live(b: Bank): List[Account] = sorted(b).filter(_.status != Status.Closed)
-  private def funded(b: Bank): List[Account] = open(b).filter(_.balance.isPositive)
+  private def actives(b: Bank): List[Account.Active] = sorted(b).collect { case a: Account.Active => a }
+  private def open(b: Bank): List[Account.Active] = actives(b).filterNot(_.frozen)
+  private def frozen(b: Bank): List[Account.Active] = actives(b).filter(_.frozen)
+  private def closed(b: Bank): List[Account.Closed] = sorted(b).collect { case c: Account.Closed => c }
+  private def live(b: Bank): List[Account.Active] = actives(b)
+  private def funded(b: Bank): List[Account.Active] = open(b).filter(_.balance.isPositive)
 
   private def pick[A](xs: List[A], rnd: Random): A = xs(rnd.nextInt(xs.size))
   private val currencies = List("USD", "EUR", "GBP")
@@ -168,7 +169,7 @@ object GenHuge {
   }
 
   /** A funded open source and an open same-currency destination, if any. */
-  private def transferPair(b: Bank, rnd: Random): Option[(Account, Account)] = {
+  private def transferPair(b: Bank, rnd: Random): Option[(Account.Active, Account.Active)] = {
     val candidates = for {
       from <- funded(b)
       to <- open(b) if to.id != from.id && to.currency == from.currency

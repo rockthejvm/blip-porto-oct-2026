@@ -1,7 +1,8 @@
 package com.rockthecode.ledger.solution
 
-import Command._
+import Mutation._
 import ParseError._
+import Query._
 
 /** Ways a line can fail to be a command at all. Each maps to one `ERROR` line. */
 enum ParseError {

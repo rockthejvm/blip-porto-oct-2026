@@ -18,8 +18,20 @@ object ReferenceLedger extends LedgerEngine[Bank] {
   def execute(bank: Bank, line: String): (Bank, List[String]) = Parser.parse(line) match {
     case None              => (bank, Nil)
     case Some(Left(error)) => (bank, List(Wire.error(error)))
-    case Some(Right(cmd)) =>
-      Decide.decide(bank, cmd) match {
+
+    // A query cannot record a fact: `decide` never sees it, so no event can
+    // exist and no sequence number can move. The guarantee is carried by the
+    // Mutation/Query split, not by discipline. The one check a query needs -
+    // unknown account, closed account - is the head of the same precedence
+    // chain the mutations use.
+    case Some(Right(q: Query)) =>
+      Decide.queryable(bank, q.account) match {
+        case Left(rejection) => (bank, List(Wire.rejected(rejection)))
+        case Right(account)  => (bank, answer(bank, q, account))
+      }
+
+    case Some(Right(m: Mutation)) =>
+      Decide.decide(bank, m) match {
         case Left(rejection) => (bank, List(Wire.rejected(rejection)))
         case Right(events) =>
           // scanLeft gives the state after each event, which is where the
@@ -27,18 +39,23 @@ object ReferenceLedger extends LedgerEngine[Bank] {
           val states = events.scanLeft(bank)(Evolve.evolve)
           val next = states.last
           val recorded = events.zip(states.tail).zipWithIndex.map { case ((event, after), i) =>
-            Wire.ok(bank.nextSeq + i, event, after.accounts(event.account).balance)
+            Wire.ok(bank.nextSeq + i, event, balanceOf(after, event.account))
           }
-          (next, recorded ++ answer(next, cmd))
+          (next, recorded)
       }
   }
 
-  /** Queries print something after `decide` has let them through; everything else prints only its facts. */
-  private def answer(bank: Bank, cmd: Command): List[String] = cmd match {
-    case Command.Balance(acc)              => List(Wire.balance(bank.accounts(acc)))
-    case Command.History(acc)              => Wire.history(acc, Projections.facts(bank, acc))
-    case Command.Summary(acc, from, to)    => List(Wire.summary(acc, from, to, Projections.summary(bank, acc, from, to)))
-    case _                                 => Nil
+  /** The `account` here is `Account.Active`: `queryable` already proved it, so `.balance` exists. */
+  private def answer(bank: Bank, q: Query, account: Account.Active): List[String] = q match {
+    case Query.Balance(_)             => List(Wire.balance(account))
+    case Query.History(acc)           => Wire.history(acc, Projections.facts(bank, acc))
+    case Query.Summary(acc, from, to) => List(Wire.summary(acc, from, to, Projections.summary(bank, acc, from, to)))
+  }
+
+  /** For the OK line after applying one event. A just-closed account reports the 0.00 it was closed with. */
+  private def balanceOf(bank: Bank, id: String): Money = bank.accounts(id) match {
+    case a: Account.Active => a.balance
+    case _: Account.Closed => Money.zero
   }
 
   // --- milestone 3 -----------------------------------------------------------
