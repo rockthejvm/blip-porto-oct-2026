@@ -13,7 +13,10 @@ project's briefing philosophy), and `ledger/README.md` is now the single attende
 first build were removed as duplicate work, and the broader definition-of-done checks (leak audit,
 stripped-copy rehearsal, timing) were retired with them — rerun those judgments by hand before
 handout. Mentions of `*.sh` / `*.py` files in the body below are the original plan, kept for the
-record; their shipped equivalents are `tools.Verify`, `tools.Run --interleave`, and the aliases. What exists is
+record; their shipped equivalents are `tools.Verify`, `tools.Run --interleave`, and the aliases.
+2026-10-06: all markdown consolidated to exactly two files — `ledger/README.md` (attendee guide
+with the full protocol split by milestone) and `notes/ledger/README.md` (trainer guide); the
+PROTOCOL/TEACHING_NOTES/MODEL_REVIEW/REVIEW_LOG files named below were folded into those. What exists is
 described in `notes/ledger/README.md`; what was reviewed is in `notes/ledger/REVIEW_LOG.md`. Deviations
 from the plan during the build: `HiddenReferenceSuite` sits in the same test file as the reference suite;
 `ReplaySuite` is a method of `LedgerSuite`, not a separate class; the leak audit checks type names in

@@ -50,13 +50,13 @@ Day 2 is done. Design is settled (plan §5); this is the build.
 Built 2026-09-01 from the spec in `notes/day3-ledger-spec.md`, plan in `notes/day3-ledger-plan.md`.
 Lives alongside the betting engine (renamed `betsettlement`); the choice between the two is open.
 
-- [x] Attendee code `com.rockthecode.ledger` (trait, harness, `Main`, stub), guide + protocol docs in `ledger/`, ALL scenarios in `src/main/resources/ledger/m1..m5` — no hidden set; "no hidden tests" is part of the pitch, as in the betting project.
-- [x] Reference solution `com.rockthecode.ledger.solution`, generators, teaching notes, model-review checklist. Tooling is Scala only: `sbt ledgerGen` regenerates every generated file, `sbt ledgerVerify` checks every committed one (OK / NOT OK + first differing line).
-- [x] `ledger/README.md` is the complete attendee guide (goal, how it works, per-milestone goal/rules/checks/passing criteria) — written so a team that knows nothing can start from it. Daniel to dry-run the project from scratch against it.
-- [x] Every hand-written `.out` reviewed line by line — `notes/ledger/REVIEW_LOG.md`.
+- [x] Attendee code `com.rockthecode.ledger` (trait, harness, `Main`, stub); `ledger/README.md` is the ONE attendee document (guide + full protocol split by milestone); ALL scenarios in `src/main/resources/ledger/m1..m5` — no hidden set; "no hidden tests" is part of the pitch, as in the betting project.
+- [x] Reference solution `com.rockthecode.ledger.solution` and generators; `notes/ledger/README.md` is the ONE trainer document (repo mechanics, run of day, review checklist, review record). Tooling is Scala only: `sbt ledgerGen` regenerates every generated file, `sbt ledgerVerify` checks every committed one (OK / NOT OK + first differing line).
+- [x] `ledger/README.md` written so a team that knows nothing can start from it (goal, how it works, per-milestone goal/rules/protocol/checks/passing criteria). Daniel dry-running the project from scratch against it.
+- [x] Every hand-written `.out` reviewed line by line — review record in `notes/ledger/README.md` §7.
 - [ ] **Decide: betting engine or ledger for day 3** (or offer both). Then rewrite `training-plan.md §5` for the winner.
 - [?] Strip `ledger/solution` (main + test) and `notes/` before handout — same mechanism as the day-2 solutions, whatever that turns out to be.
-- [ ] Print PROTOCOL.md for the 9:00 briefing if the ledger is chosen; PROTOCOL-PART2.md is "after lunch".
+- [ ] If the ledger is chosen: at the 9:00 briefing, say out loud that guide sections 9–10 (M4/M5 protocol) stay unread until after lunch.
 
 ## Build and repo infrastructure
 
