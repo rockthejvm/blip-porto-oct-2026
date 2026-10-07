@@ -18,8 +18,6 @@ lazy val root = (project in file("."))
     )
   )
 
-// Attendees: run the block you are working on. Each block's suite covers its
-// stretch section too, so the stretch tests simply sit red until you get there.
 addCommandAlias("block0", "testOnly com.rockthecode.day2.Block0ExercisesSuite")
 addCommandAlias("blockA", "testOnly com.rockthecode.day2.BlockAExercisesSuite")
 addCommandAlias("blockB", "testOnly com.rockthecode.day2.BlockBExercisesSuite")
@@ -29,16 +27,5 @@ addCommandAlias("blockE", "testOnly com.rockthecode.day2.BlockEExercisesSuite")
 addCommandAlias("blockF", "testOnly com.rockthecode.day2.BlockFExercisesSuite")
 addCommandAlias("blockG", "testOnly com.rockthecode.day2.BlockGExercisesSuite")
 
-// Day 3 candidate: the event-sourced ledger. One test per milestone.
+// Day 3 candidate: the event-sourced ledger
 addCommandAlias("ledger", "testOnly com.rockthecode.ledger.MyLedgerSuite")
-// Trainer only (these two reference the solution package):
-// regenerate every scenario file the tools own (.in for huge, .out for everything) ...
-addCommandAlias("ledgerGen", ";runMain com.rockthecode.ledger.solution.tools.GenHuge src/main/resources/ledger" +
-  " ;runMain com.rockthecode.ledger.solution.tools.GenGolden src/main/resources/ledger")
-// ... and check every committed scenario file: OK / NOT OK with the first differing line.
-addCommandAlias("ledgerVerify", "runMain com.rockthecode.ledger.solution.tools.Verify src/main/resources/ledger")
-
-// Trainer: verify every reference solution still passes.
-// (Plain `sbt test` is not the way to do this - it stops once the deliberately
-// red exercise suites fail, and never reaches the solutions.)
-addCommandAlias("checkSolutions", "testOnly *SolutionsSuite *AgreementSuite *ReferenceLedgerSuite")
