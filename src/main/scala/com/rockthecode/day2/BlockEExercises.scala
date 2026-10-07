@@ -3,29 +3,20 @@ package com.rockthecode.day2
 import scala.util.Try
 
 /**
- * Day 2, Block E - your workspace.
- *
- * Briefs are the scaladoc on `BlockE`.
- *
- * Rules: no `.get` on a `Try` or an `Option`, and no `throw` anywhere in here.
- *
- *   sbt blockE
+ * Day 2, Block E
  */
 object BlockEExercises extends BlockE {
 
-  // E.1 Try, at the boundary with code that throws
   def priceOf(sku: String): Try[BigDecimal] = ???
 
   def unitCost(sku: String, quantity: Int): Try[BigDecimal] = ???
 
   def priceOrDefault(sku: String, fallback: BigDecimal): BigDecimal = ???
 
-  // E.2 Crossing the boundary: Try in, Either out
   def priceEither(sku: String): Either[PricingError, BigDecimal] = ???
 
   def unitCostEither(sku: String, quantity: Int): Either[PricingError, BigDecimal] = ???
 
-  // E.3 Validation, one failure at a time
   def validateName(raw: String): Either[ValidationError, String] = ???
 
   def validateEmail(raw: String): Either[ValidationError, String] = ???
@@ -34,17 +25,14 @@ object BlockEExercises extends BlockE {
 
   def validateFailFast(form: SignupForm): Either[ValidationError, Signup] = ???
 
-  // E.4 Validation, all the failures at once
   def validateAll(form: SignupForm): Either[List[ValidationError], Signup] = ???
 
-  // E.5 Lists of results
   def sequence[E, A](results: List[Either[E, A]]): Either[E, List[A]] = ???
 
   def traverse[E, A, B](items: List[A])(f: A => Either[E, B]): Either[E, List[B]] = ???
 
   def partitionResults[E, A](results: List[Either[E, A]]): (List[E], List[A]) = ???
 
-  // E.6 D.6, answered
   def managerEmailEither(directory: Map[String, Colleague], name: String): Either[LookupError, String] = ???
 
   // ===========================================================================

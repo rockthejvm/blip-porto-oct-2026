@@ -1,15 +1,12 @@
 package com.rockthecode.day2
 
 /**
- * Day 2, Block B - your workspace.
+ * Day 2, Block B
  *
- * Briefs are the scaladoc on `BlockB`.
- *
- *   sbt blockB
  */
 object BlockBExercises extends BlockB {
 
-  // B.1 Folds are everything - foldLeft and foldRight only
+  // B.1 Folds are everything
   def myLength[A](list: List[A]): Int = ???
 
   def myReverse[A](list: List[A]): List[A] = ???
@@ -18,7 +15,7 @@ object BlockBExercises extends BlockB {
 
   def myFilter[A](list: List[A])(predicate: A => Boolean): List[A] = ???
 
-  // B.2 The three traps
+  // B.2 Traps
   def safeSum(list: List[Int]): Int = ???
 
   def safeMax(list: List[Int]): Option[Int] = ???

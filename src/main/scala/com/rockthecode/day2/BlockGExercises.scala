@@ -4,43 +4,35 @@ import scala.concurrent.Future
 import scala.concurrent.duration.FiniteDuration
 
 /**
- * Day 2, Block G - your workspace.
- *
- * Briefs are the scaladoc on `BlockG`.
- *
- * You will need an ExecutionContext for map/flatMap. The import below gives you
- * the global one, which is the wrong choice in production and a fine one here -
- * see the note at the top of `BlockG`.
- *
- *   sbt blockG
+ * Day 2, Block G 
  */
 object BlockGExercises extends BlockG {
 
   import scala.concurrent.ExecutionContext.Implicits.global
 
-  // G.1 The one that matters
+  // G.1 
   def sumThree(first: => Future[Int], second: => Future[Int], third: => Future[Int]): Future[Int] = ???
 
-  // G.2 Fanning out
+  // G.2 
   def fetchAll[A, B](ids: List[A])(fetch: A => Future[B]): Future[List[B]] = ???
 
   def fetchAllSettled[A, B](ids: List[A])(fetch: A => Future[B]): Future[List[Either[Throwable, B]]] = ???
 
-  // G.3 When it goes wrong
+  // G.3 
   def fetchOrDefault[A](fetch: => Future[A], fallback: A): Future[A] = ???
 
   def fetchWithBackup[A](primary: => Future[A], backup: => Future[A]): Future[A] = ???
 
   def describeOutcome(future: Future[Int]): Future[String] = ???
 
-  // G.4 Promise
+  // G.4 
   def fetchAsFuture(id: Int): Future[String] = ???
 
   def delayed[A](delay: FiniteDuration)(value: => A): Future[A] = ???
 
   def withTimeout[A](future: Future[A], after: FiniteDuration): Future[A] = ???
 
-  // G.5 Not all at once
+  // G.5
   def batched[A, B](ids: List[A], batchSize: Int)(fetch: A => Future[B]): Future[List[B]] = ???
 
   // ===========================================================================

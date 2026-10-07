@@ -3,16 +3,11 @@ package com.rockthecode.day2
 /**
  * Day 2, Block D - your workspace.
  *
- * Briefs are the scaladoc on `BlockD`.
- *
- * The rule for this block: no `.get`, no `.isDefined`, no `.isEmpty` with an
+ * Rrule for this block: no `.get`, no `.isDefined`, no `.isEmpty` with an
  * `if` after it. `getOrElse` is fine - it is a different method.
- *
- *   sbt blockD
  */
 object BlockDExercises extends BlockD {
 
-  // D.1 The boundary with code that returns null
   def lookupPhone(name: String): Option[String] = ???
 
   def phoneOrDefault(name: String): String = ???
@@ -27,12 +22,7 @@ object BlockDExercises extends BlockD {
   // ---------------------------------------------------------------------------
   // D.3 The drill
   //
-  // THIS IS THE CODE YOU ARE REPLACING. It works. Do not change it - the test
-  // compares your version against it, on every combination of inputs.
-  //
-  // Count the null-thinking: four `.isDefined`, three `.get`, three nested ifs,
-  // and a duplicated rule about the EXTRA code that somebody will eventually
-  // change in one branch and not the other.
+  // THIS IS THE CODE YOU ARE REPLACING. Do not change it
   // ---------------------------------------------------------------------------
 
   def uglyDiscount(customer: Option[Customer], code: Option[String]): BigDecimal =

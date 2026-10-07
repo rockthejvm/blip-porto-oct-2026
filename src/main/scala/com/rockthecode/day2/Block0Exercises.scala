@@ -1,17 +1,10 @@
 package com.rockthecode.day2
 
 /**
- * Day 2, Block 0 - your workspace.
- *
- * Replace every `???` with an implementation. The brief for each one is the
- * scaladoc on the matching method in `Block0`.
- *
  * Run the tests with:
  *   sbt "testOnly com.rockthecode.day2.Block0ExercisesSuite"
  *
- * Ground rules for the whole of day 2: no `var`, no `while`, no mutable
- * collection. Not because they are evil - because removing them forces the
- * alternative to become visible.
+ * No `var`, no `while`, no mutable collections!
  */
 object Block0Exercises extends Block0 {
 

@@ -3,11 +3,8 @@ package com.rockthecode.day2
 import scala.collection.mutable.ListBuffer
 
 /**
- * Day 2, Block A - your workspace.
- *
- * Replace every `???` with an implementation. The brief for each one is the
- * scaladoc on the matching method in `BlockA`.
- *
+ * Day 2, Block A 
+
  * Run the tests with:
  *   sbt "testOnly com.rockthecode.day2.BlockAExercisesSuite"
  *
@@ -19,11 +16,7 @@ object BlockAExercises extends BlockA {
   // ---------------------------------------------------------------------------
   // A.1 The rewrite
   //
-  // THIS IS THE CODE YOU ARE REPLACING. It works. Do not change it - the test
-  // compares your version against it.
-  //
-  // Count what is in here: a var, another var, a while, an index, a ListBuffer,
-  // and a null. Six mechanisms doing three jobs.
+  // THIS IS THE CODE YOU ARE REPLACING.  Do not change it. 
   // ---------------------------------------------------------------------------
 
   def imperativeSummarize(orders: List[Order], threshold: BigDecimal): OrderSummary = {
@@ -68,8 +61,6 @@ object BlockAExercises extends BlockA {
 
   def formatDuration(millis: Long): String = ???
 
-  def renderLine(req: Request): String = ???
-
   def renderReport(requests: List[Request]): List[String] = ???
 
   // ===========================================================================
@@ -89,7 +80,7 @@ object BlockAExercises extends BlockA {
   def summarizeTraffic(requests: List[Request]): TrafficSummary = ???
 
   // ---------------------------------------------------------------------------
-  // The edge of the program: the ONLY place that prints.
+  // The part that prints
   // ---------------------------------------------------------------------------
 
   val sampleTraffic: List[Request] = List(

@@ -3,10 +3,6 @@ package com.rockthecode.day2
 /**
  * Day 2, Block C - your workspace.
  *
- * Briefs are the scaladoc on `BlockC`. The types are at the bottom of that file
- * and are worth reading before you start - except for `Json`, which you should
- * try to design yourself first. See the note above C.3.
- *
  *   sbt blockC
  */
 object BlockCExercises extends BlockC {
@@ -46,8 +42,7 @@ object BlockCExercises extends BlockC {
 
   def reachableStates(from: OrderState): Set[OrderState] = ???
 
-  // SC6 - the type class. Eight instances; `optionToJson` and `listToJson` are
-  // the two that matter.
+  // SC6 - the type class.
 
   given stringToJson: JsonConverter[String] = ???
 
