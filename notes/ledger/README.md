@@ -43,7 +43,7 @@ stripped copy.
 
 | Time | Block |
 |---|---|
-| 9:00–9:25 | Kickoff: the two-function framing, a walk through `Harness.run` (it *is* the application), `sbt ledger` red on everyone's machine |
+| 9:00–9:25 | Kickoff: the two-function framing — `decide(state, cmd): Either[Rejection, List[Event]]` / `evolve(state, event): State`, state as `foldLeft(evolve)` — presented by YOU; it is deliberately NOT in the attendee README (removed 2026-10-06: nothing in the starter code shows it, so it belongs to the live discussion). Then a walk through `Harness.run` (it *is* the application), and `sbt ledger` red on everyone's machine |
 | 9:25–10:10 | Data modelling on paper. Laptops closed. |
 | 10:10–10:30 | Model review, ~3 min per team, with the checklist in §4 |
 | 10:30–11:30 | M1 — vertical slice |
