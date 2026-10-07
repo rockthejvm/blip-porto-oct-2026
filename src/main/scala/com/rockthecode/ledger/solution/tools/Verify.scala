@@ -1,6 +1,5 @@
 package com.rockthecode.ledger.solution.tools
 
-import com.rockthecode.ledger.Harness
 import com.rockthecode.ledger.solution.ReferenceLedger
 
 import java.nio.charset.StandardCharsets.UTF_8

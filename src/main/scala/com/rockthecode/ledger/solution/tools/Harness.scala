@@ -1,5 +1,6 @@
-package com.rockthecode.ledger
+package com.rockthecode.ledger.solution.tools
 
+import com.rockthecode.ledger.LedgerEngine
 /**
  * Runs input lines through an engine, threading the state.
  *

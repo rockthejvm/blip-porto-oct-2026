@@ -38,11 +38,20 @@ object Main {
       case _                                => engine.empty
     }
 
-    val (_, output, journalLines) = Harness.runJournaled(engine, start, input)
+    val (_, output, journalLines) = runJournaled(engine, start, input)
 
     journal.foreach { path =>
       Files.write(path, journalLines.asJava, UTF_8, StandardOpenOption.CREATE, StandardOpenOption.APPEND)
     }
     output.foreach(println)
+  }
+
+  private def runJournaled[S](engine: LedgerEngine[S], start: S, input: List[String]): (S, List[String], List[String]) = {
+    val (state, out, journal) =
+      input.foldLeft((start, Vector.empty[String], Vector.empty[String])) { case ((state, out, journal), line) =>
+        val (next, responses) = engine.execute(state, line)
+        (next, out ++ responses, journal ++ engine.journalLines(state, next))
+      }
+    (state, out.toList, journal.toList)
   }
 }
