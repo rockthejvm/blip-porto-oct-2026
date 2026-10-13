@@ -1,15 +1,13 @@
 package com.rockthecode.day1
 
-
 import scala.concurrent.{Await, ExecutionContext, Future, Promise}
 import scala.util.{Failure, Random, Success, Try}
 
 object AdvancedScala {
 
-  /**
-   * Pattern matching
-   *   - on values, objects and case classes
-   */
+  /** Pattern matching
+    *   - on values, objects and case classes
+    */
 
   case object MySingleton
   case class SSI(n1: Int, n2: Int)
@@ -24,15 +22,14 @@ object AdvancedScala {
     case PersonCC("bob", a, _) if a > 42 => 5839
     case p @ PersonCC(name, age, ssi @ SSI(_, _)) => 52849 // can reuse p, name and age, plus you can nest patterns
     case aTuple @ (1, _) => 5738
-    case List(1,2,_) => 5839 // lists can be deconstructed
+    case List(1, 2, _) => 5839 // lists can be deconstructed
 
   }
 
   // TODO exercise on typed lists
 
-  /**
-   * PartialFunctions
-   */
+  /** PartialFunctions
+    */
 
   val maybeApplicable: PartialFunction[Int, String] = { // equivalent with x => x match { ... }
     case 1 => "first"
@@ -44,22 +41,21 @@ object AdvancedScala {
 
   // PartialFunctions have some special methods
   maybeApplicable.isDefinedAt(54)
-  val extendedApplicable = maybeApplicable.orElse[Int, String] {
-    case 99 => "luckier"
+  val extendedApplicable = maybeApplicable.orElse[Int, String] { case 99 =>
+    "luckier"
   }
 
   // PFs extend functions, so you can pass them to higher-order functions like map
-  List(1,2,3,56).map {
+  List(1, 2, 3, 56).map {
     case 1 => "a string"
     case 2 => "..."
     case _ => ""
   }
 
-  /**
-   * Options
-   *   - show slides
-   *   - construction, map, flatMap, filter, orElse, getOrElse
-   */
+  /** Options
+    *   - show slides
+    *   - construction, map, flatMap, filter, orElse, getOrElse
+    */
 
   def myUnsafeMethod: String = null
   val anOption = Option(myUnsafeMethod) // None
@@ -76,7 +72,6 @@ object AdvancedScala {
 
   // show map, flatMap, filter
   // show pattern matching
-
 
   // TODO exercise with unsafe APIs and Option composition
 
@@ -127,10 +122,14 @@ object AdvancedScala {
   connectionStatus.foreach(println)
 
   // ------------------ Solution 2: chained calls
-  config.get("host")
-    .flatMap(host => config.get("port")
-      .flatMap(port => Connection(host, port))
-      .map(connection => connection.connect))
+  config
+    .get("host")
+    .flatMap(host =>
+      config
+        .get("port")
+        .flatMap(port => Connection(host, port))
+        .map(connection => connection.connect)
+    )
     .foreach(println)
 
   // ------------------ Solution 3: for-comprehensions
@@ -141,22 +140,22 @@ object AdvancedScala {
   } yield connection.connect
   forConnectionStatus.foreach(println)
 
-  /**
-   * Exceptions and Try
-   *   - throwing; throwing returns Nothing
-   *   - catching exceptions
-   *   - wrapping try/catches into Try
-   *   - map, flatMap, filter
-   */
+  /** Exceptions and Try
+    *   - throwing; throwing returns Nothing
+    *   - catching exceptions
+    *   - wrapping try/catches into Try
+    *   - map, flatMap, filter
+    */
 
   // standard try-catch
-  val potentialException = try {
-    // code that can throw exceptions
-    throw new RuntimeException
-  } catch {
-    case something: Exception => 43
-    case e: RuntimeException => 42
-  }
+  val potentialException =
+    try
+      // code that can throw exceptions
+      throw new RuntimeException
+    catch {
+      case something: Exception => 43
+      case e: RuntimeException => 42
+    }
 
   def potentiallyThrowException: Int = throw new NullPointerException
   // wrap the computation in a Try
@@ -204,7 +203,8 @@ object AdvancedScala {
   possibleHTML.foreach(renderHTML)
 
   // ------------------- solution 2: try composition with call chains
-  HttpService.getSafeConnection(tryHost, tryPort)
+  HttpService
+    .getSafeConnection(tryHost, tryPort)
     .flatMap(connection => connection.getSafe("/home"))
     .foreach(renderHTML)
 
@@ -214,18 +214,87 @@ object AdvancedScala {
     html <- connection.getSafe("/home")
   } renderHTML(html)
 
+  /** Either
+    *   - Left = failure (any type, not just Throwable), Right = success
+    *   - like Try, but the error type is explicit and under your control
+    *   - map, flatMap, filter-like methods (right-biased), pattern matching, for-comprehensions
+    */
 
+  val eitherSuccess: Either[String, Int] = Right(42)
+  val eitherFailure: Either[String, Int] = Left("Something went wrong")
 
+  // right-biased: map and flatMap only operate on the Right value; a Left passes through untouched
+  eitherSuccess.map(_ + 1) // Right(43)
+  eitherFailure.map(_ + 1) // Left("Something went wrong")
+  eitherSuccess.flatMap(n => if (n > 40) Right(n * 2) else Left("Too small"))
 
-  /**
-   * 23. Futures
-   *   - construction, map, flatMap, filter, onComplete
-   */
+  // Either has no unsafe wrapping like Try, but you can convert
+  Try(potentiallyThrowException).toEither // Either[Throwable, Int]
+  Option(2).toRight("no value") // Right(2)
+  Option.empty[Int].toRight("no value") // Left("no value")
+  eitherSuccess.toOption // Some(42)
+
+  // handling both cases
+  eitherFailure match {
+    case Right(value) => println(s"Got $value")
+    case Left(error) => println(s"Failed: $error")
+  }
+  eitherFailure.fold(error => s"Failed: $error", value => s"Got $value")
+  eitherFailure.getOrElse(0)
+  eitherFailure.orElse(Right(0))
+
+  // recovering from errors
+  eitherFailure.left.map(_.toUpperCase)
+
+  // ------------------- given: validating user input, where each failure carries a meaningful error type
+  sealed trait RegistrationError
+  case object EmptyName extends RegistrationError
+  case class InvalidAge(age: Int) extends RegistrationError
+  case class InvalidEmail(email: String) extends RegistrationError
+
+  case class Registration(name: String, age: Int, email: String)
+
+  def validateName(name: String): Either[RegistrationError, String] =
+    if (name.trim.isEmpty) Left(EmptyName) else Right(name.trim)
+
+  def validateAge(age: Int): Either[RegistrationError, Int] =
+    if (age < 18 || age > 120) Left(InvalidAge(age)) else Right(age)
+
+  def validateEmail(email: String): Either[RegistrationError, String] =
+    if (email.contains("@")) Right(email) else Left(InvalidEmail(email))
+
+  // ------------------- task: build a Registration if all the fields are valid, otherwise return the first error
+
+  // ------------------- solution 1: flatMap/map chain
+  def register1(name: String, age: Int, email: String): Either[RegistrationError, Registration] =
+    validateName(name).flatMap(n => validateAge(age).flatMap(a => validateEmail(email).map(e => Registration(n, a, e))))
+
+  // ------------------- solution 2: for-comprehension
+  def register2(name: String, age: Int, email: String): Either[RegistrationError, Registration] = for {
+    n <- validateName(name)
+    a <- validateAge(age)
+    e <- validateEmail(email)
+  } yield Registration(n, a, e)
+
+  register2("Daniel", 30, "daniel@rockthejvm.com") // Right(Registration(...))
+  register2("Daniel", 12, "not-an-email") // Left(InvalidAge(12)) - short-circuits at the first Left
+  register2("  ", 30, "daniel@rockthejvm.com") match {
+    case Left(EmptyName) => println("Please provide a name")
+    case Left(other) => println(s"Invalid input: $other")
+    case Right(registration) => println(s"Welcome, ${registration.name}")
+  }
+
+  // Either vs Try: Try is Either[Throwable, A] with exceptions captured automatically;
+  // Either lets you choose the error type, so failures become part of the method's signature
+
+  /** 23. Futures
+    *   - construction, map, flatMap, filter, onComplete
+    */
 
   import scala.concurrent.ExecutionContext.Implicits.global // execution contexts are "platforms" for running threads
   import scala.concurrent.duration._
 
-  val aFuture = Future[Int]{
+  val aFuture = Future[Int] {
     // code - will run on SOME thread
     42
   }
@@ -249,16 +318,17 @@ object AdvancedScala {
   // you can also wait for a Future, but it's generally bad because we try to avoid blocking
   val waited = Await.result(aFuture, 3.seconds)
   // you can also try to fetch the value of the future at the current moment (also bad, and would be VERY bad if you busy-waited for the value)
-  val currentFutureValue = aFuture.value // this is an Option[Try[Int]]; option because it might not have finished, Try because the result can be a failure
+  val currentFutureValue =
+    aFuture.value // this is an Option[Try[Int]]; option because it might not have finished, Try because the result can be a failure
 
   // recovering with another value
-  val recoveredFuture = aFuture.recover {
-    case e: RuntimeException => 45
+  val recoveredFuture = aFuture.recover { case e: RuntimeException =>
+    45
   }
 
   // recoviering with another Future - you can think of this one like flatMap
-  val recoveredFuture2 = aFuture.recoverWith {
-    case e: RuntimeException => Future(45)
+  val recoveredFuture2 = aFuture.recoverWith { case e: RuntimeException =>
+    Future(45)
   }
 
   // promises
@@ -267,8 +337,8 @@ object AdvancedScala {
   val future = promise.future
 
   // thread 1 - "consumer"
-  future.onComplete {
-    case Success(r) => println("[consumer] I've received " + r)
+  future.onComplete { case Success(r) =>
+    println("[consumer] I've received " + r)
   }
 
   // thread 2 - "producer"
@@ -313,7 +383,7 @@ object AdvancedScala {
     val bothPromise = Promise[A]
     val lastPromise = Promise[A]
     val checkAndComplete = (result: Try[A]) =>
-      if(!bothPromise.tryComplete(result))
+      if (!bothPromise.tryComplete(result))
         lastPromise.complete(result)
 
     fa.onComplete(checkAndComplete)
@@ -332,7 +402,7 @@ object AdvancedScala {
     45
   }
   first(fast, slow).foreach(f => println("FIRST: " + f))
-  last(fast, slow).foreach(l => println("LAST: "  +  l))
+  last(fast, slow).foreach(l => println("LAST: " + l))
 
   Thread.sleep(1000)
 
@@ -340,115 +410,104 @@ object AdvancedScala {
   def retryUntil[A](action: () => Future[A], condition: A => Boolean): Future[A] =
     action()
       .filter(condition)
-      .recoverWith {
-        case _ => retryUntil(action, condition)
+      .recoverWith { case _ =>
+        retryUntil(action, condition)
       }
 
   val random = new Random()
-  val action = () => Future {
-    Thread.sleep(100)
-    val nextValue = random.nextInt(100)
-    println("generated " + nextValue)
-    nextValue
-  }
+  val action = () =>
+    Future {
+      Thread.sleep(100)
+      val nextValue = random.nextInt(100)
+      println("generated " + nextValue)
+      nextValue
+    }
 
-  retryUntil(action, (x: Int) =>  x < 10).foreach(result => println("settled at " + result))
+  retryUntil(action, (x: Int) => x < 10).foreach(result => println("settled at " + result))
   Thread.sleep(10000)
 
+  /** Scala 3: givens, using clauses and extension methods
+    *   - given instances replace implicit vals/defs; using clauses replace implicit parameter lists
+    *   - extension methods replace implicit classes
+    */
 
-  /**
-   * 24. Implicits
-   *   - implicit conversion string -> person
-   *   - ordering demo
-   */
-
-  case class Person3(name: String, age: Int) {
-    def greet = println(s"Hi, my name is $name and I am $age years old")
+  // a type class
+  trait Describer[A] {
+    def describe(value: A): String
   }
 
-  case class Person4(name: String, age: Int) {
-    def greet = println(s"Hi, my name is $name and I am $age years old")
+  // given instances: the compiler can inject them wherever a matching "using" clause asks for one
+  given Describer[Int] with {
+    override def describe(value: Int): String = s"the number $value"
   }
 
-
-  implicit def stringToPerson(name: String): Person3 = Person3(name, 45)
-  implicit def stringToPerson2(name: String): Person4 = Person4(name, 45)
-
-  def processPerson(p: Person3) = println()
-  processPerson("Daniel") // will be auto-converted to Person3
-
-  def processPersonAsync(p: Person3)(implicit ec: ExecutionContext) = println()
-  processPersonAsync(Person3("Daniel", 45)) // execution context is passed implicitly as argument
-
-  // discussion on where the compiler looks for implicit values
-  /*
-    1. Local scope = everything explicitly defined
-    2. Imported scope
-    3. Companion objects for the types involved in the method call
-    4. Companion objects for the arg types involved in the call
-   */
-  implicit val reverseOrdering: Ordering[Int] = Ordering.fromLessThan(_ > _)
-  println(List(3,4,2,5,1).sorted) // 5 4 3 2 1
-
-  object Person3 {
-    // good practice: define implicits on the Person type in its companion object
-    implicit val naturalOrdering: Ordering[Person3] = Ordering.fromLessThan((a, b) => a.name.compareTo(b.name) < 0)
-  }
-  println(List(Person3("Daniel", 45), Person3("Mark", 57823)).sorted)
-
-
-  /**
-   * 25. Pimp my library
-   *   - RichInt
-   *
-   * Ex: enrich the string class
-   *   - "6" / 2
-   */
-
-  // example of enriching an existing type (which we can't normally modify)
-  implicit class MyRichInt(n: Int) {
-    def times(s: String): String =
-      if (n <= 0) ""
-      else s + new MyRichInt(n - 1).times(s)
+  given boolDescriber: Describer[Boolean] = new Describer[Boolean] { // named given, alternative syntax
+    override def describe(value: Boolean): String = if (value) "yes" else "no"
   }
 
-  3.times("Hello world") // new MyRichInt(3).times("Hello world")
-
-  // example of enriching Int: the duration package
-  import scala.concurrent.duration._
-  3.minutes
-
-
-  // exercise: enrich String so you can do math operations between Strings and Ints like in JavaScript
-  implicit class MyRichString(s: String) {
-    def /(n: Int): Int = s.toInt / n
+  // conditional given: a Describer for any List[A], as long as there's a Describer[A] in scope
+  given [A](using elementDescriber: Describer[A]): Describer[List[A]] with {
+    override def describe(list: List[A]): String =
+      list.map(elementDescriber.describe).mkString("[", ", ", "]")
   }
 
-  println("6" / 2)
+  // using clause: the compiler passes the Describer argument for us
+  def describeValue[A](value: A)(using describer: Describer[A]): String = describer.describe(value)
 
-  /**
-   * 26. Type system mastery: Variance
-   *   - "contains T" = covariant, "acts on T" = contravariant
-   *   - (massive discussion on variance positions)
-   *
-   * To prove the compiler errors of my commented code below, write a polymorphic instantiation and try to mess up with the objects.
-   *
-   * val cage: Cage[Animal] = new Cage[Dog]
-   * val vet: Vet[Dog] = new Vet[Animal]
-   */
+  describeValue(42) // "the number 42"
+  describeValue(List(true, false)) // "[yes, no]"
+  describeValue(42)(using summon[Describer[Int]]) // can pass the instance explicitly with "using"
+
+  // context bound + summon: fetch the given instance in scope
+  def describeTwice[A: Describer](value: A): String = {
+    val describer = summon[Describer[A]]
+    describer.describe(value) + " / " + describer.describe(value)
+  }
+
+  // extension methods: add methods to existing types without wrapper classes
+  extension (s: String) {
+    def shout: String = s.toUpperCase + "!"
+    def isPalindrome: Boolean = s == s.reverse
+  }
+
+  "scala".shout // "SCALA!"
+  "level".isPalindrome // true
+
+  // generic extension methods
+  extension [A](list: List[A]) {
+    def second: Option[A] = list.drop(1).headOption
+  }
+
+  List(1, 2, 3).second // Some(2)
+
+  // extension methods can require givens too
+  extension [A](value: A)(using describer: Describer[A]) {
+    def explain: String = describer.describe(value)
+  }
+
+  42.explain // "the number 42"
+  List(true, false).explain // "[yes, no]"
+
+  /** 26. Type system mastery: Variance
+    *   - "contains T" = covariant, "acts on T" = contravariant
+    *   - (massive discussion on variance positions)
+    *
+    * To prove the compiler errors of my commented code below, write a polymorphic instantiation and try to mess up with
+    * the objects.
+    *
+    * val cage: Cage[Animal] = new Cage[Dog] val vet: Vet[Dog] = new Vet[Animal]
+    */
 
   class Animal
   class Cat extends Animal
   class Dog extends Animal
-
 
   /*
    vals are in covariant position
 
    class Vet[-T <: Animal](val animal: T)
    val myVet: Vet[Dog] = new Vet[Animal](new Crocodile) // nope
-  */
-
+   */
 
   /*
     vars are in covariant position (same argument)
@@ -457,7 +516,7 @@ object AdvancedScala {
     class Cage[+T <: Animal](var animal: T)
     val myCage: Cage[Animal] = new Cage[Dog](lassie)
     myCage.animal = new Crocodile // nope
-    */
+   */
 
   /*
     method arguments are in contravariant position
@@ -483,7 +542,6 @@ object AdvancedScala {
     val d: Dog = myVet.getAnimalToDonate // animal, no?!
    */
 
-
   // method arguments
   class Cage[+T <: Animal](animal: T) {
     // def insertAnimal(animal: T) = println () // arguments are in CONTRAVARIANT position
@@ -495,4 +553,69 @@ object AdvancedScala {
     def heal(animal: T): Unit = println()
     // def get: T = ??? // method return types are in COVARIANT position
   }
+
+  /** 24. Implicits
+    *   - implicit conversion string -> person
+    *   - ordering demo
+    */
+
+  case class Person3(name: String, age: Int) {
+    def greet = println(s"Hi, my name is $name and I am $age years old")
+  }
+
+  case class Person4(name: String, age: Int) {
+    def greet = println(s"Hi, my name is $name and I am $age years old")
+  }
+
+  implicit def stringToPerson(name: String): Person3 = Person3(name, 45)
+  implicit def stringToPerson2(name: String): Person4 = Person4(name, 45)
+
+  def processPerson(p: Person3) = println()
+  processPerson("Daniel") // will be auto-converted to Person3
+
+  def processPersonAsync(p: Person3)(implicit ec: ExecutionContext) = println()
+  processPersonAsync(Person3("Daniel", 45)) // execution context is passed implicitly as argument
+
+  // discussion on where the compiler looks for implicit values
+  /*
+    1. Local scope = everything explicitly defined
+    2. Imported scope
+    3. Companion objects for the types involved in the method call
+    4. Companion objects for the arg types involved in the call
+   */
+  implicit val reverseOrdering: Ordering[Int] = Ordering.fromLessThan(_ > _)
+  println(List(3, 4, 2, 5, 1).sorted) // 5 4 3 2 1
+
+  object Person3 {
+    // good practice: define implicits on the Person type in its companion object
+    implicit val naturalOrdering: Ordering[Person3] = Ordering.fromLessThan((a, b) => a.name.compareTo(b.name) < 0)
+  }
+  println(List(Person3("Daniel", 45), Person3("Mark", 57823)).sorted)
+
+  /** 25. Pimp my library
+    *   - RichInt
+    *
+    * Ex: enrich the string class
+    *   - "6" / 2
+    */
+
+  // example of enriching an existing type (which we can't normally modify)
+  implicit class MyRichInt(n: Int) {
+    def times(s: String): String =
+      if (n <= 0) ""
+      else s + new MyRichInt(n - 1).times(s)
+  }
+
+  3.times("Hello world") // new MyRichInt(3).times("Hello world")
+
+  // example of enriching Int: the duration package
+  import scala.concurrent.duration._
+  3.minutes
+
+  // exercise: enrich String so you can do math operations between Strings and Ints like in JavaScript
+  implicit class MyRichString(s: String) {
+    def /(n: Int): Int = s.toInt / n
+  }
+
+  println("6" / 2)
 }

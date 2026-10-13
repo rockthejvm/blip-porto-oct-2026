@@ -4,35 +4,74 @@ import scala.annotation.tailrec
 
 object ScalaEssentials {
 
-  /**
-   * Admin stuff
-   * - breaks by agreement - I'll give you exercises and you can take breaks in the meantime
-   * - recommended: cut off the internal chats/emails unless ACTUALLY urgent
-   * - ask any questions at ANY time
-   *
-   * Intros: 30 seconds with name, position, time at Adobe, favorite project EVER
-   *   - start with me
-   *   - lay out the room in the notebook!
+  /** Admin stuff
+    *   - breaks by agreement - I'll give you exercises and you can take breaks in the meantime
+    *   - recommended: cut off the internal chats/emails unless ACTUALLY urgent
+    *   - ask any questions at ANY time
+    *
+    * Intros: 30 seconds with name, position, time at Adobe, favorite project EVER
+    *   - start with me
+    *   - lay out the room in the notebook!
+    */
+
+  /*
+
+  ideal schedule
+  - try to finish all basics + mylist by lunch (13.00)
+  - after lunch: CBN/CBV/lazy, pattern matching, Option/Try/Either/Future, implicits, variance
+
+    - 9.30 intro: logistics, introductions
+    - 10.00 scala questions
+      - tailrec exercises
+      - demos as necessary
+      - case classes
+    - 11.00 break
+    - 11.15 MyList part 1,2,3, until flatMap with Transformers
+    - 12.00 functions discussion
+        MyList part 4, replace transformers
+        anonymous functions
+        MyList part 5 - testing with anonymous functions
+    - 12.30 HOFs and curries
+        MyList part 6 - zip, foreach
+        for comprehensions + exercises e.g. cartesian, checkerboard
+        standard collections (discussion)
+    - 13.00 LUNCH
+    - 14.00 CBN, CBV, lazy, lazy lists and for comprehensions
+    - 14.30 pattern matching
+        break
+        Option
+        Try
+        Either
+        Future
+    - 16.00 implicits
+        variance
+
+
+    questions
+    - what's the difference between instructions and expressions
+    - what is unit
+    - stack vs tail recursion + exercises
+    - what kinds of interpolators are available in Scala
+    - is ??! a valid method in scala
+    - what does apply do
+    - what are companions and why they are useful
+    - how do you declare left-associative vs right-associative methods
+    - what is an anonymous class
    */
 
-  /**
-   * vals, types
-   */
+  /** vals, types
+    */
 
   // defining a value - types are optional
   val helloAdobe: String = "Hello, Adobe" + 2 // the expression is a String: you know string concatenation from Java
   // the type is optional
 
-  /**
-   Expressions
-   - operators
-   - if/else
-   - code blocks
-   - the Unit type
-   */
+  /** Expressions \- operators \- if/else \- code blocks \- the Unit type
+    */
 
   val simpleMathExpression: Int = 1 * 30
-  val anIfExpression = if (2 > 3) "bigger" else "smaller" // if structures are EXPRESSIONS because they reduce to a value
+  val anIfExpression =
+    if (2 > 3) "bigger" else "smaller" // if structures are EXPRESSIONS because they reduce to a value
   val aCodeBlock = { // blocks are expressions whose value is the last expression
     // blocks also act like a scope: you can define values, functions, classes etc.
     val anInnerValue = 2
@@ -43,30 +82,29 @@ object ScalaEssentials {
   val theUnit: Unit = println("Unit!")
   val theUnitReference: Unit = () // the only instance of Unit is ()
 
-  /**
-   * Functions
-   *   - functions inside functions
-   *   - (time permitting) ex: isPrime
-   */
+  /** Functions
+    *   - functions inside functions
+    *   - (time permitting) ex: isPrime
+    */
 
-  def myFunction(myInt: Int, myString: String) = { // function implementations are a single expression: usually code blocks, even if just for code style
+  def myFunction(
+      myInt: Int,
+      myString: String
+  ) = // function implementations are a single expression: usually code blocks, even if just for code style
     myInt + myString
-  }
 
   // In Scala, we think in terms of recursion instead of "iteration". Example: isPrime.
   def isPrime(n: Int): Boolean = {
-    def isPrimeHelper(n: Int, counter: Int): Boolean = { // can define functions inside functions
-      if (n/2 <= counter) true
+    def isPrimeHelper(n: Int, counter: Int): Boolean = // can define functions inside functions
+      if (n / 2 <= counter) true
       else if (n % counter == 0) false
       else isPrimeHelper(n, counter + 1)
-    }
 
     isPrimeHelper(n, 2)
   }
 
-  /**
-   * stack/tail recursion
-   */
+  /** stack/tail recursion
+    */
   def anotherFactorial(n: Int): BigInt = {
     @tailrec
     def factHelper(x: Int, accumulator: BigInt): BigInt =
@@ -85,7 +123,7 @@ object ScalaEssentials {
   @tailrec
   def concatenateTailrec(aString: String, n: Int, accumulator: String): String =
     if (n <= 0) accumulator
-    else concatenateTailrec(aString, n-1, aString + accumulator)
+    else concatenateTailrec(aString, n - 1, aString + accumulator)
 
   def isPrimeTailrec(n: Int) = {
     def isPrimeAux(potentialDivisor: Int): Boolean =
@@ -97,34 +135,35 @@ object ScalaEssentials {
     else isPrimeAux(2)
   }
 
-  /**
-   * Other basics
-   *   - s-interpolators
-   *   - default arguments
-   */
-  val interpolated = s"I got a string: $helloAdobe" // can inject values, variables or expand expressions directly inside a string
+  /** Other basics
+    *   - s-interpolators
+    *   - default arguments
+    */
+  val interpolated =
+    s"I got a string: $helloAdobe" // can inject values, variables or expand expressions directly inside a string
   def aFunctionOftenCalledWithSameArgs(x: Int, oftenSameValueArg: Int = 99) = ???
 
-  /**
-   * OO basics
-   *   - parameters vs fields
-   *
-   * Method notation
-   *   - infix methods on Person
-   *   - operators as methods
-   *   - apply()
-   */
+  /** OO basics
+    *   - parameters vs fields
+    *
+    * Method notation
+    *   - infix methods on Person
+    *   - operators as methods
+    *   - apply()
+    */
 
-  class Person(/*[1]*/val name: String, /* this is not a field, just a class param */age: Int) {
+  class Person( /*[1]*/ val name: String, /* this is not a field, just a class param */ age: Int) {
     val height: Double = 100
 
-    private def canFly/* parameterless methods don't necessarily need parentheses */: Boolean = Person.N_HANDS > 35
+    private def canFly /* parameterless methods don't necessarily need parentheses */: Boolean = Person.N_HANDS > 35
 
     def likes(movie: String) = s"$name likes $movie"
 
-    def ?!!(person: Person) = s"$name: I wonder if I can get along ${person.name}..." // Scala method naming is VERY permissive
+    def ?!!(person: Person) =
+      s"$name: I wonder if I can get along ${person.name}..." // Scala method naming is VERY permissive
 
-    def -->:(gainWeight: Int) = println() // Scala methods with non-alphanumeric characters ending in ':' are LEFT-associative
+    def -->:(gainWeight: Int) =
+      println() // Scala methods with non-alphanumeric characters ending in ':' are LEFT-associative
 
     def apply(moreWeight: Int) = s"$name gained $moreWeight kg"
   }
@@ -149,9 +188,8 @@ object ScalaEssentials {
 
   daniel(2) // == daniel.apply(2)
 
-  /**
-   * Objects
-   */
+  /** Objects
+    */
 
   object MySingleton { // singleton pattern in (even) one line
     val aField = 2
@@ -167,11 +205,10 @@ object ScalaEssentials {
 
   val newPerson = Person("Mary", 23) // often practiced - same as Person.apply("Mary", 23)
 
-  /**
-   * Inheritance
-   *   - Animals and Carnivores
-   *   - overriding methods and polymorphism
-   */
+  /** Inheritance
+    *   - Animals and Carnivores
+    *   - overriding methods and polymorphism
+    */
 
   class Animal {
     def eat() = println("eating")
@@ -181,9 +218,7 @@ object ScalaEssentials {
     def eat(animal: Animal): Unit
   }
 
-  trait Vegetarian {
-
-  }
+  trait Vegetarian {}
 
   class Crocodile extends Animal with Carnivore { // single class, multi-trait inheritance
     override def eat(animal: Animal): Unit = println("crunch")
@@ -198,14 +233,13 @@ object ScalaEssentials {
   }
 
   /*
-    * TODO Exercise - MyList part 1: create a singly linked list of integers
-    *	- needs to have head/tail/isEmpty/add/toString/++
-    *	- implemented as Empty/Cons
-    */
-
-  /**
-   * Case classes: lightweight data structures with little functionality used for data storage and domain modeling.
+   * TODO Exercise - MyList part 1: create a singly linked list of integers
+   *	- needs to have head/tail/isEmpty/add/toString/++
+   *	- implemented as Empty/Cons
    */
+
+  /** Case classes: lightweight data structures with little functionality used for data storage and domain modeling.
+    */
 
   case class City(country: String, population: Int)
 
@@ -220,38 +254,16 @@ object ScalaEssentials {
 
   // TODO MyList part 2: use case classes for the MyList implementations
 
-  /**
-   * Generics
-   *   - bounded types with cars
-   *   - variance with cars
-   */
-
-  class Car
-  class Supercar extends Car
-
-  class Garage[+C]
-  class Mechanic[-C]
-
-  val supercarGarage: Garage[Car] = new Garage[Supercar] // I want a garage and I get a specialized garage
-  val taxiDriver: Mechanic[Supercar] = new Mechanic[Car] // I want a mechanic of a supercar and I get a mechanic that can repair ANY car
-
-  /*
-    Intuition:
-    - covariant = contains T
-    - contravariant = acts/can act on T
-   */
-
   /* TODO Exercise MyList part 3:
-   *   - make the structures generic and covariant
+   *   - make the structures generic
    *   - add map, flatMap and filter with Predicates and Transformers
    */
 
-  /**
-   * What's a function, really
-   *   - the OO-FP dream
-   *   - function instance creation
-   *   - functions are actually instances of the FunctionX trait with an apply method
-   */
+  /** What's a function, really
+    *   - the OO-FP dream
+    *   - function instance creation
+    *   - functions are actually instances of the FunctionX trait with an apply method
+    */
 
   val anonymousMultiplier = new Function1[Int, Int] {
     override def apply(arg: Int) = arg * 10
@@ -260,11 +272,10 @@ object ScalaEssentials {
 
   // TODO MyList part 4: replace Predicates and Transformers with functions
 
-  /**
-   * Anonymous functions
-   *   - lambdas demo
-   *   - underscore notation
-   */
+  /** Anonymous functions
+    *   - lambdas demo
+    *   - underscore notation
+    */
 
   val anotherAnonymousMultiplier = (x: Int) => 10 * x // equivalent
   // anonymous functions are called "lambdas"
@@ -275,17 +286,17 @@ object ScalaEssentials {
     x * multiple
   }
 
-  val yetAnotherAnonymousMultiplier: Int => Int = _ * 10 // once the compiler knows the function type, you can use the shorthand notation
+  val yetAnotherAnonymousMultiplier: Int => Int =
+    _ * 10 // once the compiler knows the function type, you can use the shorthand notation
   val aSumFunction: (Int, Int) => Int = _ + _ // (a, b) => a + b, each underscore = one argument
 
   // TODO MyList part 5: test the list with anonymous functions
 
-  /**
-   * HOFs and curries
-   *
-   * HOF = higher-order function = function that takes other functions as arguments/returns other functions as results
-   * `map`, `flatMap`, `filter` are all HOFs.
-   */
+  /** HOFs and curries
+    *
+    * HOF = higher-order function = function that takes other functions as arguments/returns other functions as results
+    * `map`, `flatMap`, `filter` are all HOFs.
+    */
 
   /*
     thousandX = nTimes(tenx, 3) =
@@ -294,21 +305,19 @@ object ScalaEssentials {
       (x: Int) => nTimes(tenx, 0)(tenx(tenx(tenx(x)))
       tenx(tenx(tenx(x)))
    */
-  def nTimes(f: Int => Int, n: Int): Int => Int = {
+  def nTimes(f: Int => Int, n: Int): Int => Int =
     if (n <= 0) (x: Int) => x
-    else (x: Int) => nTimes(f, n-1)(f(x))
-  }
+    else (x: Int) => nTimes(f, n - 1)(f(x))
 
   val millionx: Int => Int = nTimes(x => x * 10, 6)
   println(millionx(2)) // 2000000
 
   // TODO MyList part 6: add zipWith and foreach HOFs
 
-  /**
-   * map, flatMap, filter, for comprehension
-   *   - equivalence between a map chain and a for
-   *   - whiteboard test: chessboard
-   */
+  /** map, flatMap, filter, for comprehension
+    *   - equivalence between a map chain and a for
+    *   - whiteboard test: chessboard
+    */
 
   // TODO MyList part 7: add withFilter and do a for-comprehension on our own list
 
@@ -323,7 +332,8 @@ object ScalaEssentials {
   } yield s"$char$element"
 
   // equivalent
-  val altChessboard = charList.flatMap(char => simpleList.filter(element => element % 2 == 0).map(element => s"$char$element"))
+  val altChessboard =
+    charList.flatMap(char => simpleList.filter(element => element % 2 == 0).map(element => s"$char$element"))
 
   // same for comprehension on OUR list!
   val simpleMyList = Cons(1, Cons(2, Cons(3, Empty)))
@@ -333,14 +343,13 @@ object ScalaEssentials {
     element <- simpleMyList
   } yield s"$char$element"
 
-  /**
-   * Collections
-   *   - lists, arrays, sequences, vectors, sets
-   *   - tuples and maps
-   */
+  /** Collections
+    *   - lists, arrays, sequences, vectors, sets
+    *   - tuples and maps
+    */
 
   // lists
-  val aList = List(1,2,3,4,5)
+  val aList = List(1, 2, 3, 4, 5)
   val firstElement = aList.head
   val rest = aList.tail
   val aPrependedList = 0 :: aList // List(0,1,2,3,4,5)
@@ -351,14 +360,14 @@ object ScalaEssentials {
   val accessingAnElement = anArray(1)(2)
 
   // sequences
-  val aSequence: Seq[Int] = Seq(1,2,3) // Seq.apply(1,2,3)
+  val aSequence: Seq[Int] = Seq(1, 2, 3) // Seq.apply(1,2,3)
   val accessedElement = aSequence(1) // the element at index 1: 2
 
   // vectors: fast Seq implementation
-  val aVector = Vector(1,2,3,4,5)
+  val aVector = Vector(1, 2, 3, 4, 5)
 
   // sets = no duplicates
-  val aSet = Set(1,2,3,4,1,2,3) // Set(1,2,3,4)
+  val aSet = Set(1, 2, 3, 4, 1, 2, 3) // Set(1,2,3,4)
   val setHas5 = aSet.contains(5) // false
   val anAddedSet = aSet + 5 // Set(1,2,3,4,5)
   val aRemovedSet = aSet - 3 // Set(1,2,4)
@@ -380,12 +389,10 @@ object ScalaEssentials {
   val danielsPhone = aPhonebook("Daniel")
   val contacts = aPhonebook.keySet
 
-  /**
-   *
-   * Bonus (time permitting) CBN vs CBV
-   * - CBV evaluates the argument before it is passed
-   * - CBN passes the expression literally, and it's evaluated every time it is used, when it's used
-   */
+  /** Bonus (time permitting) CBN vs CBV
+    *   - CBV evaluates the argument before it is passed
+    *   - CBN passes the expression literally, and it's evaluated every time it is used, when it's used
+    */
 
   def calledByValue(x: Long): Unit = {
     println("by value: " + 1257387745764245L)
@@ -400,19 +407,17 @@ object ScalaEssentials {
   calledByValue(1257387745764245L)
   calledByName(System.nanoTime())
 
-  /**
-   * Laziness
-   *   - lazy val
-   *   - views: the same laziness, on collections you already have
-   *   - filter vs withFilter, and what a for-comprehension really compiles to
-   *   - LazyList: lists that do not end
-   *
-   * Call-by-name above was "do not evaluate this until it is used". Everything
-   * here is that same idea, applied to values and to collections.
-   *
-   * (Day 2 has a whole block of practice on this. Here we just want the shapes
-   * to be familiar.)
-   */
+  /** Laziness
+    *   - lazy val
+    *   - views: the same laziness, on collections you already have
+    *   - filter vs withFilter, and what a for-comprehension really compiles to
+    *   - LazyList: lists that do not end
+    *
+    * Call-by-name above was "do not evaluate this until it is used". Everything here is that same idea, applied to
+    * values and to collections.
+    *
+    * (Day 2 has a whole block of practice on this. Here we just want the shapes to be familiar.)
+    */
 
   // A lazy val is evaluated on FIRST USE, and then remembered.
   lazy val expensiveConfig: Map[String, String] = {
@@ -429,7 +434,7 @@ object ScalaEssentials {
       def / =>   evaluated every single time it is used
    */
 
-  def now: Long = System.nanoTime()       // different every time you ask
+  def now: Long = System.nanoTime() // different every time you ask
   lazy val once: Long = System.nanoTime() // the same forever, computed on first ask
 
   // ---- views: laziness on an ordinary collection ----------------------------
@@ -456,8 +461,8 @@ object ScalaEssentials {
 
   // ---- filter vs withFilter -------------------------------------------------
 
-  val evenThenIncremented = manyNumbers.filter(_ % 2 == 0).map(_ + 1)     // builds the filtered list first
-  val evenThenFused = manyNumbers.withFilter(_ % 2 == 0).map(_ + 1)       // no intermediate list
+  val evenThenIncremented = manyNumbers.filter(_ % 2 == 0).map(_ + 1) // builds the filtered list first
+  val evenThenFused = manyNumbers.withFilter(_ % 2 == 0).map(_ + 1) // no intermediate list
 
   /*
     `withFilter` is `filter` that does not build anything - it just remembers
@@ -470,7 +475,7 @@ object ScalaEssentials {
 
   val evensSquared = for {
     n <- manyNumbers
-    if n % 2 == 0     // <- this becomes withFilter
+    if n % 2 == 0 // <- this becomes withFilter
   } yield n * n
 
   // ---- LazyList: lists that do not end --------------------------------------
@@ -486,7 +491,7 @@ object ScalaEssentials {
 
   val naturalNumbers: LazyList[Int] = LazyList.from(0) // infinite, and that is fine
   val firstFiveNaturals = naturalNumbers.take(5).toList // List(0, 1, 2, 3, 4)
-  val theThousandth = naturalNumbers.drop(1000).head    // 1000 - and nothing past it was ever computed
+  val theThousandth = naturalNumbers.drop(1000).head // 1000 - and nothing past it was ever computed
 
   // `#::` builds a LazyList the way `::` builds a List, except the tail is by-name
   def countFrom(n: Int): LazyList[Int] = n #:: countFrom(n + 1)
@@ -502,7 +507,6 @@ object ScalaEssentials {
     2) multiples(n): every multiple of n, forever
     3) using naturalNumbers, produce the first 10 perfect squares
    */
-
 
   /*
     This MyList implementation contains ALL the exercises
@@ -592,7 +596,7 @@ object ScalaEssentials {
      [1, 10] ++ [2, 20] ++ [3].flatMap(...) =
      [1, 10] ++ [2, 20] ++ [3, 30] ++ [].flatMap(...) =
      [1, 10, 2, 20, 3, 30]
-    */
+     */
     override def flatMap[U](transformer: T => MyList[U]): MyList[U] =
       transformer(head) ++ tail.flatMap(transformer)
 
@@ -617,7 +621,6 @@ object ScalaEssentials {
   val pairWithTen: Int => MyList[Int] = element => new Cons(element, new Cons(10 * element, Empty))
   val evenPredicate: Int => Boolean = element => element % 2 == 0
 
-  def main(args: Array[String]): Unit = {
+  def main(args: Array[String]): Unit =
     println(isPrimeTailrec(2003))
-  }
 }
