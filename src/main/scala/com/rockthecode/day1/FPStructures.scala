@@ -61,6 +61,22 @@ object FPStructures {
   val mappedMap2 = aMap.map(tuple => (tuple._1.take(1), tuple._2))
   val mappedMap3 = aMap.mapValues(_ * 10)
 
+  // exercise average number of this list - use foldLeft
+  val list = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+  val sum = list.foldLeft(0)((acc, elem) => acc + elem)
+  val length = list.foldLeft(0)((acc, _) => acc + 1)
+  val avg = sum / length
+
+  val tupleAvg = list.foldLeft((0 /* acc sum */, 0 /* acc num */ )) { (tuple, elem) =>
+    (tuple._1 + elem, tuple._2 + 1)
+  }
+  val avg2 = tupleAvg._1 / tupleAvg._2
+
+  val max = list.foldLeft(Int.MinValue) { (acc, elem) =>
+    if (acc > elem) acc
+    else elem
+  }
+
   /** option = a possibly absent value = a "list" with at most one value
     */
 

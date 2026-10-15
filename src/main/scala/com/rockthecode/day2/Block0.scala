@@ -75,6 +75,13 @@ trait Block0 {
     */
   def mergeInventories(a: Map[String, Int], b: Map[String, Int]): Map[String, Int]
 
+  def mergeInventories_v2(a: Map[String, Int], b: Map[String, Int]): Map[String, Int] =
+    a.foldLeft(b) { (accMap, pairFromA) =>
+      val key = pairFromA._1
+      val value = pairFromA._2
+      accMap + (key -> (value + accMap.getOrElse(key, 0)))
+    }
+
   // ---------------------------------------------------------------------------
   // 0.5 zip, zipWithIndex, sliding
   // ---------------------------------------------------------------------------

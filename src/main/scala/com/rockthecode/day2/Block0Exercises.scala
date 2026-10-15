@@ -24,21 +24,34 @@ object Block0Exercises extends Block0 {
 
   // 0.2 groupBy
   val employees = List(
-    Employee("Alice", "Engineering", 95000, 8),
-    Employee("Bob", "Sales", 72000, 3),
-    Employee("Carol", "Engineering", 105000, 12),
-    Employee("David", "HR", 68000, 6),
-    Employee("Eva", "Marketing", 75000, 2),
-    Employee("Frank", "Sales", 81000, 9),
-    Employee("Grace", "HR", 79000, 4),
-    Employee("Henry", "Engineering", 88000, 5),
-    Employee("Ivy", "Marketing", 83000, 7),
-    Employee("Jack", "Sales", 65000, 1)
+    Employee("Alice", "Engineering", 95000, 2018),
+    Employee("Bob", "Sales", 72000, 2023),
+    Employee("Carol", "Engineering", 105000, 2014),
+    Employee("David", "HR", 68000, 2020),
+    Employee("Eva", "Marketing", 75000, 2024),
+    Employee("Frank", "Sales", 81000, 2017),
+    Employee("Grace", "HR", 79000, 2022),
+    Employee("Henry", "Engineering", 88000, 2021),
+    Employee("Ivy", "Marketing", 83000, 2019),
+    Employee("Jack", "Sales", 65000, 2025)
   )
 
-  def namesByDepartment(employees: List[Employee]): Map[String, List[String]] = ???
+  def namesByDepartment(employees: List[Employee]): Map[String, List[String]] =
+    employees
+      .groupBy(_.department) // Map[String, List[Employee]]
+      .mapValues(employees => employees.map(_.name).sorted)
+      .toMap // Map[String, List[String]]
 
-  def averageSalaryByDepartment(employees: List[Employee]): Map[String, Double] = ???
+  def averageSalaryByDepartment(employees: List[Employee]): Map[String, Double] =
+    employees
+      .groupBy(_.department) // Map[String, List[Employee]]
+      .mapValues { employees =>
+        val totalSalaries = employees.map(_.salary).sum
+        val numberEmployees = employees.length
+
+        totalSalaries * 1.0 / numberEmployees
+      }
+      .toMap
 
   // 0.3 partition, span, collect
   def partitionBySalary(employees: List[Employee], threshold: Int): (List[Employee], List[Employee]) = ???
@@ -48,7 +61,14 @@ object Block0Exercises extends Block0 {
   def seniorNames(employees: List[Employee], threshold: Int): List[String] = ???
 
   // 0.4 Map merging
-  def mergeInventories(a: Map[String, Int], b: Map[String, Int]): Map[String, Int] = ???
+  def mergeInventories(a: Map[String, Int], b: Map[String, Int]): Map[String, Int] = {
+    val ka = a.keySet
+    val kb = b.keySet
+    val allKeys = ka ++ kb
+    allKeys.map { k =>
+      (k, a.getOrElse(k, 0) + b.getOrElse(k, 0))
+    }.toMap
+  }
 
   // 0.5 zip, zipWithIndex, sliding
   def dailyDeltas(prices: List[BigDecimal]): List[BigDecimal] = ???
