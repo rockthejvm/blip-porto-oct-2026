@@ -14,6 +14,7 @@ object FPStructures {
     case 2 => "second"
     case MySingleton => "the singleton"
     case Person(name, age) => "a person with ..."
+    case (int, string, person) => "tuple"
     case h :: t => "a linked list with head and tail"
     // anything with an unapply method
     case a => s"matched something else: $a"
@@ -28,6 +29,37 @@ object FPStructures {
 		- match anything and bind variable
 		- _ => match anything
    */
+
+  /*
+    Collections
+    - lists
+    - sets
+    - ranges
+    - maps
+    - tuples
+
+    - implement fold
+   */
+
+  val aTuple = (1, "Scala", Person("Daniel", 99)) // (Int, String, Person)
+  def takeNames(tuples: List[(Int, String, Person)]): List[String] =
+    tuples.map(_._3.name).map(_.toUpperCase)
+
+  val aMap = Map(
+    "alice" -> 123, // same as ("alice", 123)
+    ("bob", 999),
+    ("wonder woman", 678)
+  )
+
+  val phone = aMap.getOrElse("wonder woman", 112) // Int
+  // val dangerous = aMap("wonder woman") // retrieves the value or CRASHES if the key is not there
+  val newMap = aMap + ("daniel" -> 987)
+  val onlyHumans = aMap - "wonder woman"
+
+  val filteredKeys = aMap.filterKeys(_.length < 10)
+  val mappedMap = aMap.map(tuple => (tuple._1.toUpperCase(), tuple._2))
+  val mappedMap2 = aMap.map(tuple => (tuple._1.take(1), tuple._2))
+  val mappedMap3 = aMap.mapValues(_ * 10)
 
   /** option = a possibly absent value = a "list" with at most one value
     */

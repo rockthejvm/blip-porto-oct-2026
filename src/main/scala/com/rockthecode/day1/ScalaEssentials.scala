@@ -226,6 +226,10 @@ object ScalaEssentials {
     private def reverseAux(acc: MyList[A]): MyList[A] =
       if (this.isEmpty) acc
       else tail.reverseAux(acc.add(head))
+
+    // FOLD - foldLeft/foldRight
+    def foldLeft[B](acc: B, transformer: (B, A) => B): B
+    def foldRight[B](acc: B, transformer: (B, A) => B): B
   }
 
   case class Empty[A]() extends MyList[A] {
@@ -243,6 +247,9 @@ object ScalaEssentials {
     override def zipWith[B, C](list: List[B], fn: (A, B) => C): MyList[C] =
       if (list.isEmpty) Empty[C]()
       else throw new RuntimeException("zip must have lists of the same size!")
+
+    override def foldLeft[B](acc: B, transformer: (B, A) => B): B = acc
+    override def foldRight[B](acc: B, transformer: (B, A) => B): B = acc
   }
 
   // val mylist = new NonEmpty(....)
@@ -287,6 +294,11 @@ object ScalaEssentials {
           ) // then add the rest of the zip = my tail zipped with the other tail and the same fn
         )
 
+    override def foldLeft[B](acc: B, transformer: (B, A) => B): B =
+      tail.foldLeft(transformer(acc, head), transformer)
+
+    override def foldRight[B](acc: B, transformer: (B, A) => B): B =
+      transformer(tail.foldRight(acc, transformer), head)
   }
 
   val numbers = NonEmpty(1, NonEmpty(2, NonEmpty(3, Empty()))) // this is a MyList[Int]
@@ -357,10 +369,10 @@ object ScalaEssentials {
 
   // for comprehensions
   def combineAll_v3[A, B, C](listA: MyList[A], listB: MyList[B], fn: (A, B) => C): MyList[C] =
-  for {
-    a <- listA
-    b <- listB
-  } yield fn(a, b) // same thing
+    for {
+      a <- listA
+      b <- listB
+    } yield fn(a, b) // same thing
   // this is an EXPRESSION!
 
   def combineAll3[A, B, C, D](listA: MyList[A], listB: MyList[B], listC: MyList[C], fn: (A, B, C) => D): MyList[D] =

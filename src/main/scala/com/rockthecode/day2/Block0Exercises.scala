@@ -1,19 +1,41 @@
 package com.rockthecode.day2
 
-/**
- * Run the tests with:
- *   sbt "testOnly com.rockthecode.day2.Block0ExercisesSuite"
- *
- * No `var`, no `while`, no mutable collections!
- */
+/** Run the tests with: sbt "testOnly com.rockthecode.day2.Block0ExercisesSuite"
+  *
+  * No `var`, no `while`, no mutable collections!
+  */
 object Block0Exercises extends Block0 {
 
-  // 0.1 Cartesian products
-  def allSquares: List[String] = ???
+  val cols = ('a' to 'h').toList
+  val rows = (1 to 8).toList
 
-  def darkSquares: List[String] = ???
+  // 0.1 Cartesian products
+  override def allSquares: List[String] =
+    for {
+      col <- cols
+      row <- rows
+    } yield s"$col$row"
+
+  override def darkSquares: List[String] =
+    for {
+      col <- cols
+      row <- rows if (row + (col - 'a' + 1)) % 2 != 0
+    } yield s"$col$row"
 
   // 0.2 groupBy
+  val employees = List(
+    Employee("Alice", "Engineering", 95000, 8),
+    Employee("Bob", "Sales", 72000, 3),
+    Employee("Carol", "Engineering", 105000, 12),
+    Employee("David", "HR", 68000, 6),
+    Employee("Eva", "Marketing", 75000, 2),
+    Employee("Frank", "Sales", 81000, 9),
+    Employee("Grace", "HR", 79000, 4),
+    Employee("Henry", "Engineering", 88000, 5),
+    Employee("Ivy", "Marketing", 83000, 7),
+    Employee("Jack", "Sales", 65000, 1)
+  )
+
   def namesByDepartment(employees: List[Employee]): Map[String, List[String]] = ???
 
   def averageSalaryByDepartment(employees: List[Employee]): Map[String, Double] = ???
