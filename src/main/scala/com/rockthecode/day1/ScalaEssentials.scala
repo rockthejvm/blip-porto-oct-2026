@@ -391,6 +391,35 @@ object ScalaEssentials {
       c <- listC
     } yield fn(a, b, c)
 
+  // partial functions
+  def describe(x: Int) = x match {
+    case 1 => "the one"
+    case 2 => "second"
+    case 42 => "meaning of life"
+  }
+
+  val pf: PartialFunction[Int, String] = { // same as (x: Int) => x match ...
+    case 1 => "the one"
+    case 2 => "second"
+    case 42 => "meaning of life"
+  }
+
+  val stupidTransformation = List(1, 2, 3).map((x: Int) =>
+    x match {
+      case 1 => "the one"
+      case 2 => "second"
+      case 42 => "meaning of life"
+    }
+  )
+
+  // easier to use a syntax sugar
+  // SAME THING
+  val stupidTransformation_v2 = List(1, 2, 3).map {
+    case 1 => "the one"
+    case 2 => "second"
+    case 42 => "meaning of life"
+  }
+
   def main(args: Array[String]): Unit = {
     println(sumTailrec(1000000, 0))
     println(isPrime(2))

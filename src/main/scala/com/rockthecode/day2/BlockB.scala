@@ -44,15 +44,23 @@ trait BlockB {
 
   /** Collapse consecutive equal elements into (element, how many).
     *
-    * `encode(List('a', 'a', 'a', 'b', 'c', 'c')) == List(('a', 3), ('b', 1), ('c', 2))`
+    * `encode(List('a', 'a', 'a', 'b', 'c', 'c')) == List(('a', 3), ('b', 1), ('c', 2))` encode('a', 'a', 'b', 'a', 'a')
+    * \= List(('a', 2), ('b', 1), ('a', 2))
     */
   def encode[A](list: List[A]): List[(A, Int)]
 
   /** Expand the runs back out again.
     *
-    * Invariant: `decode(encode(xs)) == xs`
+    * Invariant: `decode(encode(xs)) == xs` hint: use flatMap
     */
   def decode[A](runs: List[(A, Int)]): List[A]
+
+  def decodeTrauma[A](runs: List[(A, Int)]): List[A] =
+    runs.foldRight(List()) { (tuple, acc) =>
+      val elem = tuple._1
+      val count = tuple._2
+      List.fill(count)(elem) ++ acc
+    }
 
   // ---------------------------------------------------------------------------
   // B.4 The longest increasing run

@@ -2,14 +2,18 @@ package com.rockthecode.day2
 
 import scala.util.Try
 
-/**
- * Day 2, Block E
- */
+/** Day 2, Block E
+  */
 object BlockEExercises extends BlockE {
 
-  def priceOf(sku: String): Try[BigDecimal] = ???
+  def totalValueOf(sku: String): Try[BigDecimal] =
+    Try(LegacyPricing.totalValueOf(sku))
 
-  def unitCost(sku: String, quantity: Int): Try[BigDecimal] = ???
+  def unitCost(sku: String, quantity: Int): Try[BigDecimal] =
+    for {
+      total <- totalValueOf(sku)
+      perUnit <- Try(LegacyPricing.perUnit(total, quantity))
+    } yield perUnit
 
   def priceOrDefault(sku: String, fallback: BigDecimal): BigDecimal = ???
 
@@ -17,15 +21,42 @@ object BlockEExercises extends BlockE {
 
   def unitCostEither(sku: String, quantity: Int): Either[PricingError, BigDecimal] = ???
 
-  def validateName(raw: String): Either[ValidationError, String] = ???
+  def validateName(raw: String): Either[ValidationError, String] =
+    Either.cond(raw.nonEmpty, raw.trim, NameIsEmpty)
 
-  def validateEmail(raw: String): Either[ValidationError, String] = ???
+  def validateEmail(raw: String): Either[ValidationError, String] =
+    Either.cond(raw.contains("@"), raw.trim, EmailIsInvalid(raw))
 
-  def validateAge(raw: String): Either[ValidationError, Int] = ???
+  def validateAge(raw: String): Either[ValidationError, Int] =
+    Either
+      .cond(raw.toIntOption.nonEmpty, raw.toInt, AgeIsNotANumber(raw)) match {
+      case Left(e) => Left(e)
+      case Right(v) if v >= 18 => Right(v)
+      case Right(v) => Left(AgeIsTooLow(v))
+    }
 
-  def validateFailFast(form: SignupForm): Either[ValidationError, Signup] = ???
+  def validateFailFast(form: SignupForm): Either[ValidationError, Signup] =
+    for {
+      n <- validateName(form.name)
+      e <- validateEmail(form.email)
+      a <- validateAge(form.age)
+    } yield Signup(n, e, a)
 
-  def validateAll(form: SignupForm): Either[List[ValidationError], Signup] = ???
+  def validateAll(form: SignupForm): Either[List[ValidationError], Signup] = {
+    val nameEither = validateName(form.name)
+    val emailEither = validateEmail(form.email)
+    val ageEither = validateAge(form.age)
+
+    val errors = List(nameEither, emailEither, ageEither).collect { case Left(e) =>
+      e
+    } // List[all errors]
+
+    (nameEither, emailEither, ageEither) match {
+      case (Right(n), Right(e), Right(a)) =>
+        Right(Signup(n, e, a))
+      case _ => Left(errors)
+    }
+  }
 
   def sequence[E, A](results: List[Either[E, A]]): Either[E, List[A]] = ???
 

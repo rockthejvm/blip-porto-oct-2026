@@ -3,29 +3,48 @@ package com.rockthecode.day2
 import scala.concurrent.Future
 import scala.concurrent.duration.FiniteDuration
 
-/**
- * Day 2, Block G 
- */
+/** Day 2, Block G
+  */
 object BlockGExercises extends BlockG {
 
   import scala.concurrent.ExecutionContext.Implicits.global
 
-  // G.1 
-  def sumThree(first: => Future[Int], second: => Future[Int], third: => Future[Int]): Future[Int] = ???
+  // G.1
+  def sumThree(first: => Future[Int], second: => Future[Int], third: => Future[Int]): Future[Int] =
+    for {
+      a <- first
+      b <- second
+      c <- third
+    } yield a + b + c
 
-  // G.2 
-  def fetchAll[A, B](ids: List[A])(fetch: A => Future[B]): Future[List[B]] = ???
+  // G.2
+  def fetchAll[A, B](ids: List[A])(fetch: A => Future[B]): Future[List[B]] =
+    ids.foldRight(Future.successful(List())) { (e, acc) =>
+      for {
+        r <- fetch(e)
+        list <- acc
+      } yield r :: list
+    }
 
-  def fetchAllSettled[A, B](ids: List[A])(fetch: A => Future[B]): Future[List[Either[Throwable, B]]] = ???
+  def fetchAllSettled[A, B](ids: List[A])(fetch: A => Future[B]): Future[List[Either[Throwable, B]]] =
+    ids.foldRight(Future.successful(List())) { (e, acc) =>
+      for {
+        r <- fetch(e).map(success => Right(success)).recover(ex => Left(ex)) // Future[Either[Throwable, B]]
+        list <- acc
+      } yield r :: list
+    }
 
-  // G.3 
+  def fetchAllSettledv2[A, B](ids: List[A])(fetch: A => Future[B]): Future[List[Either[Throwable, B]]] =
+    fetchAll(ids)(e => fetch(e).map(success => Right(success)).recover(ex => Left(ex)))
+
+  // G.3
   def fetchOrDefault[A](fetch: => Future[A], fallback: A): Future[A] = ???
 
   def fetchWithBackup[A](primary: => Future[A], backup: => Future[A]): Future[A] = ???
 
   def describeOutcome(future: Future[Int]): Future[String] = ???
 
-  // G.4 
+  // G.4
   def fetchAsFuture(id: Int): Future[String] = ???
 
   def delayed[A](delay: FiniteDuration)(value: => A): Future[A] = ???
