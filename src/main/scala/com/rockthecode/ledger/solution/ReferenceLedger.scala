@@ -2,32 +2,22 @@ package com.rockthecode.ledger.solution
 
 import com.rockthecode.ledger.LedgerEngine
 
-/**
- * The reference ledger: the pieces wired together.
- *
- *     line -> Parser -> Command -> Decide -> events -> fold(Evolve) -> Bank
- *                                                   \-> Wire -> output
- *
- * This object is the only one that knows all the parts exist. Each part knows
- * only its neighbours' types.
- */
+/** The reference ledger: the pieces wired together.
+  *
+  * line -> Parser -> Command -> Decide -> events -> fold(Evolve) -> Bank \-> Wire -> output
+  */
 object ReferenceLedger extends LedgerEngine[Bank] {
 
   def empty: Bank = Bank.empty
 
   def execute(bank: Bank, line: String): (Bank, List[String]) = Parser.parse(line) match {
-    case None              => (bank, Nil)
+    case None => (bank, Nil)
     case Some(Left(error)) => (bank, List(Wire.error(error)))
 
-    // A query cannot record a fact: `decide` never sees it, so no event can
-    // exist and no sequence number can move. The guarantee is carried by the
-    // Mutation/Query split, not by discipline. The one check a query needs -
-    // unknown account, closed account - is the head of the same precedence
-    // chain the mutations use.
     case Some(Right(q: Query)) =>
       Decide.queryable(bank, q.account) match {
         case Left(rejection) => (bank, List(Wire.rejected(rejection)))
-        case Right(account)  => (bank, answer(bank, q, account))
+        case Right(account) => (bank, answer(bank, q, account))
       }
 
     case Some(Right(m: Mutation)) =>
@@ -47,8 +37,8 @@ object ReferenceLedger extends LedgerEngine[Bank] {
 
   /** The `account` here is `Account.Active`: `queryable` already proved it, so `.balance` exists. */
   private def answer(bank: Bank, q: Query, account: Account.Active): List[String] = q match {
-    case Query.Balance(_)             => List(Wire.balance(account))
-    case Query.History(acc)           => Wire.history(acc, Projections.facts(bank, acc))
+    case Query.Balance(_) => List(Wire.balance(account))
+    case Query.History(acc) => Wire.history(acc, Projections.facts(bank, acc))
     case Query.Summary(acc, from, to) => List(Wire.summary(acc, from, to, Projections.summary(bank, acc, from, to)))
   }
 

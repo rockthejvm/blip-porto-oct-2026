@@ -4,9 +4,8 @@ import com.rockthecode.day2.*
 
 import scala.annotation.tailrec
 
-/**
- * Day 2, Block C - reference solutions.
- */
+/** Day 2, Block C - reference solutions.
+  */
 object BlockCSolutions extends BlockC {
 
   // ---------------------------------------------------------------------------
@@ -17,31 +16,17 @@ object BlockCSolutions extends BlockC {
 
   def area(shape: Shape): Double =
     shape match {
-      case Circle(radius)          => math.Pi * radius * radius
+      case Circle(radius) => math.Pi * radius * radius
       case Rectangle(width, height) => width * height
-      case Triangle(base, height)   => base * height / 2
+      case Triangle(base, height) => base * height / 2
     }
 
   def scale(shape: Shape, factor: Double): Shape =
     shape match {
-      case Circle(radius)           => Circle(radius * factor)
+      case Circle(radius) => Circle(radius * factor)
       case Rectangle(width, height) => Rectangle(width * factor, height * factor)
-      case Triangle(base, height)   => Triangle(base * factor, height * factor)
+      case Triangle(base, height) => Triangle(base * factor, height * factor)
     }
-
-  // THE DEMO. Live, on screen, at the end of C.1:
-  //
-  //   add `case Square(side: Double)` to the enum, recompile, and read out the
-  //   warnings. Every function with a hole in it, by exact line number, no grep.
-  //
-  // Then make the point that matters: this only works because the type is
-  // SEALED. Delete `sealed` from a Scala 2 ADT (or model it as a plain trait
-  // anyone can extend) and the compiler goes quiet - not because the code got
-  // safer, but because it stopped being able to help.
-  //
-  // Worth turning warnings into errors for them too, on screen:
-  //   scalacOptions += "-Werror"
-  // Non-exhaustive matches are the single best candidate for that flag.
 
   // ---------------------------------------------------------------------------
   // C.2 An order lifecycle
@@ -54,21 +39,15 @@ object BlockCSolutions extends BlockC {
 
   def transition(state: OrderState, event: OrderEvent): TransitionResult =
     (state, event) match {
-      case (Draft, Place)               => Moved(Placed)
-      case (Placed, Pay)                => Moved(Paid)
-      case (Paid, Ship)                 => Moved(Shipped)
-      case (Shipped, Deliver)           => Moved(Delivered)
+      case (Draft, Place) => Moved(Placed)
+      case (Placed, Pay) => Moved(Paid)
+      case (Paid, Ship) => Moved(Shipped)
+      case (Shipped, Deliver) => Moved(Delivered)
       case (Draft | Placed | Paid, Cancel) => Moved(Cancelled)
-      case _ if isFinal(state)          => Rejected(AlreadyFinished(state))
-      case _                            => Rejected(Impossible(state, event))
+      case _ if isFinal(state) => Rejected(AlreadyFinished(state))
+      case _ => Rejected(Impossible(state, event))
     }
 
-  // Five legal moves, two ways of saying no, thirty combinations covered.
-  //
-  // `Draft | Placed | Paid` is an alternative pattern - one case, three states.
-  // Worth showing, because the alternative is three near-identical lines and
-  // people write those.
-  //
   // Order matters here in a way that is easy to miss: the `isFinal` guard has
   // to come after the legal moves and before the catch-all. Move it to the top
   // and nothing breaks, because no final state has a legal move - but that is
@@ -78,7 +57,7 @@ object BlockCSolutions extends BlockC {
   def isFinal(state: OrderState): Boolean =
     state match {
       case Delivered | Cancelled => true
-      case _                     => false
+      case _ => false
     }
 
   // ---------------------------------------------------------------------------
@@ -89,12 +68,12 @@ object BlockCSolutions extends BlockC {
 
   def render(json: Json): String =
     json match {
-      case JNull          => "null"
-      case JBool(value)   => value.toString
-      case JNum(value)    => value.toString
-      case JStr(value)    => renderString(value)
-      case JArr(items)    => items.map(render).mkString("[", ",", "]")
-      case JObj(fields)   =>
+      case JNull => "null"
+      case JBool(value) => value.toString
+      case JNum(value) => value.toString
+      case JStr(value) => renderString(value)
+      case JArr(items) => items.map(render).mkString("[", ",", "]")
+      case JObj(fields) =>
         fields.map((name, value) => s"${renderString(name)}:${render(value)}").mkString("{", ",", "}")
     }
 
@@ -103,11 +82,7 @@ object BlockCSolutions extends BlockC {
 
   // Note the order of the two replacements: backslashes first, then quotes.
   // Do it the other way round and the backslash you just inserted in front of a
-  // quote gets escaped again, turning `"` into `\\"`. It is a two-line function
-  // with an ordering bug in it, which is why there is a test for exactly that.
-  //
-  // `mkString("[", ",", "]")` handles the empty case for free - no `if` needed
-  // to avoid a trailing comma. Worth pointing at; people reach for a fold.
+  // quote gets escaped again, turning `"` into `\\"`.
 
   // ---------------------------------------------------------------------------
   // C.4 Reading a command line
@@ -117,12 +92,12 @@ object BlockCSolutions extends BlockC {
 
   def interpret(args: List[String]): Command =
     args match {
-      case Nil                       => Help
-      case "help" :: Nil             => Help
-      case "list" :: Nil             => ListAll
-      case "add" :: item :: Nil      => AddItem(item)
-      case "remove" :: item :: Nil   => RemoveItem(item)
-      case unrecognised              => Unknown(unrecognised)
+      case Nil => Help
+      case "help" :: Nil => Help
+      case "list" :: Nil => ListAll
+      case "add" :: item :: Nil => AddItem(item)
+      case "remove" :: item :: Nil => RemoveItem(item)
+      case unrecognised => Unknown(unrecognised)
     }
 
   // This is the whole point of list patterns: the code has the same shape as
@@ -131,8 +106,7 @@ object BlockCSolutions extends BlockC {
   //
   // Note that the compiler does NOT check this one for exhaustiveness in any
   // useful sense: List is not a small closed set of shapes, so the catch-all is
-  // doing real work rather than shutting the compiler up. Knowing which of your
-  // matches are checked and which are not is a useful instinct.
+  // doing real work rather than shutting the compiler up.
 
   // ---------------------------------------------------------------------------
   // C.5 Evaluating an expression
@@ -142,11 +116,11 @@ object BlockCSolutions extends BlockC {
 
   def eval(expr: Expr): Option[BigDecimal] =
     expr match {
-      case Lit(value)         => Some(value)
-      case Neg(inner)         => eval(inner).map(-_)
-      case Add(left, right)   => for { l <- eval(left); r <- eval(right) } yield l + r
-      case Mul(left, right)   => for { l <- eval(left); r <- eval(right) } yield l * r
-      case Div(left, right)   =>
+      case Lit(value) => Some(value)
+      case Neg(inner) => eval(inner).map(-_)
+      case Add(left, right) => for { l <- eval(left); r <- eval(right) } yield l + r
+      case Mul(left, right) => for { l <- eval(left); r <- eval(right) } yield l * r
+      case Div(left, right) =>
         for {
           l <- eval(left)
           r <- eval(right)
@@ -158,10 +132,6 @@ object BlockCSolutions extends BlockC {
   // whole thing is None, and nobody had to write that. The `if r != 0` guard is
   // a `withFilter` on Option, which turns Some into None - which is exactly the
   // "no answer" this needs.
-  //
-  // Note what the brief forbade: short-circuiting `Mul(_, Lit(0))` to zero
-  // without evaluating the other side. That would make `0 * (1/0)` equal zero,
-  // and then evaluation order becomes part of the language definition. Say no.
 
   // ===========================================================================
   //
@@ -175,42 +145,28 @@ object BlockCSolutions extends BlockC {
 
   def at(json: Json, path: List[String]): Option[Json] =
     (json, path) match {
-      case (found, Nil)          => Some(found)
+      case (found, Nil) => Some(found)
       case (JObj(fields), step :: rest) =>
         fields.collectFirst { case (name, value) if name == step => value }.flatMap(child => at(child, rest))
-      case _                     => None // a path segment against a non-object
+      case _ => None // a path segment against a non-object
     }
-
-  // Matching on the pair again, exactly as in C.2. `collectFirst` stops at the
-  // first hit and hands back an Option, which is precisely the shape needed to
-  // `flatMap` into the next step.
 
   def collectStrings(json: Json): List[String] =
     json match {
-      case JStr(value)  => List(value)
-      case JArr(items)  => items.flatMap(collectStrings)
+      case JStr(value) => List(value)
+      case JArr(items) => items.flatMap(collectStrings)
       case JObj(fields) => fields.flatMap((_, value) => collectStrings(value))
-      case _            => Nil
+      case _ => Nil
     }
-
-  // The underscore in `(_, value)` is the exercise: field NAMES are not values,
-  // and it takes one character to say so. Anyone who writes
-  // `fields.flatMap((name, value) => name :: collectStrings(value))` has
-  // silently invented a different function.
 
   def depth(json: Json): Int =
     json match {
-      case JArr(Nil)    => 1
-      case JObj(Nil)    => 1
-      case JArr(items)  => 1 + items.map(depth).max
+      case JArr(Nil) => 1
+      case JObj(Nil) => 1
+      case JArr(items) => 1 + items.map(depth).max
       case JObj(fields) => 1 + fields.map((_, value) => depth(value)).max
-      case _            => 1
+      case _ => 1
     }
-
-  // The empty cases come FIRST and they have to: `List.empty.max` throws, which
-  // is Block B.2's lesson turning up uninvited. Anyone who writes the general
-  // case first gets an exception rather than a wrong answer - which, at least,
-  // is the good kind of failure.
 
   // ---------------------------------------------------------------------------
   // SC4. Simplifying expressions
@@ -222,26 +178,26 @@ object BlockCSolutions extends BlockC {
       case Neg(inner) =>
         simplify(inner) match {
           case Neg(twiceNegated) => twiceNegated // -(-x) = x
-          case simplified        => Neg(simplified)
+          case simplified => Neg(simplified)
         }
       case Add(left, right) =>
         (simplify(left), simplify(right)) match {
           case (Lit(zero), other) if zero == 0 => other
           case (other, Lit(zero)) if zero == 0 => other
-          case (l, r)                          => Add(l, r)
+          case (l, r) => Add(l, r)
         }
       case Mul(left, right) =>
         (simplify(left), simplify(right)) match {
-          case (Lit(zero), _) if zero == 0     => Lit(0)
-          case (_, Lit(zero)) if zero == 0     => Lit(0)
-          case (Lit(one), other) if one == 1   => other
-          case (other, Lit(one)) if one == 1   => other
-          case (l, r)                          => Mul(l, r)
+          case (Lit(zero), _) if zero == 0 => Lit(0)
+          case (_, Lit(zero)) if zero == 0 => Lit(0)
+          case (Lit(one), other) if one == 1 => other
+          case (other, Lit(one)) if one == 1 => other
+          case (l, r) => Mul(l, r)
         }
       case Div(left, right) =>
         (simplify(left), simplify(right)) match {
           case (other, Lit(one)) if one == 1 => other
-          case (l, r)                        => Div(l, r)
+          case (l, r) => Div(l, r)
         }
     }
 

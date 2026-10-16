@@ -15,13 +15,6 @@ enum ParseError {
   case BadRange(fromSeq: Int, toSeq: Int)
 }
 
-/**
- * Text -> Command. Knows nothing about accounts or balances: it cannot tell you
- * whether an account exists, only whether a token looks like an account id.
- *
- * Precedence within a line: unknown verb, then arity, then arguments left to
- * right. That order is a protocol decision and is spelled out in PROTOCOL.md.
- */
 object Parser {
 
   /** None for blank lines and comments: they produce no output at all. */
@@ -32,13 +25,20 @@ object Parser {
   }
 
   private def command(tokens: List[String]): Either[ParseError, Command] = tokens match {
-    case "OPEN" :: args     => arity(args, 2)("OPEN") { case List(acc, cur) => for { a <- account(acc); c <- currency(cur) } yield Open(a, c) }
-    case "DEPOSIT" :: args  => arity(args, 2)("DEPOSIT") { case List(acc, amt) => for { a <- account(acc); m <- amount(amt) } yield Deposit(a, m) }
-    case "WITHDRAW" :: args => arity(args, 2)("WITHDRAW") { case List(acc, amt) => for { a <- account(acc); m <- amount(amt) } yield Withdraw(a, m) }
-    case "BALANCE" :: args  => arity(args, 1)("BALANCE") { case List(acc) => account(acc).map(Balance(_)) }
-    case "FREEZE" :: args   => arity(args, 1)("FREEZE") { case List(acc) => account(acc).map(Freeze(_)) }
+    case "OPEN" :: args =>
+      arity(args, 2)("OPEN") { case List(acc, cur) => for { a <- account(acc); c <- currency(cur) } yield Open(a, c) }
+    case "DEPOSIT" :: args =>
+      arity(args, 2)("DEPOSIT") { case List(acc, amt) =>
+        for { a <- account(acc); m <- amount(amt) } yield Deposit(a, m)
+      }
+    case "WITHDRAW" :: args =>
+      arity(args, 2)("WITHDRAW") { case List(acc, amt) =>
+        for { a <- account(acc); m <- amount(amt) } yield Withdraw(a, m)
+      }
+    case "BALANCE" :: args => arity(args, 1)("BALANCE") { case List(acc) => account(acc).map(Balance(_)) }
+    case "FREEZE" :: args => arity(args, 1)("FREEZE") { case List(acc) => account(acc).map(Freeze(_)) }
     case "UNFREEZE" :: args => arity(args, 1)("UNFREEZE") { case List(acc) => account(acc).map(Unfreeze(_)) }
-    case "CLOSE" :: args    => arity(args, 1)("CLOSE") { case List(acc) => account(acc).map(Close(_)) }
+    case "CLOSE" :: args => arity(args, 1)("CLOSE") { case List(acc) => account(acc).map(Close(_)) }
     case "TRANSFER" :: args =>
       arity(args, 3)("TRANSFER") { case List(from, to, amt) =>
         for { f <- account(from); t <- account(to); m <- amount(amt) } yield Transfer(f, t, m)
@@ -54,7 +54,7 @@ object Parser {
         } yield Summary(a, f, t)
       }
     case verb :: _ => Left(UnknownCommand(verb))
-    case Nil       => Left(UnknownCommand("")) // unreachable: blank lines never get here
+    case Nil => Left(UnknownCommand("")) // unreachable: blank lines never get here
   }
 
   private def arity(args: List[String], n: Int)(verb: String)(

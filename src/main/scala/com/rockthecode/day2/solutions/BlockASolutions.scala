@@ -2,9 +2,8 @@ package com.rockthecode.day2.solutions
 
 import com.rockthecode.day2.*
 
-/**
- * Day 2, Block A - reference solutions.
- */
+/** Day 2, Block A - reference solutions.
+  */
 object BlockASolutions extends BlockA {
 
   // ---------------------------------------------------------------------------
@@ -27,16 +26,8 @@ object BlockASolutions extends BlockA {
       largest = largestOrder(orders)
     )
 
-  /**
-   * The single-pass version, for the walkthrough.
-   *
-   * This is what somebody in the room will insist on, because the pipeline
-   * version "traverses three times". Show it, then ask which one they would
-   * rather be handed at 2am. The three pipelines each have a name; this one
-   * has a tuple.
-   *
-   * Land it on: clarity beats traversal count until a profiler says otherwise.
-   */
+  /** The single-pass version, for the walkthrough.
+    */
   def summarizeInOnePass(orders: List[Order], threshold: BigDecimal): OrderSummary =
     orders
       .foldLeft(OrderSummary(BigDecimal(0), Nil, None)) { (summary, order) =>
@@ -68,12 +59,6 @@ object BlockASolutions extends BlockA {
   def applyAll(account: Account, txs: List[Transaction]): Account =
     txs.foldLeft(account)(applyTransaction)
 
-  // That is the whole of A.2's point, and it is worth saying out loud:
-  //
-  //   current state == history.foldLeft(initialState)(apply)
-  //
-  // Day 3's settlement engine is this line with a bigger `apply`.
-
   // ---------------------------------------------------------------------------
   // A.3 The report renderer
   // ---------------------------------------------------------------------------
@@ -96,8 +81,6 @@ object BlockASolutions extends BlockA {
 
   def renderReport(requests: List[Request]): List[String] =
     requests.map(renderLine)
-
-  // Nothing in this file prints. `BlockAExercises.main` does, once, at the edge.
 
   // ===========================================================================
   //
@@ -143,7 +126,7 @@ object BlockASolutions extends BlockA {
 
   // Same `foldLeft` as A.2, with a Map as the state instead of one account.
   // Worth saying out loud: nothing about `foldLeft` changed. The step function
-  // got bigger, and that is all. Day 3's engine is this shape.
+  // got bigger, and that is all.
   //
   // The `request.from == request.to` guard is not pedantry. Without it, the
   // debit and the credit both land on the same id, the second `updated` wins,
@@ -155,36 +138,33 @@ object BlockASolutions extends BlockA {
 
   def applyAllTracking(account: Account, txs: List[Transaction]): (Account, List[Rejection]) = {
     val (finalAccount, rejections) =
-      txs.zipWithIndex.foldLeft((account, List.empty[Rejection])) {
-        case ((current, log), (tx, index)) =>
-          val next = applyTransaction(current, tx)
+      txs.zipWithIndex.foldLeft((account, List.empty[Rejection])) { case ((current, log), (tx, index)) =>
+        val next = applyTransaction(current, tx)
 
-          if (next != current) (next, log) // it took effect
-          else
-            tx match {
-              case Freeze | Unfreeze =>
-                (next, log) // no-ops, never a rejection
-              case _ if current.status == Frozen =>
-                (next, Rejection(index, "account frozen") :: log)
-              case _ =>
-                (next, Rejection(index, "insufficient funds") :: log)
-            }
+        if (next != current) (next, log) // it took effect
+        else
+          tx match {
+            case Freeze | Unfreeze =>
+              (next, log) // no-ops, never a rejection
+            case _ if current.status == Frozen =>
+              (next, Rejection(index, "account frozen") :: log)
+            case _ =>
+              (next, Rejection(index, "insufficient funds") :: log)
+          }
       }
 
     (finalAccount, rejections.reverse)
   }
 
-  // Two things worth pointing at in the walkthrough:
-  //
   // 1. The log is built by prepending and reversed once at the end. Appending
   //    with `:+` inside a fold is quadratic on a List. Nobody notices at n = 6
   //    and everybody notices at n = 6 million.
   //
   // 2. "Did it take effect?" is `next != current`, which works because these
   //    are case classes with value equality. It is also slightly too clever: a
-  //    deposit of zero is indistinguishable from a rejection. The honest fix is
+  //    deposit of zero is indistinguishable from a rejection. The fix is
   //    to have `applyTransaction` say what happened rather than making the
-  //    caller guess - which is exactly what Block E is for. Say so.
+  //    caller guess - which is exactly what Block E is for.
 
   // ---------------------------------------------------------------------------
   // SA4. Parsing a duration
@@ -203,11 +183,6 @@ object BlockASolutions extends BlockA {
         digits.toLong * unitMillis(unit)
       }
       .sum
-
-  // Splitting on "is it a digit" rather than on position is what makes "ms"
-  // fall out for free. Anyone who reaches for `endsWith("s")` will get "2h 15m
-  // 3s" wrong by a factor of a thousand, and the round-trip test will catch
-  // them - which is a nicer way to learn it than a code review.
 
   // ---------------------------------------------------------------------------
   // SA5. Traffic summary
@@ -231,6 +206,4 @@ object BlockASolutions extends BlockA {
 
   // `groupBy(...).map((k, v) => (k, v.size))` is `groupMapReduce`:
   //   requests.groupMapReduce(r => s"${r.statusCode / 100}xx")(_ => 1)(_ + _)
-  // Shorter, and a good name to know, but harder to read cold. Show both and
-  // let them choose - the point of this block is that the choice is theirs.
 }
