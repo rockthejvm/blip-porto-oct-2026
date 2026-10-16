@@ -68,8 +68,7 @@ trait BlockA {
 
   /** One aligned line of the report.
     */
-  def renderLine(req: Request): String =
-    f"${req.method}%-6s ${req.path}%-24s ${req.statusCode}%3d  ${formatDuration(req.durationMillis)}%s"
+  def renderLine(req: Request): String
 
   /** The whole report, one string per request, in the original order.
     */

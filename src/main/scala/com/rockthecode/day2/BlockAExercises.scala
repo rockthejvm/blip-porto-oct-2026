@@ -83,6 +83,9 @@ object BlockAExercises extends BlockA {
   // A.3 The report renderer
   // ---------------------------------------------------------------------------
 
+  override def renderLine(req: Request): String =
+    f"${req.method}%-6s ${req.path}%-24s ${req.statusCode}%3d  ${formatDuration(req.durationMillis)}%s"
+
   def formatDuration(millis: Long): String = ???
 
   def renderReport(requests: List[Request]): List[String] = ???

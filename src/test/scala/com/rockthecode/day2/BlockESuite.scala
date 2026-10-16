@@ -5,12 +5,10 @@ import com.rockthecode.day2.solutions.BlockESolutions
 import java.util.concurrent.atomic.AtomicInteger
 import scala.util.{Failure, Success, Try}
 
-/**
- * Day 2, Block E - the tests.
- *
- *   sbt blockE                                                 <- attendees
- *   sbt "testOnly com.rockthecode.day2.BlockESolutionsSuite"   <- trainer
- */
+/** Day 2, Block E - the tests.
+  *
+  * sbt blockE <- attendees sbt "testOnly com.rockthecode.day2.BlockESolutionsSuite" <- trainer
+  */
 abstract class BlockESuite(impl: BlockE) extends munit.FunSuite {
 
   import PricingError.*
@@ -20,12 +18,12 @@ abstract class BlockESuite(impl: BlockE) extends munit.FunSuite {
   // --- E.1 -------------------------------------------------------------------
 
   test("E.1 priceOf finds a price") {
-    assertEquals(impl.priceOf("widget"), Success(BigDecimal(24)))
-    assertEquals(impl.priceOf("gizmo"), Success(BigDecimal(40)))
+    assertEquals(impl.totalValueOf("widget"), Success(BigDecimal(24)))
+    assertEquals(impl.totalValueOf("gizmo"), Success(BigDecimal(40)))
   }
 
   test("E.1 priceOf catches instead of throwing") {
-    val result = impl.priceOf("nothing")
+    val result = impl.totalValueOf("nothing")
     assert(result.isFailure, "an unknown sku must not escape as an exception")
     assert(
       result.failed.get.isInstanceOf[NoSuchElementException],
@@ -273,7 +271,10 @@ abstract class BlockESuite(impl: BlockE) extends munit.FunSuite {
   // --- SE3 -------------------------------------------------------------------
 
   test("SE3 mapError translates the left and leaves the right alone") {
-    assertEquals(impl.mapError(Left(UnknownSku("x")): Either[PricingError, Int])(e => s"pricing: $e"), Left("pricing: UnknownSku(x)"))
+    assertEquals(
+      impl.mapError(Left(UnknownSku("x")): Either[PricingError, Int])(e => s"pricing: $e"),
+      Left("pricing: UnknownSku(x)")
+    )
     assertEquals(impl.mapError(Right(7): Either[PricingError, Int])(e => s"pricing: $e"), Right(7))
   }
 

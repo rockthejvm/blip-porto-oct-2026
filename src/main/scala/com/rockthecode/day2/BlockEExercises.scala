@@ -22,17 +22,17 @@ object BlockEExercises extends BlockE {
   def unitCostEither(sku: String, quantity: Int): Either[PricingError, BigDecimal] = ???
 
   def validateName(raw: String): Either[ValidationError, String] =
-    Either.cond(raw.nonEmpty, raw.trim, NameIsEmpty)
+    Either.cond(raw.nonEmpty, raw.trim, ValidationError.NameIsEmpty)
 
   def validateEmail(raw: String): Either[ValidationError, String] =
-    Either.cond(raw.contains("@"), raw.trim, EmailIsInvalid(raw))
+    Either.cond(raw.contains("@"), raw.trim, ValidationError.EmailIsInvalid(raw))
 
   def validateAge(raw: String): Either[ValidationError, Int] =
     Either
-      .cond(raw.toIntOption.nonEmpty, raw.toInt, AgeIsNotANumber(raw)) match {
+      .cond(raw.toIntOption.nonEmpty, raw.toInt, ValidationError.AgeIsNotANumber(raw)) match {
       case Left(e) => Left(e)
       case Right(v) if v >= 18 => Right(v)
-      case Right(v) => Left(AgeIsTooLow(v))
+      case Right(v) => Left(ValidationError.AgeIsTooLow(v))
     }
 
   def validateFailFast(form: SignupForm): Either[ValidationError, Signup] =

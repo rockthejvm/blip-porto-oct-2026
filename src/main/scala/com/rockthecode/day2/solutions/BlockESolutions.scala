@@ -17,12 +17,12 @@ object BlockESolutions extends BlockE {
   // E.1 Try, at the boundary
   // ---------------------------------------------------------------------------
 
-  def priceOf(sku: String): Try[BigDecimal] =
-    Try(LegacyPricing.unitPrice(sku))
+  def totalValueOf(sku: String): Try[BigDecimal] =
+    Try(LegacyPricing.totalValueOf(sku))
 
   def unitCost(sku: String, quantity: Int): Try[BigDecimal] =
     for {
-      total <- priceOf(sku)
+      total <- totalValueOf(sku)
       each <- Try(LegacyPricing.perUnit(total, quantity))
     } yield each
 
@@ -31,14 +31,14 @@ object BlockESolutions extends BlockE {
   // means the second never runs.
 
   def priceOrDefault(sku: String, fallback: BigDecimal): BigDecimal =
-    priceOf(sku).getOrElse(fallback)
+    totalValueOf(sku).getOrElse(fallback)
 
   // ---------------------------------------------------------------------------
   // E.2 Crossing the boundary
   // ---------------------------------------------------------------------------
 
   def priceEither(sku: String): Either[PricingError, BigDecimal] =
-    priceOf(sku).toEither.left.map {
+    totalValueOf(sku).toEither.left.map {
       case _: NoSuchElementException => UnknownSku(sku)
       case other => Unexpected(other.getMessage)
     }
@@ -63,15 +63,15 @@ object BlockESolutions extends BlockE {
   // ---------------------------------------------------------------------------
 
   def validateName(raw: String): Either[ValidationError, String] =
-    Either.cond(raw.trim.nonEmpty, raw, NameIsEmpty)
+    Either.cond(raw.trim.nonEmpty, raw, ValidationError.NameIsEmpty)
 
   def validateEmail(raw: String): Either[ValidationError, String] =
-    Either.cond(raw.contains("@"), raw, EmailIsInvalid(raw))
+    Either.cond(raw.contains("@"), raw, ValidationError.EmailIsInvalid(raw))
 
   def validateAge(raw: String): Either[ValidationError, Int] =
     for {
-      age <- raw.toIntOption.toRight(AgeIsNotANumber(raw))
-      adult <- Either.cond(age >= 18, age, AgeIsTooLow(age))
+      age <- raw.toIntOption.toRight(ValidationError.AgeIsNotANumber(raw))
+      adult <- Either.cond(age >= 18, age, ValidationError.AgeIsTooLow(age))
     } yield adult
 
   def validateFailFast(form: SignupForm): Either[ValidationError, Signup] =

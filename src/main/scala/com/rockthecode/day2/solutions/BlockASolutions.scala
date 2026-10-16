@@ -76,7 +76,7 @@ object BlockASolutions extends BlockA {
     if (rendered.isEmpty) "0ms" else rendered.mkString(" ")
   }
 
-  def renderLine(req: Request): String =
+  override def renderLine(req: Request): String =
     f"${req.method}%-6s ${req.path}%-24s ${req.statusCode}%3d  ${formatDuration(req.durationMillis)}%s"
 
   def renderReport(requests: List[Request]): List[String] =
