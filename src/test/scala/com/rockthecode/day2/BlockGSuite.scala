@@ -1,6 +1,6 @@
 package com.rockthecode.day2
 
-import com.rockthecode.day2.solutions.BlockGSolutions
+import com.rockthecode.day2.BlockGExercises
 
 import java.util.concurrent.{CountDownLatch, TimeoutException}
 import java.util.concurrent.atomic.AtomicInteger
@@ -8,17 +8,14 @@ import scala.concurrent.duration.*
 import scala.concurrent.{Await, Future, blocking}
 import scala.util.{Failure, Success, Try}
 
-/**
- * Day 2, Block G - the tests.
- *
- * These measure elapsed time, because a correct-but-sequential answer returns
- * exactly the same value as a correct-and-parallel one. Timing assertions are
- * deliberately loose - they are looking for "three delays instead of one", not
- * for milliseconds.
- *
- *   sbt blockG                                                 <- attendees
- *   sbt "testOnly com.rockthecode.day2.BlockGSolutionsSuite"   <- trainer
- */
+/** Day 2, Block G - the tests.
+  *
+  * These measure elapsed time, because a correct-but-sequential answer returns exactly the same value as a
+  * correct-and-parallel one. Timing assertions are deliberately loose - they are looking for "three delays instead of
+  * one", not for milliseconds.
+  *
+  * sbt blockG <- attendees sbt "testOnly com.rockthecode.day2.BlockGSolutionsSuite" <- trainer
+  */
 abstract class BlockGSuite(impl: BlockG) extends munit.FunSuite {
 
   import scala.concurrent.ExecutionContext.Implicits.global
@@ -283,7 +280,8 @@ abstract class BlockGSuite(impl: BlockG) extends munit.FunSuite {
   }
 
   test("SG1 firstSuccessOf fails only when everything has failed") {
-    val result = Try(await(impl.firstSuccessOf(List(failing[String]("one"), slow(100)(throw new RuntimeException("two"))))))
+    val result =
+      Try(await(impl.firstSuccessOf(List(failing[String]("one"), slow(100)(throw new RuntimeException("two"))))))
     assert(result.isFailure)
   }
 
@@ -365,7 +363,9 @@ abstract class BlockGSuite(impl: BlockG) extends munit.FunSuite {
 
   test("SG4 memoizeFuture remembers a completed answer") {
     val calls = new AtomicInteger(0)
-    val cached = impl.memoizeFuture[Int, Int] { n => calls.incrementAndGet(); Future.successful(n * n) }
+    val cached = impl.memoizeFuture[Int, Int] { n =>
+      calls.incrementAndGet(); Future.successful(n * n)
+    }
 
     assertEquals(await(cached(5)), 25)
     assertEquals(await(cached(5)), 25)
@@ -408,7 +408,9 @@ abstract class BlockGSuite(impl: BlockG) extends munit.FunSuite {
 
   test("SG4 different keys are different entries") {
     val calls = new AtomicInteger(0)
-    val cached = impl.memoizeFuture[Int, Int] { n => calls.incrementAndGet(); Future.successful(n) }
+    val cached = impl.memoizeFuture[Int, Int] { n =>
+      calls.incrementAndGet(); Future.successful(n)
+    }
 
     await(Future.traverse((1 to 5).toList)(cached))
     await(Future.traverse((1 to 5).toList)(cached))
@@ -418,6 +420,3 @@ abstract class BlockGSuite(impl: BlockG) extends munit.FunSuite {
 
 /** Red until the attendees make it green. That is the point. */
 class BlockGExercisesSuite extends BlockGSuite(BlockGExercises)
-
-/** Green, always. If this one goes red, the reference solutions are wrong. */
-class BlockGSolutionsSuite extends BlockGSuite(BlockGSolutions)

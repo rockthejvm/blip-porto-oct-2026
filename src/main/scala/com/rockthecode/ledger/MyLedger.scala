@@ -10,8 +10,8 @@ import com.rockthecode.ledger.domain.*
 
 object MyLedger extends LedgerEngine[Bank] {
 
-  def empty: Bank = Bank()
+  def empty: Bank = Bank(Map(), 1)
 
   def execute(state: Bank, line: String): (Bank, List[String]) =
-    (Bank(), List("ERROR NotImplemented"))
+    (empty, List("ERROR NotImplemented"))
 }

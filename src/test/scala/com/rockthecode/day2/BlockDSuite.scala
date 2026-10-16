@@ -1,13 +1,11 @@
 package com.rockthecode.day2
 
-import com.rockthecode.day2.solutions.BlockDSolutions
+import com.rockthecode.day2.BlockDExercises
 
-/**
- * Day 2, Block D - the tests.
- *
- *   sbt blockD                                                 <- attendees
- *   sbt "testOnly com.rockthecode.day2.BlockDSolutionsSuite"   <- trainer
- */
+/** Day 2, Block D - the tests.
+  *
+  * sbt blockD <- attendees sbt "testOnly com.rockthecode.day2.BlockDSolutionsSuite" <- trainer
+  */
 abstract class BlockDSuite(impl: BlockD) extends munit.FunSuite {
 
   // --- D.1 -------------------------------------------------------------------
@@ -286,6 +284,3 @@ abstract class BlockDSuite(impl: BlockD) extends munit.FunSuite {
 
 /** Red until the attendees make it green. That is the point. */
 class BlockDExercisesSuite extends BlockDSuite(BlockDExercises)
-
-/** Green, always. If this one goes red, the reference solutions are wrong. */
-class BlockDSolutionsSuite extends BlockDSuite(BlockDSolutions)

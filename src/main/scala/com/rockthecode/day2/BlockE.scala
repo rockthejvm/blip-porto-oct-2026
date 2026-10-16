@@ -18,7 +18,7 @@ trait BlockE {
     *
     * `priceOf("widget") == Success(25)` `priceOf("nothing")` is a `Failure(NoSuchElementException)`
     */
-  def totalValueOf(sku: String): Try[BigDecimal]
+  def priceOf(sku: String): Try[BigDecimal]
 
   /** The cost of one unit when you buy `quantity` of them together - so, the total for the batch divided by the
     * quantity.
@@ -178,13 +178,15 @@ case class SignupForm(name: String, email: String, age: String)
 
 case class Signup(name: String, email: String, age: Int)
 
-trait ValidationError
-case object NameIsEmpty extends ValidationError
-case class EmailIsInvalid(value: String) extends ValidationError
-case class AgeIsNotANumber(value: String) extends ValidationError
-case class AgeIsTooLow(age: Int) extends ValidationError
+enum ValidationError {
+  case NameIsEmpty
+  case EmailIsInvalid(value: String)
+  case AgeIsNotANumber(value: String)
+  case AgeIsTooLow(age: Int)
+}
 
-trait LookupError
-case class NoSuchPerson(name: String) extends LookupError
-case class NoManagerRecorded(name: String) extends LookupError
-case class NoEmailOnRecord(name: String) extends LookupError
+enum LookupError {
+  case NoSuchPerson(name: String)
+  case NoManagerRecorded(name: String)
+  case NoEmailOnRecord(name: String)
+}

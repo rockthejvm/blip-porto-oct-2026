@@ -1,13 +1,12 @@
 package com.rockthecode.day2
 
-import com.rockthecode.day2.solutions.BlockASolutions
+import com.rockthecode.day2.BlockAExercises
 
-/**
- * Day 2, Block A - the tests.
- *
- *   sbt "testOnly com.rockthecode.day2.BlockAExercisesSuite"   <- attendees
- *   sbt "testOnly com.rockthecode.day2.BlockASolutionsSuite"   <- trainer
- */
+/** Day 2, Block A - the tests.
+  *
+  * sbt "testOnly com.rockthecode.day2.BlockAExercisesSuite" <- attendees sbt "testOnly
+  * com.rockthecode.day2.BlockASolutionsSuite" <- trainer
+  */
 abstract class BlockASuite(impl: BlockA) extends munit.FunSuite {
 
   private val orders = List(
@@ -81,12 +80,12 @@ abstract class BlockASuite(impl: BlockA) extends munit.FunSuite {
 
   test("A.2 applyAll replays a history in order") {
     val history = List(
-      Deposit(BigDecimal(50)),      // 150
-      Withdrawal(BigDecimal(30)),   // 120
+      Deposit(BigDecimal(50)), // 150
+      Withdrawal(BigDecimal(30)), // 120
       Freeze,
-      Deposit(BigDecimal(1000)),    // ignored, frozen
+      Deposit(BigDecimal(1000)), // ignored, frozen
       Unfreeze,
-      Withdrawal(BigDecimal(20))    // 100
+      Withdrawal(BigDecimal(20)) // 100
     )
     assertEquals(impl.applyAll(active, history), Account("acc-1", BigDecimal(100), Active))
   }
@@ -193,9 +192,9 @@ abstract class BlockASuite(impl: BlockA) extends munit.FunSuite {
 
   test("SA2 transfers are applied in order, each seeing the last") {
     val transfers = List(
-      Transfer("ana", "bruno", BigDecimal(60)),  // ana 40, bruno 110
+      Transfer("ana", "bruno", BigDecimal(60)), // ana 40, bruno 110
       Transfer("bruno", "ana", BigDecimal(100)), // ana 140, bruno 10
-      Transfer("bruno", "ana", BigDecimal(50))   // rejected: bruno only has 10
+      Transfer("bruno", "ana", BigDecimal(50)) // rejected: bruno only has 10
     )
     val result = impl.applyTransfers(bank, transfers)
     assertEquals(result("ana").balance, BigDecimal(140))
@@ -222,7 +221,7 @@ abstract class BlockASuite(impl: BlockA) extends munit.FunSuite {
       Transfer("bruno", "carla", BigDecimal(20)), // carla frozen: refused
       Transfer("ana", "ana", BigDecimal(5)),
       Transfer("bruno", "ana", BigDecimal(1000)), // unaffordable
-      Transfer("ghost", "ana", BigDecimal(7)),    // unknown
+      Transfer("ghost", "ana", BigDecimal(7)), // unknown
       Transfer("bruno", "ana", BigDecimal(30))
     )
     assertEquals(totalMoney(impl.applyTransfers(bank, transfers)), totalMoney(bank))
@@ -243,13 +242,13 @@ abstract class BlockASuite(impl: BlockA) extends munit.FunSuite {
 
   test("SA3 rejections carry their position and their reason, in order") {
     val history = List(
-      Deposit(BigDecimal(50)),     // 0: ok, balance 150
+      Deposit(BigDecimal(50)), // 0: ok, balance 150
       Withdrawal(BigDecimal(500)), // 1: insufficient funds
-      Freeze,                      // 2: ok
-      Deposit(BigDecimal(10)),     // 3: account frozen
+      Freeze, // 2: ok
+      Deposit(BigDecimal(10)), // 3: account frozen
       Withdrawal(BigDecimal(999)), // 4: frozen wins over insufficient
-      Unfreeze,                    // 5: ok
-      Withdrawal(BigDecimal(50))   // 6: ok, balance 100
+      Unfreeze, // 5: ok
+      Withdrawal(BigDecimal(50)) // 6: ok, balance 100
     )
     val (account, rejections) = impl.applyAllTracking(ana, history)
     assertEquals(account, Account("ana", BigDecimal(100), Active))
@@ -337,6 +336,3 @@ abstract class BlockASuite(impl: BlockA) extends munit.FunSuite {
 
 /** Red until the attendees make it green. That is the point. */
 class BlockAExercisesSuite extends BlockASuite(BlockAExercises)
-
-/** Green, always. If this one goes red, the reference solutions are wrong. */
-class BlockASolutionsSuite extends BlockASuite(BlockASolutions)

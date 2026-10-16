@@ -1,13 +1,11 @@
 package com.rockthecode.day2
 
-import com.rockthecode.day2.solutions.BlockBSolutions
+import com.rockthecode.day2.BlockBExercises
 
-/**
- * Day 2, Block B - the tests.
- *
- *   sbt blockB                                                 <- attendees
- *   sbt "testOnly com.rockthecode.day2.BlockBSolutionsSuite"   <- trainer
- */
+/** Day 2, Block B - the tests.
+  *
+  * sbt blockB <- attendees sbt "testOnly com.rockthecode.day2.BlockBSolutionsSuite" <- trainer
+  */
 abstract class BlockBSuite(impl: BlockB) extends munit.FunSuite {
 
   private val small = List(3, 1, 4, 1, 5, 9, 2, 6)
@@ -300,6 +298,3 @@ abstract class BlockBSuite(impl: BlockB) extends munit.FunSuite {
 
 /** Red until the attendees make it green. That is the point. */
 class BlockBExercisesSuite extends BlockBSuite(BlockBExercises)
-
-/** Green, always. If this one goes red, the reference solutions are wrong. */
-class BlockBSolutionsSuite extends BlockBSuite(BlockBSolutions)

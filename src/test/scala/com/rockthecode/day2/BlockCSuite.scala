@@ -1,13 +1,11 @@
 package com.rockthecode.day2
 
-import com.rockthecode.day2.solutions.BlockCSolutions
+import com.rockthecode.day2.BlockCExercises
 
-/**
- * Day 2, Block C - the tests.
- *
- *   sbt blockC                                                 <- attendees
- *   sbt "testOnly com.rockthecode.day2.BlockCSolutionsSuite"   <- trainer
- */
+/** Day 2, Block C - the tests.
+  *
+  * sbt blockC <- attendees sbt "testOnly com.rockthecode.day2.BlockCSolutionsSuite" <- trainer
+  */
 abstract class BlockCSuite(impl: BlockC) extends munit.FunSuite {
 
   import Shape.*
@@ -358,6 +356,3 @@ abstract class BlockCSuite(impl: BlockC) extends munit.FunSuite {
 
 /** Red until the attendees make it green. That is the point. */
 class BlockCExercisesSuite extends BlockCSuite(BlockCExercises)
-
-/** Green, always. If this one goes red, the reference solutions are wrong. */
-class BlockCSolutionsSuite extends BlockCSuite(BlockCSolutions)

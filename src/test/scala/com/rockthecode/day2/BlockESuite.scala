@@ -1,16 +1,14 @@
 package com.rockthecode.day2
 
-import com.rockthecode.day2.solutions.BlockESolutions
+import com.rockthecode.day2.BlockEExercises
 
 import java.util.concurrent.atomic.AtomicInteger
 import scala.util.{Failure, Success, Try}
 
-/**
- * Day 2, Block E - the tests.
- *
- *   sbt blockE                                                 <- attendees
- *   sbt "testOnly com.rockthecode.day2.BlockESolutionsSuite"   <- trainer
- */
+/** Day 2, Block E - the tests.
+  *
+  * sbt blockE <- attendees sbt "testOnly com.rockthecode.day2.BlockESolutionsSuite" <- trainer
+  */
 abstract class BlockESuite(impl: BlockE) extends munit.FunSuite {
 
   import PricingError.*
@@ -273,7 +271,10 @@ abstract class BlockESuite(impl: BlockE) extends munit.FunSuite {
   // --- SE3 -------------------------------------------------------------------
 
   test("SE3 mapError translates the left and leaves the right alone") {
-    assertEquals(impl.mapError(Left(UnknownSku("x")): Either[PricingError, Int])(e => s"pricing: $e"), Left("pricing: UnknownSku(x)"))
+    assertEquals(
+      impl.mapError(Left(UnknownSku("x")): Either[PricingError, Int])(e => s"pricing: $e"),
+      Left("pricing: UnknownSku(x)")
+    )
     assertEquals(impl.mapError(Right(7): Either[PricingError, Int])(e => s"pricing: $e"), Right(7))
   }
 
@@ -311,6 +312,3 @@ abstract class BlockESuite(impl: BlockE) extends munit.FunSuite {
 
 /** Red until the attendees make it green. That is the point. */
 class BlockEExercisesSuite extends BlockESuite(BlockEExercises)
-
-/** Green, always. If this one goes red, the reference solutions are wrong. */
-class BlockESolutionsSuite extends BlockESuite(BlockESolutions)

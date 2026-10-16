@@ -1,20 +1,17 @@
 package com.rockthecode.day2
 
-import com.rockthecode.day2.solutions.BlockFSolutions
+import com.rockthecode.day2.BlockFExercises
 
 import java.util.concurrent.atomic.AtomicInteger
 import scala.concurrent.duration.*
 
-/**
- * Day 2, Block F - the tests.
- *
- * Many of these count evaluations rather than checking values, because a lazy
- * answer and a wasteful one are the same answer. A failure on a count means the
- * code is correct and does far too much.
- *
- *   sbt blockF                                                 <- attendees
- *   sbt "testOnly com.rockthecode.day2.BlockFSolutionsSuite"   <- trainer
- */
+/** Day 2, Block F - the tests.
+  *
+  * Many of these count evaluations rather than checking values, because a lazy answer and a wasteful one are the same
+  * answer. A failure on a count means the code is correct and does far too much.
+  *
+  * sbt blockF <- attendees sbt "testOnly com.rockthecode.day2.BlockFSolutionsSuite" <- trainer
+  */
 abstract class BlockFSuite(impl: BlockF) extends munit.FunSuite {
 
   // --- F.1 -------------------------------------------------------------------
@@ -117,7 +114,9 @@ abstract class BlockFSuite(impl: BlockF) extends munit.FunSuite {
     val calls = new AtomicInteger(0)
     val hundred = (1 to 100).toList
 
-    val result = impl.firstPositive(hundred, 3) { n => calls.incrementAndGet(); n }
+    val result = impl.firstPositive(hundred, 3) { n =>
+      calls.incrementAndGet(); n
+    }
 
     assertEquals(result, List(1, 2, 3))
     assertEquals(calls.get(), 3, "a hundred expensive calls to keep three")
@@ -125,7 +124,9 @@ abstract class BlockFSuite(impl: BlockF) extends munit.FunSuite {
 
   test("F.2 firstPositive still works when it has to look a long way") {
     val calls = new AtomicInteger(0)
-    val result = impl.firstPositive((1 to 100).toList, 2) { n => calls.incrementAndGet(); n - 50 }
+    val result = impl.firstPositive((1 to 100).toList, 2) { n =>
+      calls.incrementAndGet(); n - 50
+    }
 
     assertEquals(result, List(1, 2))
     assertEquals(calls.get(), 52)
@@ -223,7 +224,9 @@ abstract class BlockFSuite(impl: BlockF) extends munit.FunSuite {
 
   test("SF1 memoize computes each argument exactly once, and only the ones asked for") {
     val calls = new AtomicInteger(0)
-    val fast = impl.memoize[Int, Int] { n => calls.incrementAndGet(); n * n }
+    val fast = impl.memoize[Int, Int] { n =>
+      calls.incrementAndGet(); n * n
+    }
 
     assertEquals(fast(5), 25)
     assertEquals(calls.get(), 1, "just the one that was asked for")
@@ -239,7 +242,9 @@ abstract class BlockFSuite(impl: BlockF) extends munit.FunSuite {
     // Building the Map inside the returned function is the trap: every call
     // gets a fresh empty one and nothing is ever remembered.
     val calls = new AtomicInteger(0)
-    val fast = impl.memoize[Int, Int] { n => calls.incrementAndGet(); n }
+    val fast = impl.memoize[Int, Int] { n =>
+      calls.incrementAndGet(); n
+    }
 
     (1 to 10).foreach(_ => fast(4))
     assertEquals(calls.get(), 1, "ten lookups of the same argument, one computation")
@@ -247,7 +252,9 @@ abstract class BlockFSuite(impl: BlockF) extends munit.FunSuite {
 
   test("SF1 memoize works on any argument type, not just integers") {
     val calls = new AtomicInteger(0)
-    val lengthOf = impl.memoize[String, Int] { s => calls.incrementAndGet(); s.length }
+    val lengthOf = impl.memoize[String, Int] { s =>
+      calls.incrementAndGet(); s.length
+    }
 
     assertEquals(lengthOf("hello"), 5)
     assertEquals(lengthOf("hello"), 5)
@@ -302,6 +309,3 @@ abstract class BlockFSuite(impl: BlockF) extends munit.FunSuite {
 
 /** Red until the attendees make it green. That is the point. */
 class BlockFExercisesSuite extends BlockFSuite(BlockFExercises)
-
-/** Green, always. If this one goes red, the reference solutions are wrong. */
-class BlockFSolutionsSuite extends BlockFSuite(BlockFSolutions)

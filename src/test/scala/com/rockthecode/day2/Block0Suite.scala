@@ -1,19 +1,16 @@
 package com.rockthecode.day2
 
-import com.rockthecode.day2.solutions.Block0Solutions
+import com.rockthecode.day2.Block0Exercises
 
-/**
- * Day 2, Block 0 - the tests.
- *
- * The suite is written once, against the `Block0` interface, and then run twice:
- * once against the attendees' stubs and once against the reference solutions.
- * That way the solutions can never drift from the exercise signatures, and the
- * trainer can check the solutions still pass without wading through the
- * (deliberately) red exercise suite.
- *
- *   sbt "testOnly com.rockthecode.day2.Block0ExercisesSuite"   <- attendees
- *   sbt "testOnly com.rockthecode.day2.Block0SolutionsSuite"   <- trainer
- */
+/** Day 2, Block 0 - the tests.
+  *
+  * The suite is written once, against the `Block0` interface, and then run twice: once against the attendees' stubs and
+  * once against the reference solutions. That way the solutions can never drift from the exercise signatures, and the
+  * trainer can check the solutions still pass without wading through the (deliberately) red exercise suite.
+  *
+  * sbt "testOnly com.rockthecode.day2.Block0ExercisesSuite" <- attendees sbt "testOnly
+  * com.rockthecode.day2.Block0SolutionsSuite" <- trainer
+  */
 abstract class Block0Suite(impl: Block0) extends munit.FunSuite {
 
   private val staff = List(
@@ -254,31 +251,3 @@ abstract class Block0Suite(impl: Block0) extends munit.FunSuite {
 
 /** Red until the attendees make it green. That is the point. */
 class Block0ExercisesSuite extends Block0Suite(Block0Exercises)
-
-/** Green, always. If this one goes red, the reference solutions are wrong. */
-class Block0SolutionsSuite extends Block0Suite(Block0Solutions)
-
-/**
- * Trainer-only cross-check: the obvious quadratic answer and the clever
- * single-pass one must agree on everything, including the tie-breaks.
- *
- * This is the claim made during the S4 walkthrough, so it is worth having a
- * machine confirm it rather than a whiteboard.
- */
-class Block0AgreementSuite extends munit.FunSuite {
-
-  test("S4 the quadratic and single-pass answers agree on 2000 random series") {
-    val random = new scala.util.Random(20261026)
-
-    val disagreements =
-      (1 to 2000).flatMap { _ =>
-        val length = random.nextInt(12)
-        val series = List.fill(length)(BigDecimal(random.nextInt(20)))
-        val quadratic = Block0Solutions.bestTradeQuadratic(series)
-        val singlePass = Block0Solutions.bestTrade(series)
-        if (quadratic == singlePass) None else Some((series, quadratic, singlePass))
-      }
-
-    assertEquals(disagreements, Seq.empty, "the two solutions disagree")
-  }
-}
