@@ -2,49 +2,68 @@ package com.rockthecode.day2
 
 import scala.util.Try
 
-/**
- * Day 2, Block E - your workspace.
- *
- * Briefs are the scaladoc on `BlockE`.
- *
- * Rules: no `.get` on a `Try` or an `Option`, and no `throw` anywhere in here.
- *
- *   sbt blockE
- */
+/** Day 2, Block E
+  */
 object BlockEExercises extends BlockE {
 
-  // E.1 Try, at the boundary with code that throws
-  def priceOf(sku: String): Try[BigDecimal] = ???
+  def totalValueOf(sku: String): Try[BigDecimal] =
+    Try(LegacyPricing.totalValueOf(sku))
 
-  def unitCost(sku: String, quantity: Int): Try[BigDecimal] = ???
+  def unitCost(sku: String, quantity: Int): Try[BigDecimal] =
+    for {
+      total <- totalValueOf(sku)
+      perUnit <- Try(LegacyPricing.perUnit(total, quantity))
+    } yield perUnit
 
   def priceOrDefault(sku: String, fallback: BigDecimal): BigDecimal = ???
 
-  // E.2 Crossing the boundary: Try in, Either out
   def priceEither(sku: String): Either[PricingError, BigDecimal] = ???
 
   def unitCostEither(sku: String, quantity: Int): Either[PricingError, BigDecimal] = ???
 
-  // E.3 Validation, one failure at a time
-  def validateName(raw: String): Either[ValidationError, String] = ???
+  def validateName(raw: String): Either[ValidationError, String] =
+    Either.cond(raw.nonEmpty, raw.trim, NameIsEmpty)
 
-  def validateEmail(raw: String): Either[ValidationError, String] = ???
+  def validateEmail(raw: String): Either[ValidationError, String] =
+    Either.cond(raw.contains("@"), raw.trim, EmailIsInvalid(raw))
 
-  def validateAge(raw: String): Either[ValidationError, Int] = ???
+  def validateAge(raw: String): Either[ValidationError, Int] =
+    Either
+      .cond(raw.toIntOption.nonEmpty, raw.toInt, AgeIsNotANumber(raw)) match {
+      case Left(e) => Left(e)
+      case Right(v) if v >= 18 => Right(v)
+      case Right(v) => Left(AgeIsTooLow(v))
+    }
 
-  def validateFailFast(form: SignupForm): Either[ValidationError, Signup] = ???
+  def validateFailFast(form: SignupForm): Either[ValidationError, Signup] =
+    for {
+      n <- validateName(form.name)
+      e <- validateEmail(form.email)
+      a <- validateAge(form.age)
+    } yield Signup(n, e, a)
 
-  // E.4 Validation, all the failures at once
-  def validateAll(form: SignupForm): Either[List[ValidationError], Signup] = ???
+  def validateAll(form: SignupForm): Either[List[ValidationError], Signup] = {
+    val nameEither = validateName(form.name)
+    val emailEither = validateEmail(form.email)
+    val ageEither = validateAge(form.age)
 
-  // E.5 Lists of results
+    val errors = List(nameEither, emailEither, ageEither).collect { case Left(e) =>
+      e
+    } // List[all errors]
+
+    (nameEither, emailEither, ageEither) match {
+      case (Right(n), Right(e), Right(a)) =>
+        Right(Signup(n, e, a))
+      case _ => Left(errors)
+    }
+  }
+
   def sequence[E, A](results: List[Either[E, A]]): Either[E, List[A]] = ???
 
   def traverse[E, A, B](items: List[A])(f: A => Either[E, B]): Either[E, List[B]] = ???
 
   def partitionResults[E, A](results: List[Either[E, A]]): (List[E], List[A]) = ???
 
-  // E.6 D.6, answered
   def managerEmailEither(directory: Map[String, Colleague], name: String): Either[LookupError, String] = ???
 
   // ===========================================================================

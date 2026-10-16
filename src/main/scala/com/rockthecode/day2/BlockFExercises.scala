@@ -5,13 +5,6 @@ import scala.concurrent.duration.FiniteDuration
 /**
  * Day 2, Block F - your workspace.
  *
- * Briefs are the scaladoc on `BlockF`.
- *
- * Most of these tests count how many times something was evaluated, because a
- * lazy answer and an eager one return the same value. If a test fails on a
- * count rather than a value, your code is right and does too much.
- *
- *   sbt blockF
  */
 object BlockFExercises extends BlockF {
 
@@ -34,12 +27,12 @@ object BlockFExercises extends BlockF {
 
   def primes: LazyList[Int] = ???
 
-  // F.4 Building your own
+  // F.4 Your own
   def unfoldLazy[S, A](seed: S)(step: S => Option[(A, S)]): LazyList[A] = ???
 
   def collatz(start: Int): LazyList[Int] = ???
 
-  // F.5 Something you would actually ship
+  // F.5 Realistic
   def backoffSchedule(initial: FiniteDuration, factor: Int, cap: FiniteDuration): LazyList[FiniteDuration] = ???
 
   // ===========================================================================
