@@ -9,4 +9,4 @@ package com.rockthecode.ledger.domain
 
 	Map[String, Account]
  */
-final case class Bank(accounts: Map[String, Account])
+final case class Bank(accounts: Map[String, Account], seq: Int)
