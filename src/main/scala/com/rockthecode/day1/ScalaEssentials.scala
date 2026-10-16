@@ -468,6 +468,13 @@ object ScalaEssentials {
 
   val task_v2: Task[String] = _.toString
 
+  // sealed = the type cannot be extended beyond this file
+  sealed trait AccountState
+  case object Closed extends AccountState
+  case class Open(name: String, amount: Int) extends AccountState
+  /// ...
+  // important for pattern matching (it is exhaustive)
+
   def main(args: Array[String]): Unit = {
     println(sumTailrec(1000000, 0))
     println(isPrime(2))
