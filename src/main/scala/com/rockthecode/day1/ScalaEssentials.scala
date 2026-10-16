@@ -409,6 +409,7 @@ object ScalaEssentials {
       case 1 => "the one"
       case 2 => "second"
       case 42 => "meaning of life"
+      case _ => "error"
     }
   )
 
@@ -418,7 +419,54 @@ object ScalaEssentials {
     case 1 => "the one"
     case 2 => "second"
     case 42 => "meaning of life"
+    case _ => "error"
   }
+
+  /*
+    Call by value
+    Call by name
+   */
+
+  def add(a: Int, b: Int, c: Int) = a + b
+  val seven = add(
+    2 + 3,
+    1 + 1, {
+      println("[call by value] I need to be evaluated")
+      0
+    }
+  ) // values are computed FIRST, eagerly
+
+  def addBN(a: => Int, b: => Int, c: => Int) = a + b
+  val seven_v2 = addBN(
+    2 + 3,
+    1 + 1, {
+      println("[call by name] I need to be evaluated")
+      0
+    }
+  ) // params are NOT evaluated UNTIL used, BUT will be evaluated EVERY TIME it's used
+
+  // CBN useful for expressions that produce side effects
+  // e.g. logging, printing, changing state, dealing with time/randomness, allocating resources
+
+  // lazy evaluation
+  lazy val computeMOL = {
+    println("figuring out what to do with my foldLeft time")
+    40 + 2 // NOT evaluated....
+  }
+
+  // CBN evaluates every time it's used
+  // lazy val evaluates ONCE
+
+  // syntax sugar: single abstract method pattern (SAM)
+  trait Task[A] {
+    def execute(thing: Int): A
+  }
+
+  val task = new Task[String] {
+    override def execute(thing: Int): String = thing.toString
+  }
+
+  val task_v2: Task[String] = _.toString
 
   def main(args: Array[String]): Unit = {
     println(sumTailrec(1000000, 0))
@@ -445,6 +493,10 @@ object ScalaEssentials {
     println(combineAllBad(numbers, strings, (int, string) => concatN(string, int)))
     println(combineAll(numbers, strings, (int, string) => concatN(string, int)))
 
+    // ... until lazy val is used
+    val doSomethingWithYourLife = computeMOL * 10
+    // and then it will stay evaluated
+    val doSomethingWithYour2ndLife = computeMOL * 100
   }
 
 }

@@ -58,12 +58,11 @@ By the end of the project you will have created an **event-sourced ledger** whic
 
 ### What is provided
 
-Four files in `src/main/scala/com/rockthecode/ledger/`. Don't change anything but `MyLedger`.
+Small files in `src/main/scala/com/rockthecode/ledger/`. Don't change anything but `MyLedger`.
 
 | File | What it is |
 |---|---|
 | `LedgerEngine.scala` | The one interface between your code and everything else: `empty`, `execute(state, line)`, and two journal methods (defaulted to no-ops) that you implement in milestone 3. `S`, the state type, is yours; the harness never looks inside it. |
-| `Harness.scala` | Runs input lines through an engine by folding `execute` over them. This is the whole application — notice there is no `var`, no mutation and no I/O in it. |
 | `Main.scala` | The command-line app: reads a scenario file, prints the responses. Takes an optional journal file. The single line `val ledger = MyLedger` is where it is told which engine to run. |
 | `MyLedger.scala` | A stub engine that answers `ERROR NotImplemented` to everything. **This is what you replace.** |
 
@@ -105,8 +104,7 @@ sbt "runMain com.rockthecode.ledger.Main my-scenario.txt my.journal"   # milesto
 ```
 
 
-**One warning.** The milestones are laid out below in full, including the two commands that arrive
-after lunch. I recommend you **NOT** to read milestones 4 and 5 until you reach them, because they spoil a design decision.
+**One warning.** The milestones are laid out below in full. I recommend you **NOT** to read milestones 4 and 5 until you reach them, because they spoil a design decision.
 
 ## 4. Recommendations
 

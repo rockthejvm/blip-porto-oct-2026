@@ -43,6 +43,8 @@ trait BlockG {
     */
   def fetchWithBackup[A](primary: => Future[A], backup: => Future[A]): Future[A]
 
+  // recover + recoverWith are like map + flatMap
+
   /** Describe a Future, as a Future that always succeeds.
     *
     * `"ok: 42"` for a success, `"failed: boom"` for a failure with the message "boom".
