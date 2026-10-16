@@ -1,12 +1,13 @@
 package com.rockthecode.ledger.domain
 
-/*
+import com.rockthecode.ledger.Output
 
-	- names of accounts == unique, the id of the account
-	- amounts of each account
-	- currencies of each account
-	- state of account (open, closed, frozed)
-
-	Map[String, Account]
- */
-final case class Bank(accounts: Map[String, Account], seq: Int)
+final case class Bank(accounts: Map[String, Account], seq: Int) {
+  def run(command: Command): (Bank, List[String]) = command match {
+    case Open(name, currency) =>
+      val newAccounts = accounts + (name -> Active(name, 0, currency, false))
+      val event = Opened(name, currency)
+      (Bank(newAccounts, seq + 1), List(Output.write(event, seq))) // TODO
+    case _ => (this, List("not implemented yet"))
+  }
+}

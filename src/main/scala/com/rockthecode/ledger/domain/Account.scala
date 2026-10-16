@@ -1,8 +1,10 @@
 package com.rockthecode.ledger.domain
 
-final case class Account(
+sealed trait Account
+final case class Active(
     name: String,
-    amount: Int, // TODO - manage money
+    amount: Int,
     currency: Currency,
     frozen: Boolean
-)
+) extends Account
+case object Closed extends Account

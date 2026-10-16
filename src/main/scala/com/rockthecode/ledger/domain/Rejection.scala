@@ -1,4 +1,5 @@
 package com.rockthecode.ledger.domain
 
 sealed trait Rejection
-// TODO add cases here
+case class UnknownAccount(name: String) extends Rejection
+case class AccountExists(name: String) extends Rejection
